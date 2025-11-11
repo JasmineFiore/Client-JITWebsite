@@ -1,0 +1,416 @@
+import { useEffect, useState } from "react";
+import { FaMapMarkerAlt, FaSearch, FaBars, FaTimes } from "react-icons/fa";
+import { Link, useLocation } from "react-router-dom";
+
+const Navbar = () => {
+  const [activeMenu, setActiveMenu] = useState(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  let timeoutId = null;
+
+  // ✅ Close mobile menu & dropdown whenever route changes
+  useEffect(() => {
+    setMobileMenuOpen(false);
+    setActiveMenu(null);
+  }, [location.pathname]);
+
+  const handleMouseEnter = (menu) => {
+    if (window.innerWidth < 1024) return; // Disable hover on mobile
+    clearTimeout(timeoutId);
+    setActiveMenu(menu);
+  };
+
+  const handleMouseLeave = () => {
+    if (window.innerWidth < 1024) return;
+    timeoutId = setTimeout(() => setActiveMenu(null), 150);
+  };
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen((prev) => !prev);
+    setActiveMenu(null);
+  };
+
+  const handleLinkClick = () => {
+    setActiveMenu(null);
+    setMobileMenuOpen(false);
+  };
+
+  // ✅ Detect scroll position
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const isHome = location.pathname === "/";
+  const navbarBg = isHome && !isScrolled ? "bg-white/30" : "bg-white shadow-md";
+  const textColor = isHome && !isScrolled ? "text-green-100" : "text-black";
+  const hoverColor =
+    isHome && !isScrolled ? "hover:text-yellow-300" : "hover:text-blue-700";
+
+  return (
+    <header
+      className={`fixed top-0 left-0 w-full z-50 transition-[background-color] duration-300 ${navbarBg} ${textColor}`}
+    >
+      {/* 🔸 Top Bar */}
+      <div className="flex justify-between items-center px-4 sm:px-8 py-3 bg-black/40 backdrop-blur-sm">
+        {/* Left: Logo + Name */}
+        <div className="flex items-center gap-3">
+          <img
+            src="/images/jitlogo.jpg"
+            alt="JIT Logo"
+            className="h-12 sm:h-14"
+          />
+          <div>
+            <h1 className="text-lg sm:text-2xl font-bold leading-tight">
+              Jahangirabad Institute of Technology
+            </h1>
+            <p className="text-xs sm:text-sm">Lucknow, Uttar Pradesh, India</p>
+          </div>
+        </div>
+
+        {/* Right: Info + Icons */}
+        <div className="flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-2 text-sm">
+            <FaMapMarkerAlt className="text-yellow-400" />
+            <span>Lucknow, India</span>
+          </div>
+          <FaSearch
+            className={`cursor-pointer hidden md:block ${hoverColor}`}
+          />
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={toggleMobileMenu}
+            className="text-2xl md:hidden focus:outline-none"
+          >
+            {mobileMenuOpen ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
+      </div>
+
+      {/* 🔹 Navigation Menu */}
+      <nav
+        className={`relative ${
+          mobileMenuOpen
+            ? "max-h-screen opacity-100 pointer-events-auto"
+            : "max-h-0 opacity-0 pointer-events-none md:max-h-none md:opacity-100 md:pointer-events-auto"
+        } bg-white ${textColor} md:bg-transparent `}
+      >
+        <div className="flex flex-col md:flex-row justify-center items-start md:items-center md:gap-6 p-4 md:p-0 font-semibold uppercase text-sm tracking-wide">
+          {[
+            { label: "Home", path: "/" },
+            {
+              label: "ABOUT US",
+              dropdown: [
+                { label: "Chairman’s Message", path: "/chairman" },
+                { label: "Director", path: "/director" },
+                { label: "History", path: "/history" },
+                { label: "Vision & Mission", path: "/vision" },
+                { label: "Affiliation & Recognition", path: "/affiliation" },
+              ],
+            },
+            {
+              label: "ADMISSION & FACULTY",
+              dropdown: [
+                { label: "College of Engineering", path: "/btech-coe" },
+                { label: "College of Pharmacy", path: "/bPharm" },
+                { label: "College of Business", path: "/bPharm" },
+                { label: "College of Media & Journalism", path: "/bPharm" },
+                { label: "College of Arts", path: "/bPharm" },
+              ],
+            },
+            // { label: "Admission & Faculty", path: "/admission" },
+            { label: "COURSES", dropdown: ["COURSES"] },
+            { label: "Life @ JIT", path: "/life-jit" },
+            { label: "Placements", path: "/placements" },
+            { label: "Career", path: "/career" },
+            { label: "Contact", path: "/contact" },
+          ].map((item) => (
+            <div
+              key={item.label}
+              className="relative w-full md:w-auto"
+              onMouseEnter={() => handleMouseEnter(item.label)}
+              onMouseLeave={handleMouseLeave}
+            >
+              {item.dropdown ? (
+                // 🔸 Dropdown Button
+                <button
+                  className={`block w-full text-left px-3 py-2 transition-colors duration-300 cursor-pointer ${hoverColor}`}
+                  onClick={() =>
+                    setActiveMenu(activeMenu === item.label ? null : item.label)
+                  }
+                >
+                  {item.label}
+                </button>
+              ) : (
+                // 🔹 Normal Link
+                <Link
+                  to={item.path}
+                  className={`block px-3 py-2 ${hoverColor} transition duration-300`}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              )}
+
+              {/* 🔽 About Us Dropdown */}
+              {["ABOUT US", "ADMISSION & FACULTY"].includes(item.label) &&
+                activeMenu === item.label && (
+                  <div className="md:absolute left-1/2 md:-translate-x-1/2 top-full w-full md:w-[15vw] bg-white text-black shadow-lg p-4 rounded-lg mt-2 z-50">
+                    <div className="grid grid-cols-1 gap-2 text-sm">
+                      {item.dropdown.map((sub) => (
+                        <Link
+                          key={sub.label}
+                          to={sub.path}
+                          className="hover:text-blue-700 cursor-pointer block"
+                          onClick={handleLinkClick}
+                        >
+                          {sub.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+              {/* 🔽 Courses Dropdown */}
+              {item.label === "COURSES" && activeMenu === "COURSES" && (
+                <div
+                  className="md:absolute left-1/2 md:-translate-x-1/2 top-full w-full md:w-[82vw] bg-white text-black shadow-lg p-6 rounded-lg mt-2 z-50 
+  max-h-[80vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100"
+                  style={{
+                    WebkitOverflowScrolling: "touch",
+                    scrollBehavior: "smooth",
+                    overscrollBehavior: "contain", // prevents body scroll interference
+                    paddingBottom: "14rem", // ensures bottom items are not cut off
+                  }}
+                >
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 text-xs">
+                    {/* College of Engineering */}
+                    <div>
+                      <h3 className="font-bold text-lg text-gray-800 border-b pb-1 mb-2">
+                        <Link
+                          to="/btech-coe"
+                          className="inline-block hover:text-blue-700 transition"
+                        >
+                          College of Engineering
+                        </Link>
+                      </h3>
+                      <p className="font-semibold text-base">B.Tech Degree:</p>
+                      <ul className="space-y-1 mb-3 text-xs border-b-2 border-gray-300 text-gray-600">
+                        {[
+                          ["btech-cse", "Computer Science (CSE)"],
+                          ["btech-aiml", "Artificial Intelligence (AIML)"],
+                          ["btech-ee", "Electrical (EE)"],
+                          ["btech-civil", "Civil (CE)"],
+                          ["btech-mechanical", "Mechanical (ME)"],
+                        ].map(([path, name]) => (
+                          <li key={path}>
+                            <Link
+                              to={`/${path}`}
+                              className="block hover:text-blue-700 px-2 py-1"
+                              onClick={handleLinkClick}
+                            >
+                              {name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <p className="font-semibold text-base">Diploma:</p>
+                      <ul className="space-y-1 text-xs">
+                        {[
+                          ["diploma-cse", "Computer Science"],
+                          ["diploma-ee", "Electrical"],
+                          ["diploma-civil", "Civil"],
+                          ["diploma-mechanical", "Mechanical"],
+                          ["diploma-library", "Library & Info Science"],
+                        ].map(([path, name]) => (
+                          <li key={path}>
+                            <Link
+                              to={`/${path}`}
+                              className="block hover:text-blue-700 px-2 py-1"
+                              onClick={handleLinkClick}
+                            >
+                              {name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* College of Pharmacy */}
+                    <div>
+                      <h3 className="font-bold text-lg text-gray-800 border-b pb-1 mb-2">
+                        <Link
+                          to="/bPharm"
+                          className="inline-block hover:text-blue-700 transition"
+                        >
+                          College of Pharmacy
+                        </Link>
+                      </h3>
+                      <p className="font-semibold text-base">Degree:</p>
+                      <ul className="space-y-1 mb-3 text-xs">
+                        {[
+                          // Pharm.D (Dr. of Pharmacy) these are left
+                          // M.Pharm (Pharm. Chemistry)
+                          // M.Pharm (Pharmaceutics)
+                          // M.Pharm (Pharmacology)
+                          ["b-pharma", "B.Pharm (Bachelor of Pharmacy)"],
+                          ["b-pharmalater", "B.Pharm (Lateral Entry from D.Pharm)"],
+                        ].map(([path, name]) => (
+                          <li key={path}>
+                            <Link
+                              to={`/${path}`}
+                              onClick={handleLinkClick}
+                              className="block hover:text-blue-700 px-2 py-1"
+                            >
+                              {name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="font-semibold text-base">Diploma:</p>
+                      <ul className="space-y-1 text-xs">
+                        {[["diploma-pharmacy", "D.Pharm (Diploma in Pharmacy)"]].map(
+                          ([path, name]) => (
+                            <li key={path}>
+                              <Link
+                                to={`/${path}`}
+                                className="block hover:text-blue-700 px-2 py-1"
+                                onClick={handleLinkClick}
+                              >
+                                {name}
+                              </Link>
+                            </li>
+                          )
+                        )}
+
+                        {/* <li>
+                          <Link
+                            to="/d-pharm"
+                            className="block hover:text-blue-700 px-2 py-1"
+                          >
+                            D.Pharm
+                          </Link>
+                        </li> */}
+                      </ul>
+                    </div>
+
+                    {/* College of Business */}
+                    <div>
+                      <h3 className="font-bold text-lg text-gray-800 border-b pb-1 mb-2">
+                        College of Business
+                      </h3>
+                      <ul className="space-y-1 text-xs">
+                        {[
+                          ["mba-it", "MBA IT"],
+                          ["mba-ib", "MBA IB"],
+                          ["mba-finance", "MBA Finance"],
+                          ["mba-hr", "MBA HR"],
+                          ["bcom", "B.Com"],
+                        ].map(([path, name]) => (
+                          <li key={path}>
+                            <Link
+                              to={`/${path}`}
+                              onClick={handleLinkClick}
+                              className="block hover:text-blue-700 px-2 py-1"
+                            >
+                              {name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* College of Media */}
+                    <div>
+                      <h3 className="font-bold text-lg text-gray-800 border-b pb-1 mb-2">
+                        College of Media & Journalism
+                      </h3>
+                      <ul className="space-y-1 text-xs">
+                        {[
+                          ["ba-journalism", "BA Journalism"],
+                          ["acting-cert", "Acting Certificate"],
+                          ["film-making", "Film Making"],
+                          ["anchoring", "Anchoring"],
+                          ["video-editing", "Video Editing"],
+                        ].map(([path, name]) => (
+                          <li key={path}>
+                            <Link
+                              to={`/${path}`}
+                              onClick={handleLinkClick}
+                              className="block hover:text-blue-700 px-2 py-1"
+                            >
+                              {name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* College of Arts */}
+                    <div>
+                      <h3 className="font-bold text-lg text-gray-800 border-b pb-1 mb-2">
+                        College of Arts
+                      </h3>
+                      <ul className="space-y-1 text-xs">
+                        {[
+                          ["llb", "LLB"],
+                          ["political-science", "Political Science"],
+                          ["education", "Education"],
+                          ["sociology", "Sociology"],
+                        ].map(([path, name]) => (
+                          <li key={path}>
+                            <Link
+                              to={`/${path}`}
+                              onClick={handleLinkClick}
+                              className="block hover:text-blue-700 px-2 py-1"
+                            >
+                              {name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* College of ITI */}
+                    <div>
+                      <h3 className="font-bold text-lg text-gray-800 border-b pb-1 mb-2">
+                        College of ITI
+                      </h3>
+                      <ul className="space-y-1 text-xs">
+                        {[
+                          ["iti-multimedia", "Multimedia"],
+                          ["iti-photo", "Photography"],
+                          ["iti-electrician", "Electrician"],
+                          ["iti-welder", "Welder"],
+                          ["iti-fitter", "Fitter"],
+                          ["iti-draughtsman", "Draughtsman"],
+                        ].map(([path, name]) => (
+                          <li key={path}>
+                            <Link
+                              to={`/${path}`}
+                              onClick={handleLinkClick}
+                              className="block hover:text-blue-700 px-2 py-1"
+                            >
+                              {name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </nav>
+    </header>
+  );
+};
+
+export default Navbar;

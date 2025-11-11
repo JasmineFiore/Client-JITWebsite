@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+/* Flip-Up Hover Animation */
+.hover\:rotateX-6:hover {
+  transform: rotateX(180deg) scale(1.05);
+  transform-origin: bottom;
+}
+
+body {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.25s ease-out;
+}

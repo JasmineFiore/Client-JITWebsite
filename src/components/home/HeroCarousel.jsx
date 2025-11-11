@@ -1,0 +1,123 @@
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
+
+const slides = [
+  {
+    image: "/images/homec2.jpg",
+    title: "Welcome to JIT",
+    subtitle:
+      "Delivering world-class education that’s accessible and affordable for every learner.", //"A hub of innovation, research, and excellence."
+    cta: "Apply Now",
+    ctaLink: "https://jit-cet.uc-school.com/site/mobile-registration",
+  },
+  {
+    image: "/images/homec3.jpg",
+    title: "Experience World-Class Learning", //"Discover Top Programs",
+    subtitle: "Where technology meets creativity and purpose.", //"Take advantage of JIT’s cutting-edge technology.",
+    cta: "Explore Programs",
+    ctaLink: "/courses",
+  },
+  {
+    image: "/images/homec1.jpg",
+    title: "Your Journey Begins at JIT", //"EMPOWERING STUDENTS\nFOR SUCCESS",
+    subtitle: "Transform your passion into a career that makes an impact.", //"Don’t get framed by the competition, trust our solid reputation.",
+    cta: "Book a Counselling",
+    ctaLink: "/community",
+  },
+];
+
+export default function HeroCarousel() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % slides.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="relative w-full h-[90vh] overflow-hidden">
+      <AnimatePresence>
+        <motion.img
+          key={slides[index].image}
+          src={slides[index].image}
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.2, ease: "easeInOut" }}
+          className="absolute w-full h-full object-cover"
+        />
+      </AnimatePresence>
+
+      {/* Dark Overlay with Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
+
+      {/* Text Section */}
+      <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white px-6">
+        <motion.h1
+          key={slides[index].title}
+          className="whitespace-pre-line text-5xl sm:text-5xl md:text-8xl lg:text-7xl font-extrabold leading-tight tracking-wide drop-shadow-lg"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -40 }}
+          transition={{ duration: 0.8 }}
+        >
+          {slides[index].title}
+        </motion.h1>
+
+        <motion.p
+          key={slides[index].subtitle}
+          className="mt-6 text-base sm:text-lg md:text-xl max-w-2xl text-gray-200 italic tracking-wide"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 1, delay: 0.2 }}
+        >
+          {slides[index].subtitle}
+        </motion.p>
+
+        <motion.div
+          key={slides[index].cta}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -30 }}
+          transition={{ duration: 0.9, delay: 0.4 }}
+          className="mt-10"
+        >
+          {slides[index].ctaLink.startsWith("http") ? (
+            <motion.button
+              onClick={() => window.open(slides[index].ctaLink, "_blank")}
+              className="bg-[#FFB81C] text-[#002147] font-bold py-3 px-8 rounded-full shadow-lg hover:bg-[#e0a914] hover:scale-105 transition-all duration-300"
+            >
+              {slides[index].cta}
+            </motion.button>
+          ) : (
+            <Link
+              to={slides[index].ctaLink}
+              className="bg-[#FFB81C] text-[#002147] font-bold py-3 px-8 rounded-full shadow-lg hover:bg-[#e0a914] hover:scale-105 transition-all duration-300"
+            >
+              {slides[index].cta}
+            </Link>
+          )}
+        </motion.div>
+      </div>
+
+      {/* Navigation Dots */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setIndex(i)}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              i === index
+                ? "bg-white scale-110"
+                : "bg-gray-400 hover:bg-white/70"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
