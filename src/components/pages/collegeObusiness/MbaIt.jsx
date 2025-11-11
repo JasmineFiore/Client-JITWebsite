@@ -8,6 +8,7 @@ import RuokuImg from "/images/RuokuImg.jpg";
 import SohibAnsariImg from "/images/SohibAnsariImg.jpg";
 import EnquiryModal from "../../../Blueprints/EnquiryModal";
 import { useState } from "react";
+import { FaCheck } from "react-icons/fa";
 
 export default function MbaIt() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -111,21 +112,6 @@ export default function MbaIt() {
               It offers a real-time understanding of the ever-evolving modern
               business landscape, ensuring you stay ahead of the curve.
             </p>
-            {/* <ul className="list-disc list-inside space-y-3 text-sm leading-relaxed">
-              <li>
-                <strong>B.Tech First Year:</strong> Candidates who have passed
-                Intermediate (10+2) with Physics & Mathematics along with
-                Chemistry / Computer Science / Biology are eligible for
-                admission to the first year of the 4-year B.Tech in CSE (AI &
-                ML), affiliated to Dr. A.P.J. Abdul Kalam Technical University
-                (AKTU), Lucknow.
-              </li>
-              <li>
-                <strong>B.Tech Second Year (Lateral Entry):</strong> Candidates
-                must have passed B.Sc. or a Three-Year Diploma (10+3) with 45%
-                marks (40% for SC/ST) from a recognized board.
-              </li>
-            </ul> */}
           </div>
 
           {/* Course Curriculum */}
@@ -163,7 +149,8 @@ export default function MbaIt() {
             <div className="flex justify-center gap-24">
               {/* 1st Year */}
               <a
-                href="/syllabus/BPharm_1st_Year.pdf"
+                href="https://jit.edu.in/wp-content/uploads/2023/09/MBA-1st-Year-AKTU.pdf"
+                target="_blank"
                 download
                 className="flex flex-col items-center text-[#0A2342] hover:text-blue-700 transition-transform hover:scale-110"
               >
@@ -171,7 +158,7 @@ export default function MbaIt() {
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
                   viewBox="0 0 24 24"
-                  className="w-10 h-10 mb-2"
+                  className="w-12 h-10 mb-2"
                 >
                   <path d="M12 16l4-5h-3V4h-2v7H8l4 5zm8 2H4v2h16v-2z" />
                 </svg>
@@ -180,7 +167,8 @@ export default function MbaIt() {
 
               {/* 2nd Year */}
               <a
-                href="/syllabus/BPharm_2nd_Year.pdf"
+                href="https://jit.edu.in/wp-content/uploads/2023/09/MBA-2nd-Year-AKTU-.pdf"
+                target="_blank"
                 download
                 className="flex flex-col items-center text-[#0A2342] hover:text-blue-700 transition-transform hover:scale-110"
               >
@@ -209,21 +197,19 @@ export default function MbaIt() {
             </h2>
 
             <p className="text-base leading-relaxed text-gray-600">
-              Our fundamental CSE (AI & ML) program offers a comprehensive grasp
-              of core computer science principles and intricacies in the context
-              of Artificial Intelligence and Machine Learning. The educational
-              prospects stemming from this program are limitless. You have the
-              potential to sculpt your career trajectory in AI and ML-driven
-              domains, including data analysis, machine learning engineering,
-              natural language processing, computer vision, and more.
+              Our core MBA program offers a comprehensive understanding of
+              fundamental business concepts and intricacies. The opportunities
+              that stem from this education are boundless. You can shape your
+              career path in finance, marketing, operations, human resources, or
+              strategy, with potential roles at banks, investment firms,
+              management consulting companies, and multinational corporations.
             </p>
 
             <p className="text-base leading-relaxed text-gray-600">
-              With a huge explosion in data and its applications, a career in
-              the field of AI&ML can be very promising as Big Data Engineer,
-              Business Intelligence Developer, Data Scientist, Machine Learning
-              Engineer, Research Scientist, AI Data Analyst, AI Engineer,
-              Robotics Scientist, etc.
+              Moreover, the flexibility of selecting electives allows you to
+              tailor your program to your specific interests and career goals.
+              Explore the diverse possibilities and customize your MBA journey
+              to suit your aspirations.
             </p>
 
             {/* Buttons */}
@@ -266,156 +252,346 @@ export default function MbaIt() {
         </div>
       </section>
 
-      <div className="pt-28 px-6 md:px-12 text-gray-800 mb-4">
-        {/* ===== Hero Heading ===== */}
-        <h1 className="text-3xl font-bold text-blue-700 text-center mb-10">
-          B.Tech Computer Science Engineering
-        </h1>
-
-        {/* ===== Core Courses Section ===== */}
+      <div className="pt-24 px-6 md:px-12 text-gray-800 mb-16">
+        {/* ===== CORE COURSES ===== */}
         <section id="core-courses" className="mb-16">
-          <h2 className="text-2xl font-bold text-[#0A2342] mb-6">
-            CORE COURSES
+          <h2 className="text-3xl font-bold text-[#0A2342] mb-6 uppercase">
+            Core Courses
           </h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-6 text-sm md:text-base">
             <ul className="space-y-2">
-              <li>KCS301: Data Structure</li>
-              <li>KCS302: Computer Organization and Architecture</li>
-              <li>KCS303: Discrete Structures & Theory of Logic</li>
-              <li>KNC301: Computer System Security</li>
-              <li>KNC302: Python Programming</li>
-              <li>KCS401: Operating Systems</li>
+              {[
+                "Marketing Management",
+                "Financial Management",
+                "Human Resource Management",
+                "Business Statistics",
+                "Design Thinking",
+                "Management Concepts & OB",
+              ].map((course) => (
+                <li key={course} className="flex items-start">
+                  <FaCheck className="text-green-700 mt-1 mr-2" />
+                  {course}
+                </li>
+              ))}
             </ul>
+
             <ul className="space-y-2">
-              <li>KCS402: Theory of Automata and Formal Languages</li>
-              <li>KCS403: Microprocessor</li>
-              <li>KCS501D: Database Management System</li>
-              <li>KAI501: Artificial Intelligence</li>
-              <li>KCS503: Design and Analysis of Algorithm</li>
-              <li>KAI601: Machine Learning Techniques</li>
+              {[
+                "Managerial Economics",
+                "Business Communication",
+                "Business Research Methods",
+                "Operation Management",
+                "Quantitative Techniques for Managers",
+                "Business Environment",
+              ].map((course) => (
+                <li key={course} className="flex items-start">
+                  <FaCheck className="text-green-700 mt-1 mr-2" />
+                  {course}
+                </li>
+              ))}
             </ul>
+
             <ul className="space-y-2">
-              <li>KCS602: Web Technology</li>
-              <li>KCS603: Computer Networks</li>
+              {[
+                "Digital Marketing & E-Commerce",
+                "Management Information Systems",
+                "IT for Managers",
+                "Strategic Management",
+                "Innovation & Entrepreneurship",
+                "Business Environment",
+              ].map((course) => (
+                <li key={course} className="flex items-start">
+                  <FaCheck className="text-green-700 mt-1 mr-2" />
+                  {course}
+                </li>
+              ))}
             </ul>
           </div>
         </section>
 
-        {/* ===== Elective Courses Section ===== */}
+        {/* ===== ELECTIVE COURSES ===== */}
         <section id="elective-courses" className="mb-16">
-          <h2 className="text-2xl font-bold text-[#0A2342] mb-6">
-            ELECTIVE COURSES
+          <h2 className="text-3xl font-bold text-[#0A2342] mb-6 uppercase">
+            Elective Courses
           </h2>
+
+          <div className="grid lg:grid-cols-3 gap-10">
+            {/* Column 1 */}
+            <div>
+              <h3 className="font-semibold text-lg text-[#0A2342] mb-2">
+                Human Resources
+              </h3>
+              <ul className="space-y-2">
+                {[
+                  "Talent Management",
+                  "Employee Relations & Labor Laws",
+                  "HR Analytics",
+                  "Performance Management",
+                  "International HRM",
+                ].map((item) => (
+                  <li key={item} className="flex items-start">
+                    <FaCheck className="text-green-700 mt-1 mr-2" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <h3 className="font-semibold text-lg text-[#0A2342] mt-6 md:mt-22 mb-2">
+                International Business
+              </h3>
+              <ul className="space-y-2">
+                {[
+                  "International Business Management",
+                  "Export Import Documentation",
+                  "International Logistics",
+                  "Cross Cultural Management",
+                  "International Trade Laws",
+                ].map((item) => (
+                  <li key={item} className="flex items-start">
+                    <FaCheck className="text-green-700 mt-1 mr-2" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Column 2 */}
+            <div>
+              <h3 className="font-semibold text-lg text-[#0A2342] mb-2">
+                Marketing
+              </h3>
+              <ul className="space-y-2">
+                {[
+                  "Consumer Behaviour",
+                  "Marketing Communication",
+                  "Marketing Analytics",
+                  "Business to Business Marketing",
+                  "Service Marketing",
+                  "Sales & Retail Marketing",
+                  "Social Media and Web Analytics",
+                ].map((item) => (
+                  <li key={item} className="flex items-start">
+                    <FaCheck className="text-green-700 mt-1 mr-2" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <h3 className="font-semibold text-lg text-[#0A2342] mt-6 mb-2">
+                IT
+              </h3>
+              <ul className="space-y-2">
+                {[
+                  "Data Analytics for Business Decisions",
+                  "AI & ML for Business",
+                  "Database Management System",
+                  "Cloud Computing for Business",
+                  "Business Data Warehousing & Data Mining",
+                ].map((item) => (
+                  <li key={item} className="flex items-start">
+                    <FaCheck className="text-green-700 mt-1 mr-2" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Column 3 */}
+            <div className="relative">
+              <h3 className="font-semibold text-lg text-[#0A2342] mb-2">
+                Finance
+              </h3>
+              <ul className="space-y-2">
+                {[
+                  "Financial Derivatives",
+                  "Foreign Exchange & Risk Management",
+                  "Financial & Credit Risk Analytics",
+                  "Investment Analysis & Portfolio Management",
+                  "Financial Planning and Tax Management",
+                ].map((item) => (
+                  <li key={item} className="flex items-start">
+                    <FaCheck className="text-green-700 mt-1 mr-2" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <h3 className="font-semibold text-lg text-[#0A2342] mt-6 md:mt-15 mb-2">
+                Operations
+              </h3>
+              <ul className="space-y-2">
+                {[
+                  "Supply Chain & Logistics Management",
+                  "Operations Planning & Control",
+                  "Quality Management",
+                  "Project & Sourcing Management",
+                  "Management of Manufacturing System",
+                ].map((item) => (
+                  <li key={item} className="flex items-start">
+                    <FaCheck className="text-green-700 mt-1 mr-2" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              {/* Optional image */}
+              <img
+                src="/images/college business/JIT-COurse-page-1.png"
+                alt="Student"
+                className="hidden lg:block absolute -bottom-24 -right-10 w-40 rounded-lg"
+              />
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div className="pt-4 px-6 md:px-12 text-gray-800 mb-4">
+        {/* ===== Additional Certifications & Modules Section ===== */}
+        <section className="bg-yellow-400 p-8 rounded-xl text-[#0A2342]">
+          <h2 className="text-2xl font-bold mb-6">
+            ADDITIONAL CERTIFICATIONS AND MODULES (NO ADDITIONAL FEE)
+          </h2>
+
+          {/* === Additional Certifications Grid === */}
+          <div className="grid md:grid-cols-3 gap-8">
+            <ul className="space-y-2 list-none">
+              <li className="flex items-start">
+                <FaCheck className="text-green-700 mt-1 mr-2" /> SEO Module
+              </li>
+              <li className="flex items-start">
+                <FaCheck className="text-green-700 mt-1 mr-2" /> Google Ads
+                Certifications
+              </li>
+              <li className="flex items-start">
+                <FaCheck className="text-green-700 mt-1 mr-2" /> Placement
+                Preparation Module
+              </li>
+            </ul>
+
+            <ul className="space-y-2 list-none">
+              <li className="flex items-start">
+                <FaCheck className="text-green-700 mt-1 mr-2" /> Data Analytics
+                (Business data)
+              </li>
+              <li className="flex items-start">
+                <FaCheck className="text-green-700 mt-1 mr-2" /> Interview
+                Preparation
+              </li>
+              <li className="flex items-start">
+                <FaCheck className="text-green-700 mt-1 mr-2" /> Data
+                Visualizations
+              </li>
+            </ul>
+
+            <ul className="space-y-2 list-none">
+              <li className="flex items-start">
+                <FaCheck className="text-green-700 mt-1 mr-2" /> Advanced Excel
+              </li>
+              <li className="flex items-start">
+                <FaCheck className="text-green-700 mt-1 mr-2" /> Power BI /
+                Tableau
+              </li>
+              <li className="flex items-start">
+                <FaCheck className="text-green-700 mt-1 mr-2" /> Social Media
+                (FB, Instagram Ads, LinkedIn, Twitter)
+              </li>
+            </ul>
+          </div>
+
+          {/* === Specializations Section === */}
+          <h2 className="text-2xl font-bold mt-10 mb-4">SPECIALIZATIONS</h2>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="font-semibold text-lg mb-2">
-                Departmental Elective I
-              </h3>
-              <ul className="space-y-2">
-                <li>KAI051: Mathematical Foundation AI, ML and Data Science</li>
-                <li>KCS052: Web Designing</li>
-                <li>KDS051: Business Intelligence and Analytics</li>
-                <li>KCS054: Object Oriented System Design</li>
-                <li>KDS052: Distributed System</li>
-              </ul>
-            </div>
+            <ul className="space-y-2 list-none">
+              <li className="flex items-start">
+                <FaCheck className="text-green-700 mt-1 mr-2" /> Marketing
+              </li>
+              <li className="flex items-start">
+                <FaCheck className="text-green-700 mt-1 mr-2" /> Finance
+              </li>
+            </ul>
 
-            <div>
-              <h3 className="font-semibold text-lg mb-2">
-                Departmental Elective II
-              </h3>
-              <ul className="space-y-2">
-                <li>KML051: Cloud Computing</li>
-                <li>KAI052: Natural Language Processing</li>
-                <li>KCS056: Application of Soft Computing</li>
-                <li>KAI053: Intelligent Database System</li>
-                <li>KCS502: Compiler Design</li>
-              </ul>
-            </div>
+            <ul className="space-y-2 list-none">
+              <li className="flex items-start">
+                <FaCheck className="text-green-700 mt-1 mr-2" /> Human Resource
+                Management
+              </li>
+              <li className="flex items-start">
+                <FaCheck className="text-green-700 mt-1 mr-2" /> IT
+              </li>
+            </ul>
 
-            <div>
-              <h3 className="font-semibold text-lg mb-2">
-                Departmental Elective III
-              </h3>
-              <ul className="space-y-2">
-                <li>KAI061: Cyber Forensic Analytics</li>
-                <li>KDS061: Image Analytics</li>
-                <li>KML061: Advanced Machine Learning</li>
-                <li>KML062: Stream Processing and Analytics</li>
-                <li>KDS063: Software Engineering</li>
-              </ul>
-            </div>
+            <ul className="space-y-2 list-none">
+              <li className="flex items-start">
+                <FaCheck className="text-green-700 mt-1 mr-2" /> Operations
+              </li>
+              <li className="flex items-start">
+                <FaCheck className="text-green-700 mt-1 mr-2" /> International
+                Business
+              </li>
+            </ul>
           </div>
-        </section>
-
-        {/* ===== Workshops & Live Training Section ===== */}
-        <section
-          id="workshops"
-          className="bg-yellow-400 p-8 rounded-xl text-[#0A2342]"
-        >
-          <h2 className="text-2xl font-bold mb-4">
-            WORKSHOPS & LIVE TRAINING:
-          </h2>
-          <ol className="list-decimal list-inside space-y-2">
-            <li>Reasoning and aptitude training</li>
-            <li>Verbal Ability</li>
-            <li>Logical Ability</li>
-            <li>
-              Students Exchange program from Manado State University in JIT
-              providing online workshops and training program in data mining and
-              Python programming.
-            </li>
-          </ol>
         </section>
       </div>
 
       <section
         id="program-objectives"
-        className="relative overflow-hidden bg-gradient-to-r from-white to-gray-50 py-20 px-4 md:px-8 flex flex-col items-center"
+        className="relative overflow-hidden bg-gradient-to-r from-white to-gray-50 py-18 px-4 md:px-8 flex flex-col items-center"
       >
         <div className="max-w-7xl w-full flex flex-col md:flex-row items-start justify-between gap-12">
           {/* ✅ Left: Text Content */}
           <div className="md:w-1/2 text-gray-700">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0A2342] mb-6 leading-snug">
-              JIT B.Tech CSE (AI & ML) <br />
-              <span className="text-yellow-500">
-                Program Educational Objectives
-              </span>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#0A2342] mb-3 leading-snug">
+              JIT MBA Program Educational Objectives
+              <br />
             </h2>
 
-            <p className="text-base leading-relaxed mb-6 text-gray-600">
+            <p className="text-base leading-relaxed mb-3 text-gray-600">
               Upon completing our Computer Science Engineering program with a
               specialization in Artificial Intelligence (AI) and Machine
               Learning (ML), students will be equipped to:
             </p>
 
-            <ul className="space-y-4 text-gray-700 text-sm md:text-base list-disc pl-6">
+            <ul className="space-y-2 text-gray-700 text-sm md:text-base list-disc pl-6">
               <li>
-                Attain leadership roles within organizations, leveraging
-                technical expertise in AI and ML to manage complex projects and
-                teams effectively.
+                Achieve managerial positions within their respective
+                organizations.
               </li>
               <li>
-                Innovate and develop sustainable AI and ML solutions to address
-                technological challenges and contribute to advancing these
-                cutting-edge fields.
+                Offer innovative and sustainable solutions to intricate
+                challenges.
               </li>
               <li>
-                Demonstrate emotional intelligence and teamwork when
-                collaborating across diverse, cross-cultural AI & ML projects.
+                Exhibit emotional intelligence when collaborating in diverse
+                socio-cultural teams and settings.
               </li>
               <li>
-                Commit to lifelong learning, adapting to the evolving world of
-                AI, ML, and emerging technologies.
+                Commit to lifelong learning to remain pertinent in a constantly
+                evolving business landscape.
+              </li>
+              <li>Embrace an entrepreneurial mindset.</li>
+              <li>Efficiently harness technology.</li>
+              <li>Demonstrate ethical conduct.</li>
+            </ul>
+
+            <h2 className="text-2xl md:text-3xl font-bold text-[#0A2342] mt-4 mb-3 leading-snug">
+              Program Level Outcomes
+              <br />
+            </h2>
+
+            <ul className="space-y-2 text-gray-700 text-sm md:text-base list-disc pl-6">
+              <li>Proficient communication skills.</li>
+              <li>
+                Demonstrated teamwork capabilities to attain shared objectives.
               </li>
               <li>
-                Foster an entrepreneurial mindset to identify and capitalize on
-                opportunities in AI and ML industries.
+                Aptitude for critical thinking, applying conceptual frameworks
+                to real-world business scenarios.
               </li>
+              <li>Effective problem-solving prowess.</li>
               <li>
-                Apply AI and ML technology creatively to address real-world
-                problems and drive innovation across industries.
+                Proficiency in evaluating ethical viewpoints from various
+                angles.
               </li>
             </ul>
           </div>
@@ -426,7 +602,7 @@ export default function MbaIt() {
             <img
               src={ProgramObjectivesImg}
               alt="Program Objectives Illustration"
-              className="relative z-10 rounded-xl shadow-2xl w-full max-w-md object-cover transition-transform duration-500 hover:scale-105"
+              className="relative z-10 border border-black rounded-xl shadow-2xl w-full max-w-md object-cover transition-transform duration-500 hover:scale-105"
             />
           </div>
         </div>

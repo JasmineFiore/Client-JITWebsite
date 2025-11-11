@@ -1,7 +1,6 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import BusinessPage from "./components/BusinessPage/BusinessPage";
-import Footer from "./components/Footer";
 import HODPage from "./Blueprints/HODPage";
+import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import CollegesSection from "./components/home/CollegesSection";
 import CommunitySection from "./components/home/CommunitySection";
@@ -21,9 +20,9 @@ import DiplomaEe from "./components/pages/coe/DiplomaEe";
 import DiplomaLis from "./components/pages/coe/DiplomaLis";
 import DiplomaMe from "./components/pages/coe/DiplomaMe";
 import BPharma from "./components/pages/college-pharmacy/BPharma";
+import BPharmaLater from "./components/pages/college-pharmacy/BPharmaLater";
 import CollegeOPharm from "./components/pages/college-pharmacy/CollegeOPharm";
 import FacultySection from "./components/pages/college-pharmacy/FacultySection";
-import BPharmaLater from "./components/pages/college-pharmacy/BPharmaLater";
 import DPharma from "./components/pages/college-pharmacy/diploma/DPharma";
 import MbaIt from "./components/pages/collegeObusiness/MbaIt";
 
@@ -72,8 +71,6 @@ export default function App() {
           <Route path="/hod" element={<HODPage />} />
           {/* Dynamic department-based pages */}
           <Route path="/hod/:dept" element={<HODPage />} />
-
-          <Route path="/business" element={<BusinessPage />} />
 
           <Route path="/courses" element={<CollegesSection />} />
           <Route path="/collegeLife" element={<ImageCollage />} />
