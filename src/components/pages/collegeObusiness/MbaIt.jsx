@@ -6,7 +6,7 @@ import AdilImg from "/images/AdilImg.jpg";
 import DaniyalImg from "/images/DaniyalImg.jpg";
 import RuokuImg from "/images/RuokuImg.jpg";
 import SohibAnsariImg from "/images/SohibAnsariImg.jpg";
-import EnquiryModal from "../../EnquiryModal";
+import EnquiryModal from "../../../Blueprints/EnquiryModal";
 import { useState } from "react";
 
 export default function MbaIt() {

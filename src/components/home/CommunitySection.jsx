@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import communityImg from "/images/community.jpg";
-import EnquiryModal from "../EnquiryModal";
+
 import { useState } from "react";
+import EnquiryModal from "../../Blueprints/EnquiryModal";
 
 export default function CommunitySection() {
   const [isModalOpen, setIsModalOpen] = useState(false);

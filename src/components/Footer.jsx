@@ -9,7 +9,7 @@ import JITLogo from "/images/jitlogo.jpg";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-r from-[#0A2342]/90 to-[#0A2342] text-white">
+    <footer className="bg-linear-to-r from-[#0A2342]/90 to-[#0A2342] text-white">
       {/* 🔹 Main Footer Content */}
       <div className="max-w-7xl mx-auto px-6 sm:px-10 py-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 text-center md:text-left border-b border-gray-700">
         {/* Logo + Description */}
@@ -135,7 +135,7 @@ const Footer = () => {
         </p>
 
         <p className="flex items-center justify-center space-x-1 text-center">
-          <span>Made with</span>
+          <span>Made</span>
           <span className="text-[#aaae7f] text-lg animate-pulse">❀˖°</span>
           <span>by Jasmine Fiore</span>
         </p>

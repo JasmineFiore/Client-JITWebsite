@@ -1,7 +1,6 @@
 import { useState } from "react";
-import DepartmentActivities from "../../DepartmentActivities";
-import EnquiryModal from "../../EnquiryModal";
-import eeImage from "/images/ece.jpg";
+import EnquiryModal from "../../../Blueprints/EnquiryModal";
+import DepartmentActivities from "../../../Blueprints/DepartmentActivities";
 
 export default function DiplomaCe() {
   const [isModalOpen, setIsModalOpen] = useState(false);

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import DepartmentActivities from "../../DepartmentActivities";
-import EnquiryModal from "../../EnquiryModal";
-import Carousel from "../../carousel";
+import DepartmentActivities from "../../../Blueprints/DepartmentActivities";
+import EnquiryModal from "../../../Blueprints/EnquiryModal";
 import PrincipalModal from "./PrincipalModal";
 import eceImage from "/images/ece.jpg";
 import eeImage from "/images/ee.jpg";
+import Carousel from "../../../Blueprints/carousel";
 
 export default function CollegeOPharm() {
   const navigate = useNavigate();

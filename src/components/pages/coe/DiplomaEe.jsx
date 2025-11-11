@@ -1,7 +1,7 @@
 import { useState } from "react";
-import DepartmentActivities from "../../DepartmentActivities";
-import EnquiryModal from "../../EnquiryModal";
+import EnquiryModal from "../../../Blueprints/EnquiryModal";
 import eeImage from "/images/ece.jpg";
+import DepartmentActivities from "../../../Blueprints/DepartmentActivities";
 
 export default function DiplomaEe() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,12 +18,14 @@ export default function DiplomaEe() {
   const achievers = [
     {
       name: "UMAR MUSHTAQUE",
-      company: "PRODUCTION DEPT/QUALITY/ASSEMBLY(: Dhoot Transmissions Private limited)",
+      company:
+        "PRODUCTION DEPT/QUALITY/ASSEMBLY(: Dhoot Transmissions Private limited)",
       img: "/images/our-achiever/ach11.jpg",
     },
     {
       name: "MOHD REHAN",
-      company: "PRODUCTION DEPT/QUALITY/ASSEMBLY(: Dhoot Transmissions Private limited)",
+      company:
+        "PRODUCTION DEPT/QUALITY/ASSEMBLY(: Dhoot Transmissions Private limited)",
       img: "/images/our-achiever/ach12.jpg",
     },
   ];

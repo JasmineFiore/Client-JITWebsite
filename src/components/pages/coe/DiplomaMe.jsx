@@ -1,6 +1,6 @@
 import { useState } from "react";
-import DepartmentActivities from "../../DepartmentActivities";
-import EnquiryModal from "../../EnquiryModal";
+import EnquiryModal from "../../../Blueprints/EnquiryModal";
+import DepartmentActivities from "../../../Blueprints/DepartmentActivities";
 
 export default function DiplomaMe() {
   const [isModalOpen, setIsModalOpen] = useState(false);

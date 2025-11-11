@@ -1,7 +1,5 @@
 import MovingLinksBar from "../MovingLinksBar";
 import AlumniCarousel from "./AlumniCarousel";
-import College360View from "./College360View";
-
 import CollegesSection from "./CollegesSection";
 import CommunitySection from "./CommunitySection";
 import CounsellingSection from "./CounsellingSection";

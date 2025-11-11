@@ -1,11 +1,9 @@
 import { useState } from "react";
-import DepartmentActivities from "../../DepartmentActivities";
-import EnquiryModal from "../../EnquiryModal";
+import EnquiryModal from "../../../Blueprints/EnquiryModal";
 import eceImage from "/images/ece.jpeg";
+import DepartmentActivities from "../../../Blueprints/DepartmentActivities";
 
 export default function DiplomaCse() {
-  
-
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const cseImages = [
@@ -252,7 +250,7 @@ export default function DiplomaCse() {
           {/* ✅ Placement Cards */}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
-            { achievers.map((person, index) => (
+            {achievers.map((person, index) => (
               <div
                 key={index}
                 className="bg-white rounded-md shadow-md overflow-hidden hover:scale-105 transition-transform duration-300 w-72"

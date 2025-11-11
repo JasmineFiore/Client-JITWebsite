@@ -39,6 +39,7 @@ export default function HeroCarousel() {
 
   return (
     <div className="relative w-full h-[90vh] overflow-hidden">
+      {/* Background image transition */}
       <AnimatePresence>
         <motion.img
           key={slides[index].image}
@@ -51,14 +52,15 @@ export default function HeroCarousel() {
         />
       </AnimatePresence>
 
-      {/* Dark Overlay with Gradient */}
+      {/* Dark gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
 
       {/* Text Section */}
-      <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white px-6">
+      <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white px-4 sm:px-6 md:px-12">
         <motion.h1
-          key={slides[index].title}
-          className="whitespace-pre-line text-5xl sm:text-5xl md:text-8xl lg:text-7xl font-extrabold leading-tight tracking-wide drop-shadow-lg"
+          key={slides[index].title}//clamp() for text sizes, works smoothly between min and max sizes based on screen width.
+          className="whitespace-pre-line font-extrabold tracking-wide drop-shadow-lg
+          text-[clamp(1.8rem,5vw,5rem)] leading-[1.1]" //clamp(min, preferred, max)
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -40 }}
@@ -69,7 +71,8 @@ export default function HeroCarousel() {
 
         <motion.p
           key={slides[index].subtitle}
-          className="mt-6 text-base sm:text-lg md:text-xl max-w-2xl text-gray-200 italic tracking-wide"
+          className="mt-4 text-gray-200 italic tracking-wide max-w-2xl
+          text-[clamp(0.9rem,2vw,1.5rem)]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
@@ -84,19 +87,23 @@ export default function HeroCarousel() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -30 }}
           transition={{ duration: 0.9, delay: 0.4 }}
-          className="mt-10"
+          className="mt-8 sm:mt-10"
         >
           {slides[index].ctaLink.startsWith("http") ? (
             <motion.button
               onClick={() => window.open(slides[index].ctaLink, "_blank")}
-              className="bg-[#FFB81C] text-[#002147] font-bold py-3 px-8 rounded-full shadow-lg hover:bg-[#e0a914] hover:scale-105 transition-all duration-300"
+              className="bg-[#FFB81C] text-[#002147] font-bold py-2 sm:py-3 px-6 sm:px-8 rounded-full shadow-lg 
+              hover:bg-[#e0a914] hover:scale-105 transition-all duration-300 
+              text-[clamp(0.9rem,1.5vw,1.2rem)]"
             >
               {slides[index].cta}
             </motion.button>
           ) : (
             <Link
               to={slides[index].ctaLink}
-              className="bg-[#FFB81C] text-[#002147] font-bold py-3 px-8 rounded-full shadow-lg hover:bg-[#e0a914] hover:scale-105 transition-all duration-300"
+              className="bg-[#FFB81C] text-[#002147] font-bold py-2 sm:py-3 px-6 sm:px-8 rounded-full shadow-lg 
+              hover:bg-[#e0a914] hover:scale-105 transition-all duration-300
+              text-[clamp(0.9rem,1.5vw,1.2rem)]"
             >
               {slides[index].cta}
             </Link>
@@ -105,7 +112,7 @@ export default function HeroCarousel() {
       </div>
 
       {/* Navigation Dots */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-3 z-20">
         {slides.map((_, i) => (
           <button
             key={i}

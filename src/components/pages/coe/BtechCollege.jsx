@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import DepartmentActivities from "../../DepartmentActivities";
-import EnquiryModal from "../../EnquiryModal";
-import Carousel from "../../carousel";
+import DepartmentActivities from "../../../Blueprints/DepartmentActivities";
+import EnquiryModal from "../../../Blueprints/EnquiryModal";
 import studentsImage2 from "/images/JIT.jpeg";
 import studentsImage1 from "/images/JIT3.jpeg";
 import studentsImage4 from "/images/JIT9.jpeg";
@@ -14,6 +13,7 @@ import eceImage from "/images/ece.jpg";
 import eeImage from "/images/ee.jpg";
 import mechImage from "/images/mechanical.jpg";
 import studentsImage3 from "/images/university06.png";
+import Carousel from "../../../Blueprints/carousel";
 
 export default function BtechCollege() {
   const [isModalOpen, setIsModalOpen] = useState(false);

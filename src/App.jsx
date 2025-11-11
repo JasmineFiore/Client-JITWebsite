@@ -1,7 +1,7 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import BusinessPage from "./components/BusinessPage/BusinessPage";
 import Footer from "./components/Footer";
-import HODPage from "./components/HODPage";
+import HODPage from "./Blueprints/HODPage";
 import Navbar from "./components/Navbar";
 import CollegesSection from "./components/home/CollegesSection";
 import CommunitySection from "./components/home/CommunitySection";
@@ -65,8 +65,7 @@ export default function App() {
           <Route path="/b-pharma" element={<BPharma />} />
           <Route path="/b-pharmalater" element={<BPharmaLater />} />
           <Route path="/diploma-pharmacy" element={<DPharma />} />
-          
-          
+
           <Route path="/mba-it" element={<MbaIt />} />
 
           {/* General HOD page */}

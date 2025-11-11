@@ -1,9 +1,8 @@
 import { useState } from "react";
-import DepartmentActivities from "../../DepartmentActivities";
-import civilImage from "/images/civil.jpg";
-import placed from "/images/our-achiever/PLACED.jpg";
-import EnquiryModal from "../../EnquiryModal";
 import { useNavigate } from "react-router-dom";
+import EnquiryModal from "../../../Blueprints/EnquiryModal";
+import civilImage from "/images/civil.jpg";
+import DepartmentActivities from "../../../Blueprints/DepartmentActivities";
 
 export default function BtechCivil() {
   const navigate = useNavigate();

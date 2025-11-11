@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import EnquiryModal from "../../EnquiryModal";
 import BpharmaPlacement from "./BpharmaPlacement";
 import BphramCampusLife from "./BphramCampusLife";
 import FacilitiesResearchSection from "./FacilitiesResearchSection";
 import FAQSection from "./FAQSection";
+import EnquiryModal from "../../../Blueprints/EnquiryModal";
 
 export default function BPharma() {
   const navigate = useNavigate();

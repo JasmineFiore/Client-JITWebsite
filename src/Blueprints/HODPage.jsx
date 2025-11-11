@@ -1,4 +1,4 @@
-import HODProfiles from "../components/HODProfiles";
+import HODProfiles from "./HODProfiles";
 import hodCSE from "/images/hod/hodCSE.jpg";
 import hodECE from "/images/hod/hodECE.jpg";
 import hodCivil from "/images/hod/hodCivil.jpg";

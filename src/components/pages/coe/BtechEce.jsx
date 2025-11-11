@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import DepartmentActivities from "../../DepartmentActivities";
-import EnquiryModal from "../../EnquiryModal";
+import EnquiryModal from "../../../Blueprints/EnquiryModal";
 import eceImage from "/images/ece.jpeg";
+import DepartmentActivities from "../../../Blueprints/DepartmentActivities";
 
 export default function BtechEce() {
   const navigate = useNavigate();
@@ -340,7 +340,7 @@ export default function BtechEce() {
           </div>
         </div>
       </section>
-    
+
       {/* Modal */}
       <EnquiryModal
         isOpen={isModalOpen}

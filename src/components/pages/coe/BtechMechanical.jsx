@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import DepartmentActivities from "../../DepartmentActivities";
-import EnquiryModal from "../../EnquiryModal";
+import EnquiryModal from "../../../Blueprints/EnquiryModal";
 import civilImage from "/images/civil.jpg";
+import DepartmentActivities from "../../../Blueprints/DepartmentActivities";
 
 export default function BtechMechanical() {
   const navigate = useNavigate();

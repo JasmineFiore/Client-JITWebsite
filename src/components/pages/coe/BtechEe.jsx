@@ -1,9 +1,9 @@
 import { useState } from "react";
-import DepartmentActivities from "../../DepartmentActivities";
 import cseImage from "/images/ee2.jpg";
 import placed from "/images/our-achiever/PLACED.jpg";
-import EnquiryModal from "../../EnquiryModal";
+import EnquiryModal from "../../../Blueprints/EnquiryModal";
 import { useNavigate } from "react-router-dom";
+import DepartmentActivities from "../../../Blueprints/DepartmentActivities";
 
 export default function BtechEe() {
   const navigate = useNavigate();

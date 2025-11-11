@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import EnquiryModal from "../../../EnquiryModal";
+import EnquiryModal from "../../../../Blueprints/EnquiryModal";
 
 export default function DPharma() {
   const navigate = useNavigate();
