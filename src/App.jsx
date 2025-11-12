@@ -9,7 +9,7 @@ import ImageCollage from "./components/home/ImageGallery";
 import ChairmansMessage from "./components/pages/about/ChairmansMessage";
 import BtechAiml from "./components/pages/coe/BtechAiml";
 import BtechCivil from "./components/pages/coe/BtechCivil";
-import BtechCollege from "./components/pages/coe/BtechCollege";
+import CollegeOEngg from "./components/pages/coe/CollegeOEngg";
 import BtechCse from "./components/pages/coe/BtechCse";
 import BtechEce from "./components/pages/coe/BtechEce";
 import BtechEe from "./components/pages/coe/BtechEe";
@@ -25,6 +25,11 @@ import CollegeOPharm from "./components/pages/college-pharmacy/CollegeOPharm";
 import FacultySection from "./components/pages/college-pharmacy/FacultySection";
 import DPharma from "./components/pages/college-pharmacy/diploma/DPharma";
 import MbaIt from "./components/pages/collegeObusiness/MbaIt";
+import MbaFinance from "./components/pages/collegeObusiness/MbaFinance";
+import MbaMarketing from "./components/pages/collegeObusiness/MbaMarketing";
+import MbaHr from "./components/pages/collegeObusiness/MbaHr";
+import BCom from "./components/pages/collegeObusiness/BCom";
+import CollegeOBusiness from "./components/pages/collegeObusiness/CollegeOBusiness";
 
 export default function App() {
   const location = useLocation();
@@ -46,8 +51,8 @@ export default function App() {
               </>
             }
           />
-          <Route path="/btech-coe" element={<BtechCollege />} />
-          <Route path="/bPharm" element={<CollegeOPharm />} />
+          <Route path="/CollegeOfEngineering" element={<CollegeOEngg />} />
+          <Route path="/CollegeOfPharmacy" element={<CollegeOPharm />} />
           <Route path="/faculties" element={<FacultySection />} />
           <Route path="/btech-cse" element={<BtechCse />} />
           <Route path="/btech-aiml" element={<BtechAiml />} />
@@ -65,7 +70,12 @@ export default function App() {
           <Route path="/b-pharmalater" element={<BPharmaLater />} />
           <Route path="/diploma-pharmacy" element={<DPharma />} />
 
+          <Route path="/CollegeOfBusiness" element={<CollegeOBusiness />} />
           <Route path="/mba-it" element={<MbaIt />} />
+          <Route path="/mba-finance" element={<MbaFinance />} />
+          <Route path="/mba-marketing" element={<MbaMarketing />} />
+          <Route path="/mba-hr" element={<MbaHr />} />
+          <Route path="/bcom" element={<BCom />} />
 
           {/* General HOD page */}
           <Route path="/hod" element={<HODPage />} />

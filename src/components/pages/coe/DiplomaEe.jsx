@@ -226,6 +226,7 @@ export default function DiplomaEe() {
         />
       </div>
 
+      {/* placement-highlights - achievers */}
       <section
         id="placement-highlights"
         className="bg-yellow-400 py-10 px-6 md:px-12 flex flex-col items-center"

@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 export default function EnquiryModal({ isOpen, onClose }) {
   const modalRef = useRef(null);
 
-  // ✅ Close when clicking outside the modal
+  // Close when clicking outside the modal
   useEffect(() => {
     function handleClickOutside(event) {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
@@ -11,13 +11,19 @@ export default function EnquiryModal({ isOpen, onClose }) {
       }
     }
 
-    // Add listener only when modal is open
     if (isOpen) {
+      // Lock scroll when modal is open
+      document.body.style.overflow = "hidden";
       document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      // Unlock scroll when modal closes
+      document.body.style.overflow = "auto";
     }
 
     return () => {
+      // Clean up listener and unlock scroll
       document.removeEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "auto";
     };
   }, [isOpen, onClose]);
 

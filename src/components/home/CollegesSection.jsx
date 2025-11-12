@@ -84,7 +84,7 @@ const CollegesSection = () => {
       name: "Degree Engineering",
       name2: "Diploma Engineering",
       img: "/images/ai-ml.jpg",
-      path: "/btech-coe",
+      path: "/CollegeOfEngineering",
       details: [
         "Computer Science (CSE)",
         "Artificial Intelligence & Machine Learning (AI ML)",
@@ -105,7 +105,7 @@ const CollegesSection = () => {
       name: "College of Pharmacy",
       name2: "Diploma Pharmacy",
       img: "/images/Pharmacy.jpg",
-      path: "/bPharm",
+      path: "/CollegeOfPharmacy",
       details: [
         "Pharm.D (Doctor of Pharmacy)",
         "M.Pharm (Pharm. Chemistry)",

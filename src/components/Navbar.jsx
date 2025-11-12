@@ -115,11 +115,17 @@ const Navbar = () => {
             {
               label: "ADMISSION & FACULTY",
               dropdown: [
-                { label: "College of Engineering", path: "/btech-coe" },
-                { label: "College of Pharmacy", path: "/bPharm" },
-                { label: "College of Business", path: "/bPharm" },
-                { label: "College of Media & Journalism", path: "/bPharm" },
-                { label: "College of Arts", path: "/bPharm" },
+                {
+                  label: "College of Engineering",
+                  path: "/CollegeOfEngineering",
+                },
+                { label: "College of Pharmacy", path: "/CollegeOfPharmacy" },
+                { label: "College of Business", path: "/CollegeOfBusiness" },
+                {
+                  label: "College of Media & Journalism",
+                  path: "/CollegeOfPharmacy",
+                },
+                { label: "College of Arts", path: "/CollegeOfPharmacy" },
               ],
             },
             // { label: "Admission & Faculty", path: "/admission" },
@@ -192,7 +198,7 @@ const Navbar = () => {
                     <div>
                       <h3 className="font-bold text-lg text-gray-800 border-b pb-1 mb-2">
                         <Link
-                          to="/btech-coe"
+                          to="/CollegeOfEngineering"
                           className="inline-block hover:text-blue-700 transition"
                         >
                           College of Engineering
@@ -245,7 +251,7 @@ const Navbar = () => {
                     <div>
                       <h3 className="font-bold text-lg text-gray-800 border-b pb-1 mb-2">
                         <Link
-                          to="/bPharm"
+                          to="/CollegeOfPharmacy"
                           className="inline-block hover:text-blue-700 transition"
                         >
                           College of Pharmacy
@@ -259,7 +265,10 @@ const Navbar = () => {
                           // M.Pharm (Pharmaceutics)
                           // M.Pharm (Pharmacology)
                           ["b-pharma", "B.Pharm (Bachelor of Pharmacy)"],
-                          ["b-pharmalater", "B.Pharm (Lateral Entry from D.Pharm)"],
+                          [
+                            "b-pharmalater",
+                            "B.Pharm (Lateral Entry from D.Pharm)",
+                          ],
                         ].map(([path, name]) => (
                           <li key={path}>
                             <Link
@@ -274,19 +283,19 @@ const Navbar = () => {
                       </ul>
                       <p className="font-semibold text-base">Diploma:</p>
                       <ul className="space-y-1 text-xs">
-                        {[["diploma-pharmacy", "D.Pharm (Diploma in Pharmacy)"]].map(
-                          ([path, name]) => (
-                            <li key={path}>
-                              <Link
-                                to={`/${path}`}
-                                className="block hover:text-blue-700 px-2 py-1"
-                                onClick={handleLinkClick}
-                              >
-                                {name}
-                              </Link>
-                            </li>
-                          )
-                        )}
+                        {[
+                          ["diploma-pharmacy", "D.Pharm (Diploma in Pharmacy)"],
+                        ].map(([path, name]) => (
+                          <li key={path}>
+                            <Link
+                              to={`/${path}`}
+                              className="block hover:text-blue-700 px-2 py-1"
+                              onClick={handleLinkClick}
+                            >
+                              {name}
+                            </Link>
+                          </li>
+                        ))}
 
                         {/* <li>
                           <Link
@@ -302,17 +311,23 @@ const Navbar = () => {
                     {/* College of Business */}
                     <div>
                       <h3 className="font-bold text-lg text-gray-800 border-b pb-1 mb-2">
-                        College of Business
+                        <Link
+                          to="/CollegeOfBusiness"
+                          className="inline-block hover:text-blue-700 transition"
+                        >
+                          College of Business
+                        </Link>
                       </h3>
                       <ul className="space-y-1 text-xs">
                         {[
                           ["mba-it", "MBA IT"],
-                          ["mba-ib", "MBA IB"],
+                          ["mba-it", "MBA IB"],
                           ["mba-finance", "MBA Finance"],
+                          ["mba-marketing", "MBA Marketing"],
                           ["mba-hr", "MBA HR"],
                           ["bcom", "B.Com"],
-                        ].map(([path, name]) => (
-                          <li key={path}>
+                        ].map(([path, name], index) => (
+                          <li key={`${path}-${index}`}>
                             <Link
                               to={`/${path}`}
                               onClick={handleLinkClick}

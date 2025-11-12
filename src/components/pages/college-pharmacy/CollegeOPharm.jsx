@@ -125,7 +125,7 @@ export default function CollegeOPharm() {
           </div>
 
           {/* ✅ Right Carousel Section */}
-          <div className="relative md:w-1/2 flex justify-center items-center">
+          <div className="relative w-full md:w-1/2 flex justify-center items-center px-4 md:px-0">
             <Carousel slides={slides} />
           </div>
         </div>
@@ -152,7 +152,6 @@ export default function CollegeOPharm() {
               <h3 className="font-semibold text-gray-800 text-lg">
                 Pharm.D (Dr. in Pharmacy)
               </h3>
-              <p className="text-sm text-gray-600 mt-1">(B.Tech AI & ML)</p>
             </div>
           </Link>
 
@@ -170,7 +169,6 @@ export default function CollegeOPharm() {
               <h3 className="font-semibold text-gray-800 text-lg">
                 M.Pharm (Pharmaceutical Chemistry)
               </h3>
-              <p className="text-sm text-gray-600 mt-1">(B.Tech M.E)</p>
             </div>
           </Link>
 
@@ -188,7 +186,6 @@ export default function CollegeOPharm() {
               <h3 className="font-semibold text-gray-800 text-lg">
                 M.Pharm (Pharmaceutics)
               </h3>
-              <p className="text-sm text-gray-600 mt-1">(B.Tech ECE)</p>
             </div>
           </Link>
 
@@ -206,7 +203,6 @@ export default function CollegeOPharm() {
               <h3 className="font-semibold text-gray-800 text-lg">
                 M.Pharm (Pharmacology)
               </h3>
-              <p className="text-sm text-gray-600 mt-1">(B.Tech E.E)</p>
             </div>
           </Link>
 
@@ -224,7 +220,6 @@ export default function CollegeOPharm() {
               <h3 className="font-semibold text-gray-800 text-lg">
                 B.Pharm (Bachelor in Pharmacy)
               </h3>
-              <p className="text-sm text-gray-600 mt-1">(B.Tech C.S.E)</p>
             </div>
           </Link>
           {/* Card 5 */}
@@ -241,11 +236,11 @@ export default function CollegeOPharm() {
               <h3 className="font-semibold text-gray-800 text-lg">
                 D.Pharm (Diploma in Pharmacy)
               </h3>
-              <p className="text-sm text-gray-600 mt-1">(B.Tech C.E)</p>
             </div>
           </Link>
         </div>
       </section>
+      
       <section className="bg-[#0A2342] py-20 px-6 md:px-12">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Admission Process */}

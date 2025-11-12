@@ -1,10 +1,21 @@
+import { useEffect } from "react";
+
 export default function PrincipalModal({
   isPrincipalModlOpen,
   setIsPrincipalModlOpen,
 }) {
+  // ✅ Hook is always called, even if modal is closed
+  useEffect(() => {
+    if (isPrincipalModlOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => (document.body.style.overflow = "auto");
+  }, [isPrincipalModlOpen]);
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      {/* Modal Overlay */}
+    <>
       {isPrincipalModlOpen && (
         <div
           className="fixed inset-0 z-50 flex justify-center items-center bg-black/50 backdrop-blur-sm overflow-y-auto"
@@ -26,9 +37,8 @@ export default function PrincipalModal({
 
             {/* Profile Section */}
             <div className="flex flex-col items-center text-center">
-              {/* ✅ Profile Image */}
               <img
-                src="/images/blank-profile-picture.webp" 
+                src="/images/blank-profile-picture.webp"
                 alt="Prof. Javed M. Ahsan"
                 className="w-32 h-32 object-cover rounded-full border-4 border-yellow-400 shadow-lg mb-4"
               />
@@ -41,7 +51,6 @@ export default function PrincipalModal({
                 Head, Pharmaceutical Chemistry Department
               </p>
 
-              {/* Contact Icons */}
               <div className="flex space-x-6 mt-4 text-gray-300 text-xl">
                 <a
                   href="mailto:PrincipalPharmacy@jit.edu.in"
@@ -68,6 +77,6 @@ export default function PrincipalModal({
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }

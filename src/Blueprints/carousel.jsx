@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-
 export default function Carousel({
   slides = [],
   autoSlide = true,
@@ -25,19 +24,20 @@ export default function Carousel({
   }, [current, autoSlide, interval]);
 
   return (
-    <div className="relative overflow-hidden w-full max-w-5xl mx-auto rounded-2xl shadow-lg group">
+    <div className="relative w-full max-w-md md:max-w-xl lg:max-w-2xl overflow-hidden rounded-2xl shadow-lg group">
       {/* Slides */}
       <div
         className="flex transition-transform ease-in-out duration-700"
         style={{ transform: `translateX(-${current * 100}%)` }}
       >
         {slides.map((s, index) => (
-          <img
-            key={index}
-            src={s}
-            alt={`Slide ${index + 1}`}
-            className="w-full object-cover h-[30vh] sm:h-[50vh]"
-          />
+          <div key={index} className="w-full flex-shrink-0">
+            <img
+              src={s}
+              alt={`Slide ${index + 1}`}
+              className="w-full h-[250px] sm:h-[350px] md:h-[400px] object-cover"
+            />
+          </div>
         ))}
       </div>
 
@@ -45,7 +45,7 @@ export default function Carousel({
       <button
         aria-label="Previous Slide"
         onClick={previousSlide}
-        className="absolute left-3 top-1/2 -translate-y-1/2 text-white text-4xl bg-black/40 hover:bg-black/60 p-2 rounded-full opacity-0 group-hover:opacity-100 transition"
+        className="absolute left-3 top-1/2 -translate-y-1/2 text-white text-3xl bg-black/40 hover:bg-black/60 p-2 rounded-full opacity-0 group-hover:opacity-100 transition"
       >
         <IoIosArrowBack />
       </button>
@@ -53,7 +53,7 @@ export default function Carousel({
       <button
         aria-label="Next Slide"
         onClick={nextSlide}
-        className="absolute right-3 top-1/2 -translate-y-1/2 text-white text-4xl bg-black/40 hover:bg-black/60 p-2 rounded-full opacity-0 group-hover:opacity-100 transition"
+        className="absolute right-3 top-1/2 -translate-y-1/2 text-white text-3xl bg-black/40 hover:bg-black/60 p-2 rounded-full opacity-0 group-hover:opacity-100 transition"
       >
         <IoIosArrowForward />
       </button>
@@ -66,7 +66,7 @@ export default function Carousel({
             aria-label={`Go to slide ${i + 1}`}
             onClick={() => setCurrent(i)}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              i === current ? "bg-white scale-125 shadow-md" : "bg-gray-400"
+              i === current ? "bg-blue-500 scale-125 shadow-md" : "bg-gray-400"
             }`}
           ></button>
         ))}

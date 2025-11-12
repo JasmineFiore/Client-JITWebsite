@@ -15,7 +15,7 @@ import mechImage from "/images/mechanical.jpg";
 import studentsImage3 from "/images/university06.png";
 import Carousel from "../../../Blueprints/carousel";
 
-export default function BtechCollege() {
+export default function CollegeOEngg() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const slides = [
@@ -135,6 +135,7 @@ export default function BtechCollege() {
           </div>
         </div>
       </section>
+
       {/* 🎓 Degree in Engineering Section */}
       <section className="bg-[#0A2342] py-20 px-10 text-center">
         <h2 className="text-4xl font-bold text-white mb-12">
@@ -145,12 +146,12 @@ export default function BtechCollege() {
           {/* Card 1 */}
           <Link
             to="/btech-aiml"
-            className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all"
+            className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all h-full"
           >
             <img
               src={aiImage}
               alt="AI & ML"
-              className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
             />
             <div className="p-4">
               <h3 className="font-semibold text-gray-800 text-lg">
@@ -163,12 +164,12 @@ export default function BtechCollege() {
           {/* Card 2 */}
           <Link
             to="/btech-mechanical"
-            className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all"
+            className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all h-full"
           >
             <img
               src={mechImage}
               alt="Mechanical Engineering"
-              className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
             />
             <div className="p-4">
               <h3 className="font-semibold text-gray-800 text-lg">
@@ -181,12 +182,12 @@ export default function BtechCollege() {
           {/* Card 3 */}
           <Link
             to="/btech-ece"
-            className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all"
+            className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all h-full"
           >
             <img
               src={eceImage}
               alt="Electronics and Communication"
-              className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
             />
             <div className="p-4">
               <h3 className="font-semibold text-gray-800 text-lg">
@@ -199,12 +200,12 @@ export default function BtechCollege() {
           {/* Card 4 */}
           <Link
             to="/btech-ee"
-            className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all"
+            className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all h-full"
           >
             <img
               src={eeImage}
               alt="Electrical Engineering"
-              className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
             />
             <div className="p-4">
               <h3 className="font-semibold text-gray-800 text-lg">
@@ -217,12 +218,12 @@ export default function BtechCollege() {
           {/* Card 5 */}
           <Link
             to="/btech-cse"
-            className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all"
+            className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all h-full"
           >
             <img
               src={cseImage}
               alt="Computer Science Engineering"
-              className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
             />
             <div className="p-4">
               <h3 className="font-semibold text-gray-800 text-lg">
@@ -231,15 +232,16 @@ export default function BtechCollege() {
               <p className="text-sm text-gray-600 mt-1">(B.Tech C.S.E)</p>
             </div>
           </Link>
-          {/* Card 5 */}
+
+          {/* Card 6 */}
           <Link
             to="/btech-civil"
-            className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all"
+            className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all h-full"
           >
             <img
               src={civilImage}
-              alt="Computer Science Engineering"
-              className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
+              alt="Civil Engineering"
+              className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
             />
             <div className="p-4">
               <h3 className="font-semibold text-gray-800 text-lg">
@@ -250,6 +252,7 @@ export default function BtechCollege() {
           </Link>
         </div>
       </section>
+
       <section className="bg-[#0A2342] py-20 px-6 md:px-12">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Admission Process */}
