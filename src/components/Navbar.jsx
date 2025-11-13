@@ -125,7 +125,7 @@ const Navbar = () => {
                   label: "College of Media & Journalism",
                   path: "/CollegeOfPharmacy",
                 },
-                { label: "College of Arts", path: "/CollegeOfPharmacy" },
+                { label: "College of Arts", path: "/CollegeOfArts" },
               ],
             },
             // { label: "Admission & Faculty", path: "/admission" },
@@ -369,7 +369,12 @@ const Navbar = () => {
                     {/* College of Arts */}
                     <div>
                       <h3 className="font-bold text-lg text-gray-800 border-b pb-1 mb-2">
-                        College of Arts
+                        <Link
+                          to="/CollegeOfArts"
+                          className="inline-block hover:text-blue-700 transition"
+                        >
+                          College of Arts
+                        </Link>
                       </h3>
                       <ul className="space-y-1 text-xs">
                         {[
@@ -377,6 +382,10 @@ const Navbar = () => {
                           ["political-science", "Political Science"],
                           ["education", "Education"],
                           ["sociology", "Sociology"],
+                          ["ancient-history", "Ancient history"],
+                          ["hindi", "Hindi"],
+                          ["english", "English"],
+                          ["urdu", "Urdu"],
                         ].map(([path, name]) => (
                           <li key={path}>
                             <Link

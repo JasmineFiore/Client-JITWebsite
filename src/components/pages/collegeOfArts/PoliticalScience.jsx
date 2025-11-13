@@ -4,7 +4,7 @@ import DepartmentActivities from "../../../Blueprints/DepartmentActivities";
 import EnquiryModal from "../../../Blueprints/EnquiryModal";
 import PlacementHighlights from "../../../Blueprints/PlacementHighlights";
 
-export default function BCom() {
+export default function PoliticalScience() {
   const navigate = useNavigate();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -44,7 +44,7 @@ export default function BCom() {
           {/* Left Text Section */}
           <div className="text-white md:w-1/2">
             <h1 className="text-5xl font-extrabold mb-6 leading-tight">
-              Bachelor of Commerce
+              B.A Political Science
             </h1>
           </div>
         </div>
@@ -56,29 +56,28 @@ export default function BCom() {
           {/* Left Text */}
           <div className="md:w-1/2 text-gray-700 space-y-6">
             <h2 className="text-xl md:text-2xl font-bold text-[#0A2342] border-l-4 border-[#0A2342] pl-3 leading-snug">
-              B.Com – Overview
+              B.A Political Science – Overview
             </h2>
 
             <p className="text-base leading-relaxed text-gray-600">
-              The Bachelor of Commerce program prepares students for a career in
-              accounting, banking, financial management, information systems and
-              management. The B.Com programme is a three-year degree programme.
+              The Bachelor of Arts (BA) in Political Science is an undergraduate
+              degree program that provides students with a comprehensive
+              understanding of political systems, theories, and practices. This
+              course offers an overview of domestic and international political
+              issues, including governance, public policy, political ideologies,
+              international relations, and comparative politics. Students will
+              study topics such as political theory, political institutions,
+              political behaviour, and political analysis.
             </p>
             <p className="text-base leading-relaxed text-gray-600">
-              Compulsory courses in the degree build a solid foundation of
-              business skills that students will apply to many decisions and
-              issues in the contemporary business environment. In order to be
-              eligible for studying B.Com, students have to successfully pass
-              their 10+2 level or Higher Secondary Examination in Arts with
-              economics, Science with mathematics, or Commerce.
-            </p>
-            <p className="text-base leading-relaxed text-gray-600">
-              Students can go for a career option in various areas following
-              successful accomplishment of their Bachelor of Commerce degree.
-              Employment opportunities include Chartered accountant, tax
-              consultant, Human recourse, Banker, Auditor, Stock broker,
-              Lecturer, Finance consultant, Company secretary, Market
-              researcher, Economist and so on.
+              The program aims to develop critical thinking, research,
+              analytical, and communication skills. Graduates with a BA in
+              Political Science can pursue careers in government, non-profit
+              organizations, international relations, policy analysis,
+              journalism, law, or further their education in political science
+              or related fields at the postgraduate level. This degree equips
+              students with a strong foundation for understanding and engaging
+              with the complex world of politics.
             </p>
 
             {/* Buttons */}
@@ -101,8 +100,8 @@ export default function BCom() {
                 Apply Now
               </button>
               <button
-                onClick={() => navigate("/hod/electrical")}
-                className="border border-yellow-400 text-white font-semibold px-6 py-2 rounded-md bg-[#0A2342] transition-all"
+                onClick={() => navigate("/hod/arts")}
+                className="border border-yellow-400 text-white font-semibold cursor-pointer px-6 py-2 rounded-md bg-[#0A2342] transition-all"
               >
                 Hod Profile
               </button>
@@ -112,16 +111,16 @@ export default function BCom() {
           {/* ✅ Right Image / Carousel */}
           <div className="relative md:w-1/2 flex justify-center items-center">
             <img
-              src="/images/college business/bcom.jpg"
+              src="/images/collegeArts/politicalsci.png"
               alt="AI & ML Engineering"
-              className="rounded-2xl shadow-xl w-full h-[500px] object-cover transition-all duration-700 hover:scale-105"
+              className="rounded-2xl shadow-xl w-full h-[400px] object-contain transition-all duration-700 hover:scale-105"
             />
           </div>
         </div>
       </section>
 
       {/* 🎓 B.Tech AI & ML Details Section */}
-      <section className="bg-gradient-to-b from-[#0A2342] via-[#0E2E5C] to-[#0A2342] py-20 px-6 md:px-12">
+      <section className="bg-linear-to-b from-[#0A2342] via-[#0E2E5C] to-[#0A2342] py-20 px-6 md:px-12">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
           {/* Career Prospective */}
           <div className="bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-2xl shadow-lg p-8 hover:scale-[1.03] transition-transform duration-300">
@@ -131,26 +130,37 @@ export default function BCom() {
 
             <ul className="list-disc list-inside text-sm leading-relaxed text-gray-100 space-y-2 mt-2">
               <li>
-                A Bachelor of Commerce degree prepares students for a wide range
-                of careers in business and related fields.
+                Government: Opportunities in public administration, policy
+                analysis, diplomacy, and political consulting.
               </li>
               <li>
-                Graduates may pursue careers in accounting, finance, marketing,
-                management, human resources, and more.
+                Law: Pursue a legal career, working as a lawyer, advocate, or
+                legal researcher.
               </li>
               <li>
-                Some popular job titles for B Com graduates include accountant,
-                financial analyst, marketing coordinator, sales representative,
-                and business manager.
+                International Relations: Work in global organizations, NGOs, or
+                diplomatic services, dealing with international policies and
+                relations.
               </li>
               <li>
-                The degree may also provide a foundation for further education
-                in fields such as law, MBA, and chartered accountancy.
+                Journalism: Become a political journalist, news analyst, or
+                political commentator.
               </li>
               <li>
-                Job opportunities for B Com graduates are expected to be strong
-                in the coming years, with growth in industries such as finance,
-                technology, and healthcare.
+                Research and Analysis: Conduct research in think tanks, research
+                institutions, or academia.
+              </li>
+              <li>
+                Campaign Management: Engage in political campaigns, managing
+                strategies, communications, and grassroots mobilization.
+              </li>
+              <li>
+                Public Relations: Handle public affairs, government relations,
+                and strategic communications for organizations.
+              </li>
+              <li>
+                Non-profit Sector: Work in advocacy organizations, non-profits,
+                or social services, addressing political and social issues.
               </li>
             </ul>
           </div>
@@ -158,32 +168,35 @@ export default function BCom() {
           {/* Eligibility */}
           <div className="bg-white text-gray-800 rounded-2xl shadow-lg p-8 hover:scale-[1.03] transition-transform duration-300">
             <h3 className="text-3xl font-bold mb-4 text-[#0A2342]">
-              Eligibility
+              Eligibility Criteria
             </h3>
             <p className="text-sm leading-relaxed text-gray-700">
-              A candidate must have passed 10+2
+              Eligibility criteria for a Bachelor of Arts (BA) in Political
+              Science typically include a high school diploma or equivalent
+              qualification, with no specific subject requirements.
             </p>
+
             <h3 className="text-3xl font-bold mb-4 text-[#0A2342]">Duration</h3>
-            <p className="text-sm leading-relaxed text-gray-700 mb-3">
-              The duration of Bachelor of Commerce (B.Com) is typically three
-              years for full-time programs, although some universities may offer
-              accelerated or part-time options that may vary in length.
-            </p>
 
             <ul className="list-decimal list-inside text-sm leading-relaxed text-gray-700 space-y-1">
               <li>
-                <span className="font-semibold">For Regular:</span> 3 years
+                <span className="font-semibold">Course:</span> Bachelor of Arts
+                (Political Science)
               </li>
               <li>
-                <span className="font-semibold">Intake:</span> 350
+                <span className="font-semibold">Course Duration:</span> 3 years
               </li>
               <li>
-                <span className="font-semibold">Type of Course:</span> Under
-                Graduate Course
+                <span className="font-semibold">Type of Course:</span> B.A.,
+                Undergraduate Courses
               </li>
               <li>
                 <span className="font-semibold">College/Faculty:</span>College
-                of Management & Commerce.
+                of Arts
+              </li>
+              <li>
+                <span className="font-semibold">Department:</span>Political
+                Science
               </li>
             </ul>
           </div>
@@ -275,8 +288,6 @@ export default function BCom() {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
       />
-
-      
     </div>
   );
 }

@@ -1,15 +1,11 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Carousel from "../../../Blueprints/carousel";
 import DepartmentActivities from "../../../Blueprints/DepartmentActivities";
 import EnquiryModal from "../../../Blueprints/EnquiryModal";
-import eceImage from "/images/ece.jpg";
-import eeImage from "/images/ee.jpg";
-import Carousel from "../../../Blueprints/carousel";
 import PrincipalModal from "../college-pharmacy/PrincipalModal";
 
 export default function CollegeOBusiness() {
-  const navigate = useNavigate();
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPrincipalModlOpen, setIsPrincipalModlOpen] = useState(false);
 
@@ -143,12 +139,12 @@ export default function CollegeOBusiness() {
           {/* Card 1 */}
           <Link
             to="/mba-it"
-            className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all h-full"
+            className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all"
           >
             <img
               src="/images/college business/MBA-600x600.jpg"
               alt="MBA IT"
-              className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
             />
             <div className="p-4">
               <h3 className="font-semibold text-gray-800 text-lg">MBA IT</h3>
@@ -158,12 +154,12 @@ export default function CollegeOBusiness() {
           {/* Card 2 */}
           <Link
             to="/mba-it"
-            className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all h-full"
+            className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all"
           >
             <img
               src="/images/college business/mbafinan.jpg"
-              alt="MBA IB"
-              className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+              alt="mba ib"
+              className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
             />
             <div className="p-4">
               <h3 className="font-semibold text-gray-800 text-lg">MBA IB</h3>
@@ -173,12 +169,12 @@ export default function CollegeOBusiness() {
           {/* Card 3 */}
           <Link
             to="/mba-finance"
-            className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all h-full"
+            className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all"
           >
             <img
               src="/images/college business/mbamarketing.jpg"
-              alt="MBA Finance"
-              className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+              alt="mba-finance"
+              className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
             />
             <div className="p-4">
               <h3 className="font-semibold text-gray-800 text-lg">
@@ -190,12 +186,12 @@ export default function CollegeOBusiness() {
           {/* Card 4 */}
           <Link
             to="/mba-marketing"
-            className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all h-full"
+            className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all"
           >
             <img
               src="/images/college business/mbamarketing.jpg"
-              alt="MBA Marketing"
-              className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+              alt="mba-marketing"
+              className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
             />
             <div className="p-4">
               <h3 className="font-semibold text-gray-800 text-lg">
@@ -207,12 +203,12 @@ export default function CollegeOBusiness() {
           {/* Card 5 */}
           <Link
             to="/mba-hr"
-            className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all h-full"
+            className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all"
           >
             <img
               src="/images/college business/mbahr.jpg"
-              alt="MBA HR"
-              className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+              alt="mba-hr"
+              className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
             />
             <div className="p-4">
               <h3 className="font-semibold text-gray-800 text-lg">MBA HR</h3>
@@ -222,12 +218,12 @@ export default function CollegeOBusiness() {
           {/* Card 6 */}
           <Link
             to="/bcom"
-            className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all h-full"
+            className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all"
           >
             <img
               src="/images/college business/bcom2.jpg"
-              alt="B.Com"
-              className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+              alt="bcom"
+              className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
             />
             <div className="p-4">
               <h3 className="font-semibold text-gray-800 text-lg">B.Com</h3>

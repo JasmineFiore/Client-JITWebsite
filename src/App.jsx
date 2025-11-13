@@ -30,6 +30,11 @@ import MbaMarketing from "./components/pages/collegeObusiness/MbaMarketing";
 import MbaHr from "./components/pages/collegeObusiness/MbaHr";
 import BCom from "./components/pages/collegeObusiness/BCom";
 import CollegeOBusiness from "./components/pages/collegeObusiness/CollegeOBusiness";
+import CollegeOfArts from "./components/pages/collegeOfArts/CollegeOfArts";
+import PoliticalScience from "./components/pages/collegeOfArts/PoliticalScience";
+import Education from "./components/pages/collegeOfArts/Education";
+import LLB from "./components/pages/collegeOfArts/LLB";
+import Sociology from "./components/pages/collegeOfArts/Sociology";
 
 export default function App() {
   const location = useLocation();
@@ -76,6 +81,12 @@ export default function App() {
           <Route path="/mba-marketing" element={<MbaMarketing />} />
           <Route path="/mba-hr" element={<MbaHr />} />
           <Route path="/bcom" element={<BCom />} />
+
+          <Route path="/CollegeOfArts" element={<CollegeOfArts />} />
+          <Route path="/llb" element={<LLB />} />
+          <Route path="/political-science" element={<PoliticalScience />} />
+          <Route path="/education" element={<Education />} />
+          <Route path="/sociology" element={<Sociology />} />
 
           {/* General HOD page */}
           <Route path="/hod" element={<HODPage />} />
