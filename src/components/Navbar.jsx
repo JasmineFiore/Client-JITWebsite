@@ -120,12 +120,19 @@ const Navbar = () => {
                   path: "/CollegeOfEngineering",
                 },
                 { label: "College of Pharmacy", path: "/CollegeOfPharmacy" },
-                { label: "College of Business", path: "/CollegeOfBusiness" },
                 {
-                  label: "College of Media & Journalism",
-                  path: "/CollegeOfPharmacy",
+                  label: "College of Business & Commerce",
+                  path: "/CollegeOfBusiness",
                 },
                 { label: "College of Arts", path: "/CollegeOfArts" },
+                {
+                  label: "College of Media & Journalism",
+                  path: "/CollegeOfMedia",
+                },
+                {
+                  label: "College of ITI",
+                  path: "/CollegeOfITI",
+                },
               ],
             },
             // { label: "Admission & Faculty", path: "/admission" },
@@ -343,7 +350,12 @@ const Navbar = () => {
                     {/* College of Media */}
                     <div>
                       <h3 className="font-bold text-lg text-gray-800 border-b pb-1 mb-2">
-                        College of Media & Journalism
+                        <Link
+                          to="/CollegeOfMedia"
+                          className="inline-block hover:text-blue-700 transition"
+                        >
+                          College of Media & Journalism
+                        </Link>
                       </h3>
                       <ul className="space-y-1 text-xs">
                         {[
@@ -355,7 +367,7 @@ const Navbar = () => {
                         ].map(([path, name]) => (
                           <li key={path}>
                             <Link
-                              to={`/${path}`}
+                              // to={`/${path}`}
                               onClick={handleLinkClick}
                               className="block hover:text-blue-700 px-2 py-1"
                             >
@@ -403,12 +415,20 @@ const Navbar = () => {
                     {/* College of ITI */}
                     <div>
                       <h3 className="font-bold text-lg text-gray-800 border-b pb-1 mb-2">
-                        College of ITI
+                        <Link
+                          to="/CollegeOfITI"
+                          className="inline-block hover:text-blue-700 transition"
+                        >
+                          College of ITI
+                        </Link>
                       </h3>
                       <ul className="space-y-1 text-xs">
                         {[
-                          ["iti-multimedia", "Multimedia"],
-                          ["iti-photo", "Photography"],
+                          [
+                            "iti-multimedia",
+                            "Multimedia Animation & Special Effects",
+                          ],
+                          ["digital-photography", "Digital Photographer"],
                           ["iti-electrician", "Electrician"],
                           ["iti-welder", "Welder"],
                           ["iti-fitter", "Fitter"],

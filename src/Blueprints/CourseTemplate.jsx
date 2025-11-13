@@ -19,6 +19,11 @@ export default function CourseTemplate({
   admission,
   duration,
   courseDetails,
+  scholarship,
+  hasScholarship, // boolean flag
+  hasAdmissionProcess, // boolean flag
+  hasSyllabus,
+  syllabusLinks,
 }) {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -68,12 +73,14 @@ export default function CourseTemplate({
               >
                 Apply Now
               </button>
-              <button
-                onClick={() => navigate(hodLink)}
-                className="border border-yellow-400 text-white font-semibold cursor-pointer px-6 py-2 rounded-md bg-[#0A2342] transition-all"
-              >
-                Hod Profile
-              </button>
+              {hodLink && (
+                <button
+                  onClick={() => navigate(hodLink)}
+                  className="border border-yellow-400 text-white font-semibold cursor-pointer px-6 py-2 rounded-md bg-[#0A2342] transition-all"
+                >
+                  Hod Profile
+                </button>
+              )}
             </div>
           </div>
 
@@ -92,39 +99,26 @@ export default function CourseTemplate({
       <section className="bg-linear-to-b from-[#0A2342] via-[#0E2E5C] to-[#0A2342] py-20 px-6 md:px-12">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
           {/* Career Prospective */}
-          <div className="bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-2xl shadow-lg p-8 hover:scale-[1.03] transition-transform duration-300">
-            <h3 className="text-3xl font-bold mb-4 text-yellow-400">
+          <div className="bg-yellow-400 backdrop-blur-sm border border-white/20 text-white rounded-2xl shadow-lg p-8 hover:scale-[1.03] transition-transform duration-300">
+            <h3 className="text-3xl font-bold mb-4 text-[#0A2342]">
               Career Prospective
             </h3>
-            <div className="text-sm leading-relaxed text-gray-100 space-y-2 mt-2">
-              {careerProspects.map((item, i) => {
-                // If it's a string, render as list item
-                if (typeof item === "string") {
-                  return (
-                    <li key={i} className="list-disc list-inside">
-                      {item}
-                    </li>
-                  );
-                }
-
-                // If it's an object (e.g. with title/paragraphs)
-                if (typeof item === "object") {
-                  return (
-                    <div key={i} className="mt-4">
-                      {/* <h4 className="font-semibold text-yellow-300">
-                        {item.title}
-                      </h4> */}
-                      {item.paragraphs?.map((p, j) => (
-                        <p key={j} className="text-gray-200 mt-1">
-                          {p}
-                        </p>
-                      ))}
-                    </div>
-                  );
-                }
-
-                return null;
-              })}
+            <div className="text-sm leading-relaxed text-[#0A2342] space-y-2 mt-2">
+              {careerProspects.map((item, i) =>
+                typeof item === "string" ? (
+                  <li key={i} className="list-disc list-inside">
+                    {item}
+                  </li>
+                ) : (
+                  <div key={i} className="mt-4">
+                    {item.paragraphs?.map((p, j) => (
+                      <p key={j} className="text-[#0A2342] mt-1">
+                        {p}
+                      </p>
+                    ))}
+                  </div>
+                )
+              )}
             </div>
           </div>
 
@@ -137,84 +131,131 @@ export default function CourseTemplate({
               {eligibility}
             </p>
 
-            <h3 className="text-3xl font-bold mb-4 mt-6 text-[#0A2342]">
-              Duration
-            </h3>
-            <p className="text-sm leading-relaxed text-gray-700">{duration}</p>
+            {duration && (
+              <div className="mt-6">
+                <h3 className="text-3xl font-bold mb-4 text-[#0A2342]">
+                  Duration
+                </h3>
+                <p className="text-sm leading-relaxed text-gray-700">
+                  {duration}
+                </p>
 
-            <ul className="list-decimal list-inside text-sm leading-relaxed text-gray-700 space-y-1 mt-2">
-              {courseDetails.map((detail, i) => (
-                <li key={i}>{detail}</li>
-              ))}
-            </ul>
+                <ul className="list-inside text-sm leading-relaxed text-gray-700 space-y-1 mt-2">
+                  {courseDetails.map((detail, i) => {
+                    const [key, value] = detail.split(":");
+                    return (
+                      <li key={i}>
+                        <span className="font-semibold">{key.trim()}:</span>
+                        {value && <span> {value.trim()}</span>}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            )}
           </div>
-          {/* Admission Process */}
-          <div className="bg-white text-gray-800 rounded-2xl shadow-lg p-8 hover:scale-[1.03] transition-transform duration-300">
-            <h3 className="text-3xl font-bold mb-4 text-[#0A2342]">
-              Admission Process
-            </h3>
-            <p className="text-sm leading-relaxed text-gray-700">
-              {admission}
-            </p>
-          </div>
 
-          {/* Download syllabus */}
-          <div className="bg-yellow-400 text-gray-900 rounded-lg shadow-lg p-10 text-center">
-            <h3 className="text-3xl font-bold mb-10">Download Syllabus</h3>
+          {/* Scholarship (if present) */}
+          {hasScholarship && (
+            <div className="bg-white text-gray-900 rounded-2xl shadow-lg p-8 hover:scale-[1.03] transition-transform duration-300 border border-gray-200">
+              <h3 className="text-3xl font-bold mb-2 text-center text-[#0A2342]">
+                Scholarship
+              </h3>
+              <p className="text-sm text-center text-gray-600 mb-6">
+                Fee Concession for Meritorious Students
+              </p>
 
-            <div className="flex justify-center gap-24">
-              {/* 1st Year */}
-              <a
-                // href="/syllabus/MBA-1st-Year-AKTU.pdf"
-                target="_blank"
-                className="flex flex-col items-center text-[#0A2342] hover:text-blue-700 transition-transform hover:scale-110"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  className="w-12 h-10 mb-2"
+              <div className="overflow-x-auto">
+                <table className="w-full border border-gray-300 rounded-lg text-sm text-center">
+                  <thead className="bg-gray-100">
+                    <tr>
+                      <th className="border border-gray-300 px-4 py-2 font-semibold">
+                        Qualifying Percentage
+                      </th>
+                      <th className="border border-gray-300 px-4 py-2 font-semibold">
+                        Rebate in Tuition Fees
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {scholarship.map((row, i) => (
+                      <tr key={i}>
+                        <td className="border border-gray-300 px-4 py-2">
+                          {row.percentage}
+                        </td>
+                        <td className="border border-gray-300 px-4 py-2">
+                          {row.rebate}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="flex justify-center mt-6">
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="bg-linear-to-r from-[#0A2342] to-[#143109] text-white font-semibold cursor-pointer px-6 py-2 rounded-md hover:from-yellow-400 hover:to-yellow-400 hover:text-black transition-all"
                 >
-                  <path d="M12 16l4-5h-3V4h-2v7H8l4 5zm8 2H4v2h16v-2z" />
-                </svg>
-                <span className="text-lg font-bold">1st Year</span>
-              </a>
-
-              {/* 2nd Year */}
-              <a
-                // href="/syllabus/MBA-2nd-Year-AKTU-.pdf"
-                target="_blank"
-                className="flex flex-col items-center text-[#0A2342] hover:text-blue-700 transition-transform hover:scale-110"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  className="w-10 h-10 mb-2"
-                >
-                  <path d="M12 16l4-5h-3V4h-2v7H8l4 5zm8 2H4v2h16v-2z" />
-                </svg>
-                <span className="text-lg font-bold">2nd Year</span>
-              </a>
-
-              {/* 3nd Year */}
-              <a
-                // href="/syllabus/MBA-2nd-Year-AKTU-.pdf"
-                target="_blank"
-                className="flex flex-col items-center text-[#0A2342] hover:text-blue-700 transition-transform hover:scale-110"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  className="w-10 h-10 mb-2"
-                >
-                  <path d="M12 16l4-5h-3V4h-2v7H8l4 5zm8 2H4v2h16v-2z" />
-                </svg>
-                <span className="text-lg font-bold">2nd Year</span>
-              </a>
+                  Enquire Now
+                </button>
+              </div>
             </div>
-          </div>
+          )}
+
+          {/* Admission Process (if present) */}
+          {hasAdmissionProcess && (
+            <div className="bg-white/10 text-gray-100 rounded-2xl shadow-lg p-8 hover:scale-[1.03] transition-transform duration-300">
+              <h3 className="text-3xl font-bold mb-6 text-center">
+                Admission Process
+              </h3>
+              <p className="text-lg text-center text-gray-100 mb-6">
+                {admission}
+              </p>
+
+              <div className="flex justify-center mt-8">
+                <button
+                  onClick={() =>
+                    window.open(
+                      "https://jit-cet.uc-school.com/site/mobile-registration",
+                      "_blank"
+                    )
+                  }
+                  className="bg-yellow-400 text-black font-semibold cursor-pointer px-6 py-2 rounded-md hover:bg-gray-900 hover:text-yellow-400 transition-all"
+                >
+                  Apply Now
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Download Syllabus (if present) */}
+          {hasSyllabus && (
+            <div className="bg-yellow-400 text-gray-900 rounded-lg shadow-lg p-10 text-center">
+              <h3 className="text-3xl font-bold mb-10">Download Syllabus</h3>
+              <div className="flex justify-center gap-24">
+                {syllabusLinks?.map((link, i) => (
+                  <a
+                    key={i}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex flex-col items-center text-[#0A2342] hover:text-blue-700 transition-transform hover:scale-110"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      className="w-10 h-10 mb-2"
+                    >
+                      <path d="M12 16l4-5h-3V4h-2v7H8l4 5zm8 2H4v2h16v-2z" />
+                    </svg>
+                    <span className="text-lg font-bold">{link.label}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 

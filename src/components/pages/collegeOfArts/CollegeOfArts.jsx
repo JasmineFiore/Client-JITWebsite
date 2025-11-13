@@ -131,12 +131,12 @@ export default function CollegeOfArts() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
           {/* Card 1 */}
           <Link
-            to="/mba-it"
+            to="/llb"
             className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all h-full"
           >
             <img
               src="/images/collegeArts/carts1.jpg"
-              alt="MBA IT"
+              alt="llb"
               className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
             />
             <div className="p-4">
@@ -146,12 +146,12 @@ export default function CollegeOfArts() {
 
           {/* Card 2 */}
           <Link
-            to="/mba-it"
+            to="/political-science"
             className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all h-full"
           >
             <img
               src="/images/collegeArts/carts2.jpg"
-              alt="MBA IB"
+              alt="political-science"
               className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
             />
             <div className="p-4">
@@ -163,12 +163,12 @@ export default function CollegeOfArts() {
 
           {/* Card 3 */}
           <Link
-            to="/mba-finance"
+            to="/education"
             className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all h-full"
           >
             <img
               src="/images/collegeArts/carts3.jpg"
-              alt="MBA Finance"
+              alt="Education"
               className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
             />
             <div className="p-4">
@@ -178,12 +178,12 @@ export default function CollegeOfArts() {
 
           {/* Card 4 */}
           <Link
-            to="/mba-marketing"
+            to="/sociology"
             className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all h-full"
           >
             <img
               src="/images/collegeArts/carts4.png"
-              alt="MBA Marketing"
+              alt="Sociology"
               className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
             />
             <div className="p-4">
@@ -193,12 +193,12 @@ export default function CollegeOfArts() {
 
           {/* Card 5 */}
           <Link
-            to="/mba-hr"
+            to="/ancient-history"
             className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all h-full"
           >
             <img
               src="/images/collegeArts/carts2.jpg"
-              alt="MBA HR"
+              alt="ancient-history"
               className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
             />
             <div className="p-4">
@@ -210,12 +210,12 @@ export default function CollegeOfArts() {
 
           {/* Card 6 */}
           <Link
-            to="/bcom"
+            to="/hindi"
             className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all h-full"
           >
             <img
               src="/images/collegeArts/carts1.jpg"
-              alt="B.Com"
+              alt="Hindi"
               className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
             />
             <div className="p-4">
@@ -225,12 +225,12 @@ export default function CollegeOfArts() {
 
           {/* Card 7 */}
           <Link
-            to="/bcom"
+            to="/english"
             className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all h-full"
           >
             <img
               src="/images/collegeArts/carts5.jpg"
-              alt="B.Com"
+              alt="English"
               className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
             />
             <div className="p-4">
@@ -240,12 +240,12 @@ export default function CollegeOfArts() {
 
           {/* Card 6 */}
           <Link
-            to="/bcom"
+            to="/urdu"
             className="group block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition-all h-full"
           >
             <img
               src="/images/collegeArts/carts6.jpg"
-              alt="B.Com"
+              alt="Urdu"
               className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
             />
             <div className="p-4">

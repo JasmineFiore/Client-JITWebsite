@@ -93,7 +93,7 @@ export default function LLB() {
                 Apply Now
               </button>
               <button
-                onClick={() => navigate("/hod/law")}
+                onClick={() => navigate("/hod/arts")}
                 className="border border-yellow-400 text-white font-semibold cursor-pointer px-6 py-2 rounded-md bg-[#0A2342] transition-all"
               >
                 Hod Profile

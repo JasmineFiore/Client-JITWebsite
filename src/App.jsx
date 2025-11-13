@@ -35,6 +35,14 @@ import PoliticalScience from "./components/pages/collegeOfArts/PoliticalScience"
 import Education from "./components/pages/collegeOfArts/Education";
 import LLB from "./components/pages/collegeOfArts/LLB";
 import Sociology from "./components/pages/collegeOfArts/Sociology";
+import AncientHistory from "./components/pages/collegeOfArts/AncientHistory";
+import Hindi from "./components/pages/collegeOfArts/Hindi";
+import English from "./components/pages/collegeOfArts/English";
+import Urdu from "./components/pages/collegeOfArts/Urdu";
+import CollegeOfMedia from "./components/pages/CollegeOfMedia/CollegeOfMedia";
+import CollegeOfITI from "./components/pages/College-iti/CollegeOfITI";
+import DigitalPhoto from "./components/pages/College-iti/DigitalPhoto";
+import Electrician from "./components/pages/College-iti/Electrician";
 
 export default function App() {
   const location = useLocation();
@@ -87,6 +95,16 @@ export default function App() {
           <Route path="/political-science" element={<PoliticalScience />} />
           <Route path="/education" element={<Education />} />
           <Route path="/sociology" element={<Sociology />} />
+          <Route path="/ancient-history" element={<AncientHistory />} />
+          <Route path="/hindi" element={<Hindi />} />
+          <Route path="/english" element={<English />} />
+          <Route path="/urdu" element={<Urdu />} />
+          
+          <Route path="/CollegeOfMedia" element={<CollegeOfMedia />} />
+
+          <Route path="/CollegeOfITI" element={<CollegeOfITI />} />
+          <Route path="/digital-photography" element={<DigitalPhoto />} />
+          <Route path="/iti-electrician" element={<Electrician />} />
 
           {/* General HOD page */}
           <Route path="/hod" element={<HODPage />} />
