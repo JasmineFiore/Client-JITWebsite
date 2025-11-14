@@ -18,7 +18,7 @@ export default function DigitalPhoto() {
         "/images/deparmental-activites/dep2.jpg",
         "/images/deparmental-activites/cse4.jpg",
       ]}
-      achieversTitle="Our Law Achievers"
+      achieversTitle="Our Achievers"
       achievers={[
         {
           name: "Mohd. Sohib Ansari",

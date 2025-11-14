@@ -43,6 +43,12 @@ import CollegeOfMedia from "./components/pages/CollegeOfMedia/CollegeOfMedia";
 import CollegeOfITI from "./components/pages/College-iti/CollegeOfITI";
 import DigitalPhoto from "./components/pages/College-iti/DigitalPhoto";
 import Electrician from "./components/pages/College-iti/Electrician";
+import Welder from "./components/pages/College-iti/Welder";
+import Fitter from "./components/pages/College-iti/Fitter";
+import CareersPage from "./components/pages/Career/CareersPage";
+import ContactPage from "./components/pages/ContactPage";
+import PlacementSection from "./components/pages/placement/PlacementPage";
+import PlacementPage from "./components/pages/placement/PlacementPage";
 
 export default function App() {
   const location = useLocation();
@@ -99,12 +105,14 @@ export default function App() {
           <Route path="/hindi" element={<Hindi />} />
           <Route path="/english" element={<English />} />
           <Route path="/urdu" element={<Urdu />} />
-          
+
           <Route path="/CollegeOfMedia" element={<CollegeOfMedia />} />
 
           <Route path="/CollegeOfITI" element={<CollegeOfITI />} />
           <Route path="/digital-photography" element={<DigitalPhoto />} />
           <Route path="/iti-electrician" element={<Electrician />} />
+          <Route path="/iti-welder" element={<Welder />} />
+          <Route path="/iti-fitter" element={<Fitter />} />
 
           {/* General HOD page */}
           <Route path="/hod" element={<HODPage />} />
@@ -121,6 +129,14 @@ export default function App() {
           <Route path="/vision" element={<ChairmansMessage />} />
           <Route path="/alumni" element={<ChairmansMessage />} />
           <Route path="/affiliation" element={<ChairmansMessage />} />
+
+          <Route path="/placements" element={<PlacementPage />} />
+          <Route path="/tp-cell" element={<PlacementPage />} />
+          <Route path="/recruiters" element={<PlacementPage />} />
+
+          <Route path="/career" element={<CareersPage />} />
+
+          <Route path="/contact" element={<ContactPage />} />
         </Routes>
       </div>
       <Footer />

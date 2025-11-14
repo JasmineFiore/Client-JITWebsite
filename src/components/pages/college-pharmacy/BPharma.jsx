@@ -1,16 +1,53 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import EnquiryModal from "../../../Blueprints/EnquiryModal";
+import FAQ from "../../../Blueprints/FAQ";
 import BpharmaPlacement from "./BpharmaPlacement";
 import BphramCampusLife from "./BphramCampusLife";
 import FacilitiesResearchSection from "./FacilitiesResearchSection";
-import FAQSection from "./FAQSection";
-import EnquiryModal from "../../../Blueprints/EnquiryModal";
 
 export default function BPharma() {
   const navigate = useNavigate();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const bpharmaFAQ = [
+    {
+      question:
+        "What are the career prospects after completing a B Pharma course in Uttar Pradesh from JIT affiliated with AKTU?",
+      answer:
+        "After completing a B Pharma course from AKTU, graduates have various career opportunities in pharmaceutical companies, research organizations, hospitals, regulatory bodies, and academia. They can work as pharmacists, drug inspectors, medical writers, clinical research associates, and quality control analysts, among other roles. JIT Placement Cell will provide 100% placement assistance.",
+    },
+    {
+      question:
+        "Are there any scholarships available for B Pharma students in JIT?",
+      answer:
+        "JIT makes quality education accessible to all students through scholarships and financial aid to deserving students based on academic merit, financial need, and other criteria. Students must score required marks for scholarships in CUET exams Our aim is to support talented and motivated students in pursuing their educational goals. call us at the given number for more information.",
+    },
+    {
+      question: "What is the fee structure for B Pharma courses in JIT?",
+      answer:
+        "The Tuition Fee at JIT College for B Pharma is Rs. 62,500 per year. Please call us to know more about the fee details and scholarship eligibility.",
+    },
+    {
+      question:
+        "How is the infrastructure and lab facilities for B Pharma students in JIT?",
+      answer:
+        "The infrastructure and lab facilities for B Pharma students in JIT college affiliated with AKTU are generally well-equipped with modern laboratory equipment, library resources, and pharmaceutical technology facilities to support hands-on learning and research activities.",
+    },
+    {
+      question:
+        "What are the different specializations available within the B Pharma course?",
+      answer:
+        "Specializations within the B Pharma course at AKTU-affiliated colleges include Pharmaceutical Chemistry, Pharmacology, Pharmacognosy, Pharmaceutical Analysis, Pharmaceutical Biotechnology, Industrial Pharmacy, and Clinical Pharmacy.",
+    },
+    {
+      question:
+        "What is the placement scenario for B Pharma graduates from JIT college?",
+      answer:
+        "B Pharma graduates from colleges affiliated with AKTU have favorable placement prospects, with opportunities available in pharmaceutical companies, research organizations, hospitals, government agencies, and academia. The placement scenario varies depending on factors such as academic performance, skills, and industry demand.",
+    },
+  ];
   return (
     <div>
       {/* 🔹 Hero Section */}
@@ -24,7 +61,6 @@ export default function BPharma() {
           </div>
         </div>
       </section>
-
       {/* 🔸 Info Section - Improved Version */}
       <section className="bg-linear-to-r from-white to-gray-50 py-20 px-6 md:px-12 flex justify-center">
         <div className="max-w-7xl w-full flex flex-col md:flex-row items-start justify-between gap-12">
@@ -84,7 +120,6 @@ export default function BPharma() {
           </div>
         </div>
       </section>
-
       {/* 🎓 B.Tech AI & ML Details Section */}
       <section className="bg-gradient-to-b from-[#0A2342] via-[#0E2E5C] to-[#0A2342] py-20 px-6 md:px-12">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
@@ -217,17 +252,14 @@ export default function BPharma() {
           </div>
         </div>
       </section>
-
       {/* Modal */}
       <EnquiryModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
       />
-
       <BpharmaPlacement />
       <FacilitiesResearchSection />
       <BphramCampusLife />
-
       <section
         id="get-started"
         className="text-white py-16 px-6 md:px-12 flex justify-center"
@@ -260,8 +292,7 @@ export default function BPharma() {
           </button>
         </div>
       </section>
-
-      <FAQSection />
+      <FAQ faqData={bpharmaFAQ} title="Frequently Asked Questions" />
     </div>
   );
 }

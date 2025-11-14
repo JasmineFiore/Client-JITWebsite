@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { FiPlus, FiMinus } from "react-icons/fi"; // install with: npm install react-icons
+import { useState } from "react";
+import { FiMinus, FiPlus } from "react-icons/fi"; // install with: npm install react-icons
 
 const FAQSection = () => {
   const [activeIndex, setActiveIndex] = useState(null);
