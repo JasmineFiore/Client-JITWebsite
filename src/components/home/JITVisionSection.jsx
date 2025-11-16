@@ -72,10 +72,31 @@ export default function JITVisionSection() {
   return (
     <section className="bg-[#0A2342] text-white py-16 px-6 md:px-20 flex flex-col md:flex-row items-center justify-center gap-10 transition-all duration-500">
       {/* Left Side: 360° View */}
-      <div className="relative md:w-3/4 flex items-center justify-center">
+      <div className="relative md:w-11/12 flex items-center justify-center">
         <div className="absolute -top-6 -left-6 bg-yellow-400 w-48 h-48 rounded-lg -z-10"></div>
         <div className="w-full rounded-lg shadow-2xl overflow-hidden">
           <College360View imageUrl="/images/360 deg img/img-2.jpeg" />
+          <h2
+            className="w-full max-w-5xl mb-4 px-4 py-2 mt-2 rounded-md
+        text-yellow-400 text-3xl font-extrabold
+         flex items-center gap-2 justify-center select-none"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-7 h-7 animate-spin-slow"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 4v1m0 14v1m8-8h1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707"
+              />
+            </svg>
+            Explore Our College in 360°
+          </h2>
         </div>
       </div>
 

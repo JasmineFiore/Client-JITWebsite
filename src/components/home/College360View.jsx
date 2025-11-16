@@ -102,29 +102,9 @@ export default function College360View({ imageUrl }) {
   }, [imageUrl]);
 
   return (
-    <div className="w-full max-w-full p-4 bg-gradient-to-r from-yellow-50 via-yellow-100 to-blue-100 flex justify-center mt-5">
+    <div className="w-full max-w-full p-1 bg-gradient-to-r from-yellow-50 via-yellow-100 to-blue-100 flex justify-center mt-5">
       <div className="w-full relative">
-        <h2
-          className="w-full max-w-5xl mb-4 px-4 py-2 rounded-md
-        bg-black bg-opacity-60 text-yellow-400 text-3xl font-extrabold
-        drop-shadow-lg flex items-center gap-2 justify-center select-none"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-7 h-7 animate-spin-slow"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 4v1m0 14v1m8-8h1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707"
-            />
-          </svg>
-          Explore Our College in 360°
-        </h2>
+        
 
         {/* Three.js container */}
         <div
@@ -142,7 +122,11 @@ export default function College360View({ imageUrl }) {
             </div>
           )}
         </div>
+        
       </div>
+      
+      
     </div>
+    
   );
 }

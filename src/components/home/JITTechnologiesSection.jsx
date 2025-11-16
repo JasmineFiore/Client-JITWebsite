@@ -90,7 +90,9 @@ export default function JITTechnologiesSection() {
             <div
               className={`flex flex-col items-center justify-center p-10 text-[#0A2342] transition-opacity duration-500 ${
                 (!isMobile && "group-hover:opacity-0") ||
-                (isMobile && activeCard === tech.id ? "opacity-0" : "opacity-100")
+                (isMobile && activeCard === tech.id
+                  ? "opacity-0"
+                  : "opacity-100")
               }`}
             >
               {tech.icon}
@@ -101,13 +103,14 @@ export default function JITTechnologiesSection() {
 
             {/* Description View */}
             <div
-              className={`absolute inset-0 flex items-center justify-center text-center p-6 text-white bg-[#0A2342]/90 transition-opacity duration-500 ${
+              className={`absolute inset-0 flex flex-col items-center justify-center text-center p-6 text-white bg-[#0A2342]/90 transition-opacity duration-500 ${
                 (!isMobile && "opacity-0 group-hover:opacity-100") ||
                 (isMobile && activeCard === tech.id
                   ? "opacity-100"
                   : "opacity-0 pointer-events-none")
               }`}
             >
+              <h3 className="text-lg font-bold underline-offset-1 underline mb-3">{tech.title}</h3>
               <p className="text-sm leading-relaxed">{tech.description}</p>
             </div>
           </div>

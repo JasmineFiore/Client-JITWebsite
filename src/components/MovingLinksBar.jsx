@@ -14,7 +14,9 @@ const links = [
 
 export default function MovingLinksBar() {
   const controls = useAnimation();
-  const doubledLinks = [...links];
+  const [pausedX, setPausedX] = React.useState(0);
+  const widthRef = React.useRef(null);
+  const containerWidthRef = React.useRef(null);
 
   // Start the scroll animation
   const startScroll = async () => {
@@ -50,19 +52,19 @@ export default function MovingLinksBar() {
     >
       <div className="flex items-center">
         {/* Static Section */}
-        <div className="bg-blue-800 text-white font-semibold px-6 py-3 text-sm sm:text-base uppercase tracking-wide">
+        <div className="bg-blue-800 text-white font-semibold px-3 py-1 text-sm sm:text-base uppercase tracking-wide">
           Notices
         </div>
 
         {/* Scrolling Section */}
         <div className="flex-1 overflow-hidden relative">
           <motion.div
-            className="flex whitespace-nowrap text-blue-700 text-sm sm:text-base font-medium py-3"
+            className="flex whitespace-nowrap text-blue-700 text-sm sm:text-base font-medium py-1"
             animate={controls}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            {doubledLinks.map((link, index) => (
+            {links.map((link, index) => (
               <React.Fragment key={index}>
                 <Link
                   to={link.to}

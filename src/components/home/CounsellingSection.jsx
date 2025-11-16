@@ -27,12 +27,12 @@ export default function CounsellingSection() {
   };
 
   return (
-    <section className="relative flex flex-col md:flex-row w-full min-h-[90vh] bg-gradient-to-br from-[#0A2342] via-[#0A2342] to-[#5b7553]/50 overflow-hidden">
+    <section className="relative flex flex-col md:flex-row w-full min-h-[80vh] bg-gradient-to-br from-[#0A2342] via-[#0A2342] to-[#5b7553]/50 overflow-hidden">
       {/* Decorative background circle */}
       <div className="absolute top-[-10rem] right-[-10rem] w-[400px] h-[400px] bg-[#a6b97f]/20 rounded-full blur-3xl"></div>
 
       {/* Left Section */}
-      <div className="flex-1 text-white flex flex-col justify-center px-8 md:px-20 py-16 space-y-6">
+      <div className="flex-1 text-white flex flex-col justify-center px-8 md:px-20  space-y-6">
         <motion.h3
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -66,7 +66,7 @@ export default function CounsellingSection() {
       </div>
 
       {/* Right Section - Form */}
-      <div className="flex-1 flex items-center justify-center px-8 py-16">
+      <div className="flex-1 flex items-center justify-center px-8 py-8">
         <motion.form
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}

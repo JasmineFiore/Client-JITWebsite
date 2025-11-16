@@ -1,5 +1,19 @@
 import { useEffect, useState } from "react";
-import { FaMapMarkerAlt, FaSearch, FaBars, FaTimes } from "react-icons/fa";
+import {
+  FaMapMarkerAlt,
+  FaSearch,
+  FaBars,
+  FaTimes,
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedin,
+  FaYoutube,
+  FaTwitter,
+  FaPhone,
+  FaEnvelope,
+  FaPhoneSquare,
+  FaMailBulk,
+} from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
@@ -50,6 +64,29 @@ const Navbar = () => {
   const hoverColor =
     isHome && !isScrolled ? "hover:text-yellow-300" : "hover:text-blue-700";
 
+  const contactItems = [
+    {
+      icon: <FaPhoneSquare />,
+      label: "+91 73111 94686",
+      action: "tel:+917311194686",
+    },
+    {
+      icon: <FaPhoneSquare />,
+      label: "+91 73808 32222",
+      action: "tel:+917380832222",
+    },
+    {
+      icon: <FaMailBulk />,
+      label: "admissions@jit.edu.in",
+      action: "mailto:admissions@jit.edu.in",
+    },
+    {
+      icon: <FaMailBulk />,
+      label: "info@jit.edu.in",
+      action: "mailto:info@jit.edu.in",
+    },
+  ];
+
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-[background-color] duration-300 ${navbarBg} ${textColor}`}
@@ -59,7 +96,7 @@ const Navbar = () => {
         {/* Left: Logo + Name */}
         <div className="flex items-center gap-3">
           <img
-            src="/images/jitlogo.jpg"
+            src="/images/jitlogocrop.jpg"
             alt="JIT Logo"
             className="h-12 sm:h-14"
           />
@@ -67,16 +104,60 @@ const Navbar = () => {
             <h1 className="text-lg sm:text-2xl font-bold leading-tight">
               Jahangirabad Institute of Technology
             </h1>
-            <p className="text-xs sm:text-sm">Lucknow, Uttar Pradesh, India</p>
+            <div className="hidden md:flex items-center gap-2 text-sm">
+              <FaMapMarkerAlt className="text-yellow-400" />
+              <span> Lucknow, Uttar Pradesh, India</span>
+            </div>
           </div>
         </div>
 
-        {/* Right: Info + Icons */}
-        <div className="flex items-center gap-4">
-          <div className="hidden md:flex items-center gap-2 text-sm">
-            <FaMapMarkerAlt className="text-yellow-400" />
-            <span>Lucknow, India</span>
+        {/* Right Section */}
+        <div className="flex items-center gap-3 text-sm">
+          {/* Contact Items */}
+          <div className="hidden lg:flex flex-col  text-right">
+            {contactItems.slice(0, 2).map((item, index) => (
+              <a
+                key={index}
+                href={item.action}
+                className="flex items-center -gap-1 hover:text-blue-400 transition"
+              >
+                {/* <span className="text-black">{item.icon}</span> */}
+                {item.icon}
+                <span>{item.label}</span>
+              </a>
+            ))}
           </div>
+
+          <div className="hidden lg:flex flex-col leading-tight text-right">
+            {contactItems.slice(2, 4).map((item, index) => (
+              <a
+                key={index}
+                href={item.action}
+                className="flex items-center gap-1 hover:text-blue-400 transition"
+              >
+                {item.icon}
+                <span>{item.label}</span>
+              </a>
+            ))}
+          </div>
+
+          {/* Student Login Button */}
+          <Link
+            to="/student-login"
+            className="hidden md:block bg-[#082648] text-white px-1 py-1 rounded-md hover:bg-blue-700 transition"
+          >
+            Student Login
+          </Link>
+
+          {/* Social Icons */}
+          <div className="hidden md:flex items-center gap-1 text-xl">
+            <FaFacebookF className={hoverColor} />
+            <FaTwitter className={hoverColor} />
+            <FaLinkedin className={hoverColor} />
+            <FaInstagram className={hoverColor} />
+          </div>
+
+          {/* Search Icon */}
           <FaSearch
             className={`cursor-pointer hidden md:block ${hoverColor}`}
           />

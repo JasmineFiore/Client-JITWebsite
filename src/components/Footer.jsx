@@ -9,7 +9,7 @@ import JITLogo from "/images/jitlogo.jpg";
 
 const Footer = () => {
   return (
-    <footer className="bg-linear-to-r from-[#0A2342]/90 to-[#0A2342] text-white">
+    <footer className=" bg-gradient-to-tr from-[#0A2342] via-[#0A2342] to-[#0f130e]/50 text-[#0f130e]">
       {/* 🔹 Main Footer Content */}
       <div className="max-w-7xl mx-auto px-6 sm:px-10 py-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 text-center md:text-left border-b border-gray-700">
         {/* Logo + Description */}
@@ -36,7 +36,7 @@ const Footer = () => {
               <a
                 key={index}
                 href={item.link}
-                className="bg-[#aaae7f] text-[#0A2342] p-2 rounded-full hover:scale-110 transition transform duration-300"
+                className="bg-yellow-500 text-[#0A2342] p-2 rounded-full hover:scale-110 transition transform duration-300"
               >
                 {item.icon}
               </a>
@@ -46,7 +46,7 @@ const Footer = () => {
 
         {/* Quick Links */}
         <div>
-          <h3 className="font-semibold text-lg mb-4 text-[#aaae7f]">
+          <h3 className="font-semibold text-lg mb-4 text-yellow-500">
             Quick Links
           </h3>
           <ul className="space-y-2 text-sm text-gray-300">
@@ -59,7 +59,7 @@ const Footer = () => {
               "Contact Us",
             ].map((item, i) => (
               <li key={i}>
-                <a href="#" className="hover:text-[#aaae7f] transition">
+                <a href="#" className="hover:text-yellow-500 transition">
                   {item}
                 </a>
               </li>
@@ -69,7 +69,7 @@ const Footer = () => {
 
         {/* About */}
         <div>
-          <h3 className="font-semibold text-lg mb-4 text-[#aaae7f]">About</h3>
+          <h3 className="font-semibold text-lg mb-4 text-yellow-500">About</h3>
           <ul className="space-y-2 text-sm text-gray-300">
             {[
               "History",
@@ -79,7 +79,7 @@ const Footer = () => {
               "JIT Radio",
             ].map((item, i) => (
               <li key={i}>
-                <a href="#" className="hover:text-[#aaae7f] transition">
+                <a href="#" className="hover:text-yellow-500 transition">
                   {item}
                 </a>
               </li>
@@ -89,7 +89,7 @@ const Footer = () => {
 
         {/* Feedback Forms */}
         <div>
-          <h3 className="font-semibold text-lg mb-4 text-[#aaae7f]">
+          <h3 className="font-semibold text-lg mb-4 text-yellow-500">
             Feedback Forms
           </h3>
           <ul className="space-y-2 text-sm text-gray-300">
@@ -101,7 +101,7 @@ const Footer = () => {
               "Employer’s Feedback",
             ].map((item, i) => (
               <li key={i}>
-                <a href="#" className="hover:text-[#aaae7f] transition">
+                <a href="#" className="hover:text-yellow-500 transition">
                   {item}
                 </a>
               </li>
@@ -111,14 +111,14 @@ const Footer = () => {
 
         {/* Student Corner */}
         <div>
-          <h3 className="font-semibold text-lg mb-4 text-[#aaae7f]">
+          <h3 className="font-semibold text-lg mb-4 text-yellow-500">
             Student Corner
           </h3>
           <ul className="space-y-2 text-sm text-gray-300">
             {["Syllabus", "T&P Cell", "Anti Ragging", "Pass Out Student"].map(
               (item, i) => (
                 <li key={i}>
-                  <a href="#" className="hover:text-[#aaae7f] transition">
+                  <a href="#" className="hover:text-yellow-500 transition">
                     {item}
                   </a>
                 </li>
