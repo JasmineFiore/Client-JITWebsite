@@ -135,10 +135,66 @@ const Navbar = () => {
                 },
               ],
             },
-            // { label: "Admission & Faculty", path: "/admission" },
+
             { label: "COURSES", dropdown: ["COURSES"] },
-            { label: "Life @ JIT", path: "/life-jit" },
-            { label: "Placements", path: "/placements" },
+            {
+              label: "Life @ JIT",
+              dropdown: [
+                {
+                  label: "Students Corner",
+                  children: [
+                    { label: "Student Feedback", path: "/student-feedback" },
+                    { label: "Pass out Students", path: "/pass-out" },
+                    {
+                      label: "Achievements & Awards",
+                      path: "/achievements-awards",
+                    },
+                  ],
+                },
+                {
+                  label: "Teachers Corner",
+                  children: [
+                    { label: "Staff Feedback", path: "/staff-feedback" },
+                    {
+                      label: "Achievements & Awards",
+                      path: "/achievements-awards",
+                    },
+                  ],
+                },
+                {
+                  label: "E-Newsletter",
+                  path: "/e-Newsletter",
+                },
+
+                {
+                  label: "JIT in News",
+                  path: "/JIT-in-news",
+                },
+                {
+                  label: "JIT Events & Awards",
+                  path: "/JIT-events",
+                },
+                {
+                  label: "Media & Gallery",
+                  path: "/media-gallery",
+                },
+              ],
+            },
+            {
+              label: "Placements",
+              dropdown: [
+                {
+                  label: "Placements",
+                  path: "/placements",
+                },
+                { label: "T&P Cell", path: "/tp-cell" },
+                {
+                  label: "Our Recruiters",
+                  path: "/recruiters",
+                },
+              ],
+            },
+
             { label: "Career", path: "/career" },
             { label: "Contact", path: "/contact" },
           ].map((item) => (
@@ -188,6 +244,75 @@ const Navbar = () => {
                   </div>
                 )}
 
+              {/* 🔽 Life @ JIT Dropdown */}
+              {item.label === "Life @ JIT" && activeMenu === "Life @ JIT" && (
+                <div
+                  className="md:absolute left-1/2 md:-translate-x-1/2 top-full w-full md:w-[52vw] bg-white text-black shadow-lg p-6 rounded-lg mt-2 z-50 
+  max-h-[80vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100"
+                  style={{
+                    WebkitOverflowScrolling: "touch",
+                    scrollBehavior: "smooth",
+                    overscrollBehavior: "contain", // prevents body scroll interference
+                    paddingBottom: "10rem", // ensures bottom items are not cut off
+                  }}
+                >
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-sm">
+                    {item.dropdown.map((sub) => (
+                      <div key={sub.label}>
+                        {/* Title (Students Corner / Teachers Corner / etc) */}
+                        <h3 className="font-bold text-lg text-gray-800 border-b pb-1 mb-2">
+                          {sub.label}
+                        </h3>
+
+                        {/* Case 1: Items WITH children */}
+                        {sub.children ? (
+                          <ul className="space-y-1 mb-3 text-xs ">
+                            {sub.children.map((child) => (
+                              <li key={child.label}>
+                                <Link
+                                  to={child.path}
+                                  className="block hover:text-blue-700 px-2 py-1"
+                                  onClick={handleLinkClick}
+                                >
+                                  {child.label}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : (
+                          /* Case 2: Items WITHOUT children */
+                          <Link
+                            to={sub.path}
+                            onClick={handleLinkClick}
+                            className="block hover:text-blue-700 px-2 py-1 space-y-1 mb-3 text-xs "
+                          >
+                            {sub.label}
+                          </Link>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* 🔽 Placements Dropdown */}
+              {item.label === "Placements" && activeMenu === "Placements" && (
+                <div className="md:absolute left-1/2 md:-translate-x-1/2 top-full w-full md:w-[15vw] bg-white text-black shadow-lg p-4 rounded-lg mt-2 z-50">
+                  <div className="grid grid-cols-1 gap-2 text-sm">
+                    {item.dropdown.map((sub) => (
+                      <Link
+                        key={sub.label}
+                        to={sub.path}
+                        className="hover:text-blue-700 cursor-pointer block"
+                        onClick={handleLinkClick}
+                      >
+                        {sub.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* 🔽 Courses Dropdown */}
               {item.label === "COURSES" && activeMenu === "COURSES" && (
                 <div
@@ -212,7 +337,7 @@ const Navbar = () => {
                         </Link>
                       </h3>
                       <p className="font-semibold text-base">B.Tech Degree:</p>
-                      <ul className="space-y-1 mb-3 text-xs border-b-2 border-gray-300 text-gray-600">
+                      <ul className="space-y-1 mb-3 text-xs border-b-2 border-gray-300 ">
                         {[
                           ["btech-cse", "Computer Science (CSE)"],
                           ["btech-aiml", "Artificial Intelligence (AIML)"],

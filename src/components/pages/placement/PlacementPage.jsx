@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import PlacementCard from "./PlacementCard";
 import { useNavigate, useLocation } from "react-router-dom";
 import FAQ from "../../../Blueprints/FAQ";
+import { FaEnvelope, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
 
 const PlacementPage = () => {
   const navigate = useNavigate();
@@ -270,21 +271,27 @@ const PlacementPage = () => {
             <p className="font-medium">Training & Placement Officer</p>
 
             <div className="flex items-center space-x-3 mt-4">
-              <span className="text-yellow-500 text-xl">📞</span>
+              <span className="text[#243344] bg-[#f4c03b] text-xl p-2">
+                <FaPhone />
+              </span>
               <p>+91 73101 05118</p>
             </div>
 
             <div className="flex items-center space-x-3">
-              <span className="text-yellow-500 text-xl">✉️</span>
+              <span className="text[#243344] bg-[#f4c03b] text-xl p-2">
+                <FaEnvelope />
+              </span>
               <p>tpo@jit.edu.in</p>
             </div>
 
             <div className="flex items-center space-x-3">
-              <span className="text-yellow-500 text-xl">📍</span>
+              <span className="text[#243344] bg-[#f4c03b] text-xl p-2">
+                <FaMapMarkerAlt />
+              </span>
               <p>
-                Jahangirabad Fort, Jahangirabad Barabanki
+                Address: Jahangirabad Fort, Jahangirabad
                 <br />
-                Uttar Pradesh – 225203 India
+                Barabanki Uttar Pradesh – 225203 India
               </p>
             </div>
           </div>
@@ -318,13 +325,6 @@ const PlacementPage = () => {
               placeholder="Your Message"
             ></textarea>
 
-            <div>
-              <p className="text-sm mb-1">Enter Captcha</p>
-              <div className="bg-white text-black p-2 rounded">
-                [captchacf7* input-captcha-cf7 id=input-captcha-cf7]
-              </div>
-            </div>
-
             <button className="w-full py-3 rounded bg-yellow-500 text-black font-semibold hover:bg-yellow-400 transition">
               Submit
             </button>
@@ -333,6 +333,12 @@ const PlacementPage = () => {
       ],
     },
   ];
+
+  const sectionTitles = {
+    Placement: "Our Shining Stars",
+    "T&P Cell": "Training & Placement Cell",
+    "Our Recruiters": "Our Recruiters",
+  };
 
   return (
     <div className="w-full min-h-screen bg-white">
@@ -343,7 +349,7 @@ const PlacementPage = () => {
         </h1>
 
         <h2 className="text-4xl text-yellow-400 font-bold relative z-10">
-          Our Shining Stars
+          {sectionTitles[activeSection]}
         </h2>
       </div>
 
@@ -355,7 +361,7 @@ const PlacementPage = () => {
             <button
               key={section}
               onClick={() => handleSectionClick(section)}
-              className={`text-left py-3 px-5 rounded-md font-semibold transition-all ${
+              className={`text-left py-3 px-8 pl-3 rounded-md font-semibold transition-all ${
                 activeSection === section
                   ? "bg-[#0A2342] text-white shadow-md"
                   : "bg-gray-100 text-[#0A2342] hover:bg-[#0A2342] hover:text-[#F4C542]"
@@ -438,6 +444,49 @@ const PlacementPage = () => {
               </div>
               <div className="mt-5">
                 <FAQ faqData={placementFAQ} title=" Placement – FAQs" />
+              </div>
+            </div>
+          )}
+          {/* --- SHOW OUR RECRUITERS PAGE --- */}
+          {activeSection === "Our Recruiters" && (
+            <div className="py-6">
+              <h2 className="text-4xl font-bold text-[#0A2342] mb-8">
+                Our Recruiters
+              </h2>
+
+              {/* GRID */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6">
+                {[
+                  "/images/companies-icon/HP-150x150 (1).png",
+                  "/images/company-yellow-logo/Hero-1-150x150.png",
+                  "/images/companies-icon/pepsi-150x150.png",
+                  "/images/company-yellow-logo/nivea-1-150x150.png",
+                  "/images/companies-icon/airtel-150x150.png",
+                  "/images/company-yellow-logo/dabur-1-150x150.png",
+                  "/images/companies-icon/ford-150x150.png",
+                  "/images/company-yellow-logo/levies-1-150x150.png",
+                  "/images/companies-icon/hyundai-150x150.png",
+                  "/images/company-yellow-logo/IBM-1-150x150.png",
+                  "/images/companies-icon/infosys.png",
+                  "/images/company-yellow-logo/mahindra-150x150.png",
+                  "/images/companies-icon/NTPC-150x150.png",
+                  "/images/company-yellow-logo/HCL-1-150x150.png",
+                  "/images/companies-icon/yamaha-text-150x150.png",
+                  "/images/company-yellow-logo/nestle-1-150x150.png",
+                ].map((logo, index) => (
+                  <div
+                    key={index}
+                    className={`${
+                      index % 2 === 0 ? "bg-[#F4C542]" : "bg-[#082648]"
+                    } flex items-center justify-center p-6 rounded-lg shadow-md hover:shadow-xl transition`}
+                  >
+                    <img
+                      src={logo}
+                      className="w-28 h-28 object-contain"
+                      alt="logo"
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           )}

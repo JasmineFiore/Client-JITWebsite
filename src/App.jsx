@@ -49,6 +49,11 @@ import CareersPage from "./components/pages/Career/CareersPage";
 import ContactPage from "./components/pages/ContactPage";
 import PlacementSection from "./components/pages/placement/PlacementPage";
 import PlacementPage from "./components/pages/placement/PlacementPage";
+import Draughtsman from "./components/pages/College-iti/Draughtsman";
+import StudentFeedback from "./components/pages/LifeJIT/student-corner/StudentFeedback ";
+import PassoutStudentForm from "./components/pages/LifeJIT/student-corner/PassoutStudentForm";
+import TeacherFeedback from "./components/pages/LifeJIT/teacher-corner/TeacherFeedback";
+import NewsletterPage from "./components/pages/LifeJIT/newsletter/NewsletterPage";
 
 export default function App() {
   const location = useLocation();
@@ -113,6 +118,7 @@ export default function App() {
           <Route path="/iti-electrician" element={<Electrician />} />
           <Route path="/iti-welder" element={<Welder />} />
           <Route path="/iti-fitter" element={<Fitter />} />
+          <Route path="/iti-draughtsman" element={<Draughtsman />} />
 
           {/* General HOD page */}
           <Route path="/hod" element={<HODPage />} />
@@ -129,6 +135,11 @@ export default function App() {
           <Route path="/vision" element={<ChairmansMessage />} />
           <Route path="/alumni" element={<ChairmansMessage />} />
           <Route path="/affiliation" element={<ChairmansMessage />} />
+
+          <Route path="/student-feedback" element={<StudentFeedback />} />
+          <Route path="/pass-out" element={<PassoutStudentForm />} />
+          <Route path="/staff-feedback" element={<TeacherFeedback />} />
+          <Route path="/e-Newsletter" element={<NewsletterPage />} />
 
           <Route path="/placements" element={<PlacementPage />} />
           <Route path="/tp-cell" element={<PlacementPage />} />

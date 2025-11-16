@@ -1,4 +1,5 @@
 import MovingLinksBar from "../MovingLinksBar";
+import StatsGrid from "../pages/LifeJIT/StatsGrid";
 import AlumniCarousel from "./AlumniCarousel";
 import CollegesSection from "./CollegesSection";
 import CommunitySection from "./CommunitySection";
