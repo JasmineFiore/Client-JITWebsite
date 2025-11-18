@@ -40,7 +40,7 @@ const CollegeCard = ({ college }) => {
         </div>
 
         {/* BACK SIDE */}
-        <div className="flip-card-back absolute w-full h-full bg-[#0A2342] text-white rounded-2xl rotate-y-180 backface-hidden flex flex-col items-center justify-center p-5 text-center">
+        <div className="flip-card-back absolute w-full h-full bg-[#0A2342] text-white rounded-2xl rotate-y-180 backface-hidden flex flex-col items-center justify-center p-5 text-center card-shadow card-shadow-hover">
           <div className="flex flex-col items-center justify-center space-y-3">
             <h3 className="text-lg font-bold text-yellow-400">
               {college.name}:

@@ -11,7 +11,7 @@ const ChairmansMessage = () => {
     "/chairman": "AboutUs",
     "/director": "Director",
     "/history": "History",
-    "/vision": "Vision",
+    "/vision-mission": "Vision & Mission",
     "/alumni": "NotableAlumni",
     "/affiliation": "Affiliation",
   };
@@ -20,7 +20,7 @@ const ChairmansMessage = () => {
     AboutUs: "/chairman",
     Director: "/director",
     History: "/history",
-    Vision: "/vision",
+    "Vision & Mission": "/vision-mission",
     NotableAlumni: "/alumni",
     Affiliation: "/affiliation",
   };
@@ -101,7 +101,7 @@ const ChairmansMessage = () => {
       ],
     },
 
-    Vision: {
+    "Vision & Mission": {
       title: "Vision & Mission",
       text: (
         <div className="space-y-6">
@@ -277,7 +277,7 @@ const ChairmansMessage = () => {
               "AboutUs",
               "Director",
               "History",
-              "Vision",
+              "Vision & Mission",
               "NotableAlumni",
               "Affiliation",
             ].map((section) => (

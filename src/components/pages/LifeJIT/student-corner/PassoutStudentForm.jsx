@@ -1,4 +1,5 @@
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import WhyChose from "../WhyChose";
 
 export default function PassoutStudentForm() {
   const contactInfo = [
@@ -211,6 +212,7 @@ Uttar Pradesh 225203, India`,
           </form>
         </div>
       </div>
+      <WhyChose/> 
     </div>
   );
 }

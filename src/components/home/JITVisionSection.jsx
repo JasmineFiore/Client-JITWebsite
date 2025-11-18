@@ -7,16 +7,16 @@ export default function JITVisionSection() {
   const slides = [
     {
       title: "JIT: Vision for the Future",
-      subtitle: "Our Vision",
+      // subtitle: "Our Vision",
       description: `“JIT envisions becoming a premier institution recognized globally
       for excellence in education, innovation, and research. Our goal is
       to nurture students into competent professionals and responsible
       citizens capable of leading the future with integrity, creativity,
-      and purpose.”`,
+      and purpose. We are”`,
     },
     {
-      title: "JIT Mission",
-      subtitle: "Our Mission",
+      title: "JIT Mission ",
+      // subtitle: "Our Mission",
       description: `“JIT mission is to provide educational experiences that empower our students
       to become lifelong learners, leaders, and contributors to the society. JIT is
       committed to fostering a diverse and inclusive community that values academic
@@ -26,7 +26,7 @@ export default function JITVisionSection() {
     },
     {
       title: "JIT: Core Values",
-      subtitle: "Our Core Values",
+
       description: `To fulfill our mission and vision, we uphold these core values:`,
       list: [
         {
@@ -70,14 +70,13 @@ export default function JITVisionSection() {
   const currentSlide = slides[currentIndex];
 
   return (
-    <section className="bg-[#0A2342] text-white py-16 px-6 md:px-20 flex flex-col md:flex-row items-center justify-center gap-10 transition-all duration-500">
+    <section className="bg-[#0A2342] text-white min-h-[450px] py-3 px-6 md:px-20 flex flex-col md:flex-row items-center justify-center gap-8 transition-all duration-500">
       {/* Left Side: 360° View */}
       <div className="relative md:w-11/12 flex items-center justify-center">
-        <div className="absolute -top-6 -left-6 bg-yellow-400 w-48 h-48 rounded-lg -z-10"></div>
-        <div className="w-full rounded-lg shadow-2xl overflow-hidden">
+        <div className="w-full min-h-[400px] rounded-lg overflow-hidden">
           <College360View imageUrl="/images/360 deg img/img-2.jpeg" />
           <h2
-            className="w-full max-w-5xl mb-4 px-4 py-2 mt-2 rounded-md
+            className="w-full max-w-5xl px-4 rounded-md
         text-yellow-400 text-3xl font-extrabold
          flex items-center gap-2 justify-center select-none"
           >
@@ -101,7 +100,7 @@ export default function JITVisionSection() {
       </div>
 
       {/* Right Content (Dynamic) */}
-      <div className="md:w-1/2 space-y-5">
+      <div className="md:w-1/2 space-y-4">
         <h2 className="text-4xl md:text-5xl font-extrabold leading-snug">
           {currentSlide.title.includes("JIT:") ? (
             <>

@@ -78,23 +78,20 @@ export default function PlacementSection() {
   ];
 
   return (
-    <section className="relative bg-[#0A2342]/90 text-white py-10 px-1 overflow-hidden">
-      {/* Decorative background glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(251,191,36,0.15),transparent_70%)]"></div>
-
+    <section className="relative bg-[#0A2342]/90 text-white py-3 px-1 overflow-hidden">
       {/* Heading */}
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="text-4xl md:text-5xl font-extrabold text-center text-yellow-500 mb-10 tracking-wide"
+        className="text-4xl md:text-5xl font-extrabold text-center text-yellow-500 mb-7 tracking-wide"
       >
         Our Stellar Placements 2023
       </motion.h2>
 
       {/* Stats Section */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 text-center max-w-6xl mx-auto mb-7">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 text-center max-w-6xl mx-auto mb-5">
         {[
           { value: "90%", label: "Placements" },
           { value: "2000+", label: "Recruiters" },
@@ -104,7 +101,7 @@ export default function PlacementSection() {
           <motion.div
             key={i}
             whileHover={{ scale: 1.05 }}
-            className="bg-[#0A2342]/50 backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-yellow-400/30 transition-all duration-300"
+            className="bg-[#0A2342]/50 backdrop-blur-sm rounded-xl p-3 shadow-lg hover:shadow-yellow-400/30 transition-all duration-300"
           >
             <p className="text-3xl font-extrabold text-yellow-500 mb-2">
               {stat.value}
@@ -121,7 +118,7 @@ export default function PlacementSection() {
         pagination={{ clickable: true }}
         spaceBetween={40}
         slidesPerView={1}
-        className="max-w-4xl mx-auto mb-14"
+        className="max-w-2xl mx-auto mb-7"
       >
         {students.map((student, index) => (
           <SwiperSlide key={index}>
@@ -135,7 +132,7 @@ export default function PlacementSection() {
               <img
                 src={student.image}
                 alt={student.name}
-                className="w-36 h-36 object-cover rounded-full border-2 border-[#aaae7f] bg-white mb-5 shadow-md"
+                className="w-28 h-28 object-cover rounded-full border-2 border-[#aaae7f] bg-white mb-5 shadow-md"
               />
               <h3 className="text-xl text-yellow-500 font-semibold">
                 {student.name}
@@ -163,11 +160,11 @@ export default function PlacementSection() {
       >
         {companies.map((company, i) => (
           <SwiperSlide key={i} className="flex justify-center items-center">
-            <div className="rounded-full p-3 mb-12 transition-all duration-300">
+            <div className="rounded-full p-3 mb-6 transition-all duration-300">
               <img
                 src={company.src}
                 alt={company.alt}
-                className="h-full object-contain opacity-90 hover:opacity-100 transition duration-300"
+                className="w-28 h-28 object-contain opacity-90 hover:opacity-100 transition duration-300"
               />
             </div>
           </SwiperSlide>

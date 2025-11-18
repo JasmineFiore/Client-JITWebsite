@@ -47,20 +47,33 @@ export default function FeedbackForm({
                 {q.text}
                 {q.required && <span className="text-red-500"> *</span>}
               </label>
+
               <select className="w-full p-3 rounded bg-white text-black">
-                <option>Select</option>
-                <option>Excellent</option>
-                <option>Very Good</option>
-                <option>Good</option>
-                <option>Satisfactory</option>
-                <option>Poor</option>
+                {/* Disabled default option */}
+                <option value="" disabled selected>
+                  Select
+                </option>
+
+                {(
+                  q.options || [
+                    "Excellent",
+                    "Very Good",
+                    "Good",
+                    "Satisfactory",
+                    "Poor",
+                  ]
+                ).map((opt, i) => (
+                  <option key={i} value={opt}>
+                    {opt}
+                  </option>
+                ))}
               </select>
             </div>
           ))}
 
           {/* Suggestion */}
           <div>
-            <label className="block mb-2">Opinion / Suggestion  </label>
+            <label className="block mb-2">Opinion / Suggestion </label>
             <textarea
               rows="4"
               className="w-full p-3 rounded bg-white text-black"

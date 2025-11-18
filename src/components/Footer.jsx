@@ -27,15 +27,38 @@ const Footer = () => {
           {/* Social Icons */}
           <div className="flex justify-center md:justify-start space-x-4">
             {[
-              { icon: <FaFacebookF />, link: "#" },
-              { icon: <FaTwitter />, link: "#" },
-              { icon: <FaYoutube />, link: "#" },
-              { icon: <FaLinkedinIn />, link: "#" },
-              { icon: <FaInstagram />, link: "#" },
+              {
+                icon: <FaFacebookF />,
+                link: "https://www.facebook.com/jit.edu",
+                title: "Facebook",
+              },
+              {
+                icon: <FaTwitter />,
+                link: "https://twitter.com/JetgiJit",
+                title: "Twitter",
+              },
+              {
+                icon: <FaYoutube />,
+                link: "https://www.youtube.com/channel/UCVjZOg-Nw3oV5M6caupAbJw",
+                title: "YouTube",
+              },
+              {
+                icon: <FaLinkedinIn />,
+                link: "https://www.linkedin.com/school/jit.edu/",
+                title: "LinkedIn",
+              },
+              {
+                icon: <FaInstagram />,
+                link: "https://www.instagram.com/jetg_jit/",
+                title: "Instagram",
+              },
             ].map((item, index) => (
               <a
                 key={index}
                 href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={item.title} // ⭐ Tooltip text on hover
                 className="bg-yellow-500 text-[#0A2342] p-2 rounded-full hover:scale-110 transition transform duration-300"
               >
                 {item.icon}
@@ -45,23 +68,42 @@ const Footer = () => {
         </div>
 
         {/* Quick Links */}
+        {/* Quick Links */}
         <div>
           <h3 className="font-semibold text-lg mb-4 text-yellow-500">
             Quick Links
           </h3>
+
           <ul className="space-y-2 text-sm text-gray-300">
             {[
-              "Courses",
-              "Admissions",
-              "Placements",
-              "Research & Publications",
-              "Certifications",
-              "Contact Us",
+              { label: "Courses", link: "/courses" },
+              { label: "Admissions", link: "/admissions", disabled: true },
+              { label: "Placements", link: "/placements" },
+              {
+                label: "Research & Publications",
+                link: "/research",
+                disabled: true,
+              },
+              {
+                label: "Certifications",
+                link: "/certifications",
+                disabled: true,
+              },
+              { label: "Contact Us", link: "/contact" },
             ].map((item, i) => (
               <li key={i}>
-                <a href="#" className="hover:text-yellow-500 transition">
-                  {item}
-                </a>
+                {item.disabled ? (
+                  <span className="pointer-events-none opacity-50">
+                    {item.label}
+                  </span>
+                ) : (
+                  <a
+                    href={item.link}
+                    className="hover:text-yellow-500 transition"
+                  >
+                    {item.label}
+                  </a>
+                )}
               </li>
             ))}
           </ul>
@@ -70,18 +112,28 @@ const Footer = () => {
         {/* About */}
         <div>
           <h3 className="font-semibold text-lg mb-4 text-yellow-500">About</h3>
+
           <ul className="space-y-2 text-sm text-gray-300">
             {[
-              "History",
-              "Mission & Vision",
-              "Our Faculty",
-              "Privacy Policy",
-              "JIT Radio",
+              { label: "History", link: "/history" },
+              { label: "Vision & Mission", link: "/vision-mission" },
+              { label: "Our Faculty", link: "/faculty", disabled: true },
+              { label: "Privacy Policy", link: "/privacy-policy" },
+              { label: "JIT Radio", link: "/jit-radio", disabled: true }, // Example disabled
             ].map((item, i) => (
               <li key={i}>
-                <a href="#" className="hover:text-yellow-500 transition">
-                  {item}
-                </a>
+                {item.disabled ? (
+                  <span className="cursor-not-allowed opacity-50">
+                    {item.label}
+                  </span>
+                ) : (
+                  <a
+                    href={item.link}
+                    className="hover:text-yellow-500 transition"
+                  >
+                    {item.label}
+                  </a>
+                )}
               </li>
             ))}
           </ul>
@@ -92,17 +144,21 @@ const Footer = () => {
           <h3 className="font-semibold text-lg mb-4 text-yellow-500">
             Feedback Forms
           </h3>
+
           <ul className="space-y-2 text-sm text-gray-300">
             {[
-              "Student Feedback",
-              "Staff Feedback",
-              "Alumni Feedback",
-              "Parents Feedback",
-              "Employer’s Feedback",
+              { label: "Student Feedback", link: "/student-feedback" },
+              { label: "Staff Feedback", link: "/staff-feedback" },
+              { label: "Alumni Feedback", link: "/alumni-feedback" },
+              { label: "Parents Feedback", link: "/feedback/parents" },
+              { label: "Employer’s Feedback", link: "/feedback/employer" },
             ].map((item, i) => (
               <li key={i}>
-                <a href="#" className="hover:text-yellow-500 transition">
-                  {item}
+                <a
+                  href={item.link}
+                  className="hover:text-yellow-500 transition"
+                >
+                  {item.label}
                 </a>
               </li>
             ))}
@@ -114,16 +170,23 @@ const Footer = () => {
           <h3 className="font-semibold text-lg mb-4 text-yellow-500">
             Student Corner
           </h3>
+
           <ul className="space-y-2 text-sm text-gray-300">
-            {["Syllabus", "T&P Cell", "Anti Ragging", "Pass Out Student"].map(
-              (item, i) => (
-                <li key={i}>
-                  <a href="#" className="hover:text-yellow-500 transition">
-                    {item}
-                  </a>
-                </li>
-              )
-            )}
+            {[
+              { label: "Syllabus", link: "/syllabus" },
+              { label: "T&P Cell", link: "/tpo" },
+              { label: "Anti Ragging", link: "/anti-ragging" },
+              { label: "Pass Out Student", link: "/pass-out-students" },
+            ].map((item, i) => (
+              <li key={i}>
+                <a
+                  href={item.link}
+                  className="hover:text-yellow-500 transition"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

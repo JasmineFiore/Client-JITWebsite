@@ -1,25 +1,25 @@
 import { useEffect, useState } from "react";
 import {
-  FaMapMarkerAlt,
-  FaSearch,
   FaBars,
-  FaTimes,
   FaFacebookF,
   FaInstagram,
   FaLinkedin,
-  FaYoutube,
-  FaTwitter,
-  FaPhone,
-  FaEnvelope,
-  FaPhoneSquare,
   FaMailBulk,
+  FaMapMarkerAlt,
+  FaPhoneSquare,
+  FaSearch,
+  FaTimes,
+  FaTwitter,
 } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
+import SearchModal from "./SearchModal";
 
 const Navbar = () => {
   const [activeMenu, setActiveMenu] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
   const location = useLocation();
   let timeoutId = null;
 
@@ -142,24 +142,64 @@ const Navbar = () => {
           </div>
 
           {/* Student Login Button */}
-          <Link
+          {/* <Link
             to="/student-login"
             className="hidden md:block bg-[#082648] text-white px-1 py-1 rounded-md hover:bg-blue-700 transition"
           >
             Student Login
-          </Link>
+          </Link> */}
 
           {/* Social Icons */}
-          <div className="hidden md:flex items-center gap-1 text-xl">
-            <FaFacebookF className={hoverColor} />
-            <FaTwitter className={hoverColor} />
-            <FaLinkedin className={hoverColor} />
-            <FaInstagram className={hoverColor} />
+          <div className="hidden md:flex items-center gap-2 text-xl">
+            <button
+              onClick={() =>
+                window.open("https://www.facebook.com/jit.edu", "_blank")
+              }
+              title="Facebook"
+              className="hover:opacity-80 transition cursor-pointer"
+            >
+              <FaFacebookF className={hoverColor} />
+            </button>
+
+            <button
+              onClick={() =>
+                window.open("https://twitter.com/JetgiJit", "_blank")
+              }
+              title="Twitter"
+              className="hover:opacity-80 transition cursor-pointer"
+            >
+              <FaTwitter className={hoverColor} />
+            </button>
+
+            <button
+              onClick={() =>
+                window.open(
+                  "https://www.linkedin.com/school/jit.edu/",
+                  "_blank"
+                )
+              }
+              title="LinkedIn"
+              className="hover:opacity-80 transition cursor-pointer"
+            >
+              <FaLinkedin className={hoverColor} />
+            </button>
+
+            <button
+              onClick={() =>
+                window.open("https://www.instagram.com/jetg_jit/", "_blank")
+              }
+              title="Instagram"
+              className="hover:opacity-80 transition cursor-pointer"
+            >
+              <FaInstagram className={hoverColor} />
+            </button>
           </div>
 
           {/* Search Icon */}
           <FaSearch
-            className={`cursor-pointer hidden md:block ${hoverColor}`}
+            title="Search"
+            onClick={() => setIsSearchOpen(true)}
+            className={`text-3xl cursor-pointer hidden md:block ${hoverColor}`}
           />
 
           {/* Mobile Menu Button */}
@@ -189,7 +229,7 @@ const Navbar = () => {
                 { label: "Chairman’s Message", path: "/chairman" },
                 { label: "Director", path: "/director" },
                 { label: "History", path: "/history" },
-                { label: "Vision & Mission", path: "/vision" },
+                { label: "Vision & Mission", path: "/vision-mission" },
                 { label: "Affiliation & Recognition", path: "/affiliation" },
               ],
             },
@@ -229,6 +269,10 @@ const Navbar = () => {
                     {
                       label: "Achievements & Awards",
                       path: "/achievements-awards",
+                    },
+                    {
+                      label: "Hostel Facilities",
+                      path: "/hostel-facilities",
                     },
                   ],
                 },
@@ -278,6 +322,16 @@ const Navbar = () => {
 
             { label: "Career", path: "/career" },
             { label: "Contact", path: "/contact" },
+            {
+              label: "STUDENT LOGIN",
+              onClick: () => {
+                window.open(
+                  "https://jit-cet.uc-school.com/site/mobile-registration",
+                  "_blank"
+                );
+                setMobileMenuOpen(false); // close mobile menu
+              },
+            },
           ].map((item) => (
             <div
               key={item.label}
@@ -295,8 +349,14 @@ const Navbar = () => {
                 >
                   {item.label}
                 </button>
+              ) : item.onClick ? (
+                <button
+                  className={`block px-3 py-2 text-left w-full cursor-pointer ${hoverColor} transition duration-300`}
+                  onClick={item.onClick}
+                >
+                  {item.label}
+                </button>
               ) : (
-                // 🔹 Normal Link
                 <Link
                   to={item.path}
                   className={`block px-3 py-2 ${hoverColor} transition duration-300`}
@@ -659,6 +719,7 @@ const Navbar = () => {
           ))}
         </div>
       </nav>
+      <SearchModal open={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </header>
   );
 };

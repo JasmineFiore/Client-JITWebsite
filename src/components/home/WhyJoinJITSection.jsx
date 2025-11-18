@@ -1,11 +1,19 @@
-
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaCheck } from "react-icons/fa";
+import jitBuilding2 from "/images/why join us 2.jpg";
 import jitBuilding1 from "/images/why us.jpg";
-import jitBuilding2 from "/images/why join us 2.jpg"; 
 
 export default function WhyJoinJITSection() {
-  const [hovered, setHovered] = useState(false);
+  const [currentImage, setCurrentImage] = useState(0);
+
+  // Auto image change every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev === 0 ? 1 : 0));
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const features = [
     { id: 1, text: "Excellent Faculty" },
@@ -15,32 +23,27 @@ export default function WhyJoinJITSection() {
   ];
 
   return (
-    <section className="bg-gradient-to-r from-yellow-50 via-yellow-100 to-yellow-200 py-16 px-6 md:px-20">
-      <div className="flex flex-col md:flex-row items-center justify-center gap-10 max-w-7xl mx-auto">
-        {/* Left Image with Hover Transition */}
-        <div
-          className="relative w-full md:w-1/2 cursor-pointer"
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={() => setHovered(false)}
-        >
+    <section className="bg-linear-to-r from-yellow-50 via-yellow-100 to-yellow-200 py-16 px-6 md:px-20">
+       <div className="flex flex-col md:flex-row items-center justify-center gap-10 max-w-7xl mx-auto">
+
+        {/* Image Section - automatically changing */}
+        <div className="relative w-full md:w-1/2">
           <div className="absolute -top-6 -left-6 bg-yellow-400 w-56 h-56 rounded-lg -z-10 shadow-lg"></div>
 
-          {/* First image */}
+          {/* First Image */}
           <img
             src={jitBuilding1}
             alt="JIT Building"
-            className={`rounded-lg shadow-xl w-full object-cover transition-opacity duration-700 ${
-              hovered ? "opacity-0" : "opacity-100"
-            }`}
+            className={`rounded-lg shadow-xl w-full object-cover transition-opacity duration-700 
+              ${currentImage === 0 ? "opacity-100" : "opacity-0"}`}
           />
 
-          {/* Second image on hover */}
+          {/* Second Image */}
           <img
             src={jitBuilding2}
             alt="JIT Campus"
-            className={`absolute top-0 left-0 w-full h-full object-cover rounded-lg shadow-xl transition-opacity duration-700 ${
-              hovered ? "opacity-100" : "opacity-0"
-            }`}
+            className={`absolute top-0 left-0 w-full h-full object-cover rounded-lg shadow-xl transition-opacity duration-700 
+              ${currentImage === 1 ? "opacity-100" : "opacity-0"}`}
           />
         </div>
 

@@ -52,8 +52,11 @@ import PlacementPage from "./components/pages/placement/PlacementPage";
 import Draughtsman from "./components/pages/College-iti/Draughtsman";
 import StudentFeedback from "./components/pages/LifeJIT/student-corner/StudentFeedback ";
 import PassoutStudentForm from "./components/pages/LifeJIT/student-corner/PassoutStudentForm";
-import TeacherFeedback from "./components/pages/LifeJIT/teacher-corner/TeacherFeedback";
+import TeacherFeedback from "./components/pages/LifeJIT/teacher-corner/StaffFeedback";
 import NewsletterPage from "./components/pages/LifeJIT/newsletter/NewsletterPage";
+import PrivacyPolicy from "./components/pages/PrivacyPolicy";
+import AlumniFeedback from "./components/pages/LifeJIT/student-corner/AlumniFeedback";
+import HostelFacilities from "./components/pages/LifeJIT/HostelFacilities";
 
 export default function App() {
   const location = useLocation();
@@ -132,11 +135,13 @@ export default function App() {
           <Route path="/chairman" element={<ChairmansMessage />} />
           <Route path="/director" element={<ChairmansMessage />} />
           <Route path="/history" element={<ChairmansMessage />} />
-          <Route path="/vision" element={<ChairmansMessage />} />
+          <Route path="/vision-mission" element={<ChairmansMessage />} />
           <Route path="/alumni" element={<ChairmansMessage />} />
           <Route path="/affiliation" element={<ChairmansMessage />} />
+          <Route path="/hostel-facilities" element={<HostelFacilities />} />
 
           <Route path="/student-feedback" element={<StudentFeedback />} />
+          <Route path="/alumni-feedback" element={<AlumniFeedback />} />
           <Route path="/pass-out" element={<PassoutStudentForm />} />
           <Route path="/staff-feedback" element={<TeacherFeedback />} />
           <Route path="/e-Newsletter" element={<NewsletterPage />} />
@@ -144,6 +149,8 @@ export default function App() {
           <Route path="/placements" element={<PlacementPage />} />
           <Route path="/tp-cell" element={<PlacementPage />} />
           <Route path="/recruiters" element={<PlacementPage />} />
+
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
           <Route path="/career" element={<CareersPage />} />
 

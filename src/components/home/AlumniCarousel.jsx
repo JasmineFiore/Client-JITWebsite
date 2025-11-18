@@ -1,23 +1,24 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
 // Custom Arrows
 const NextArrow = ({ onClick }) => (
   <button
     onClick={onClick}
-    className="absolute right-[-20px] top-1/2 -translate-y-1/2 bg-[#143109] text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-[#1a4011] transition z-10"
+    className="absolute -right-5 top-1/2 -translate-y-1/2 bg-white text-[#0A2342] w-10 h-10 rounded-full cursor-pointer flex items-center justify-center shadow-lg hover:bg-[#1a40116e] transition z-10"
   >
-    →
+    <MdKeyboardArrowRight size={34} />
   </button>
 );
 
 const PrevArrow = ({ onClick }) => (
   <button
     onClick={onClick}
-    className="absolute left-[-20px] top-1/2 -translate-y-1/2 bg-[#143109] text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-[#1a4011] transition z-10"
+    className="absolute -left-5 top-1/2 -translate-y-1/2 bg-white text-[#0A2342] w-10 h-10 rounded-full cursor-pointer flex items-center justify-center shadow-lg hover:bg-[#1a40116e] transition z-10"
   >
-    ←
+    <MdKeyboardArrowLeft size={34} />
   </button>
 );
 

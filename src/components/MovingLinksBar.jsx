@@ -6,8 +6,6 @@ const links = [
   { text: "Director", to: "/director" },
   { text: "Courses", to: "/courses" },
   { text: "Campus Life", to: "/collegeLife" },
-  { text: "Join our Community", to: "/community" },
-  { text: "Admission Guidelines 2025-26", to: "/admission" },
   { text: "NAAC Accredited Institutes", to: "/naac" },
   { text: "NIRF Ranking", to: "/nirf" },
 ];
