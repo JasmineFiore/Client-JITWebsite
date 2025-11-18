@@ -38,23 +38,27 @@ export default function Mandatory() {
       <div className="mandatory-page">
         {/* HEADER */}
         <header
-          className="relative bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${headerImage})` }}
+          className="relative w-full h-[490px] bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `linear-gradient(rgba(5,10,35,0.75), rgba(5,10,35,0.75)), url(${headerImage})`,
+          }}
         >
+          {/* Loading overlay */}
           {headerLoading && (
             <div className="absolute inset-0 bg-white/20 backdrop-blur-sm z-10 flex items-center justify-center">
               <LoadingOverlay overlayOnly />
             </div>
           )}
 
-          <div className="container mx-auto flex flex-col items-center justify-center text-white py-20 px-4">
-            <h1 className="text-center font-semibold text-4xl md:text-6xl">
+          {/* Content */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-white px-4 text-center">
+            <h1 className="font-bold text-4xl md:text-6xl lg:text-7xl drop-shadow-lg">
               Mandatory
             </h1>
 
-            <p className="text-center max-w-3xl mt-6 text-lg opacity-90 leading-relaxed">
+            <p className="mt-6 max-w-3xl text-lg md:text-xl lg:text-2xl opacity-90 leading-relaxed drop-shadow-md">
               Welcome to the Mandatory Disclosure section of Jahangirabad
-              Institute of Technologys, we ensure transparency by providing
+              Institute of Technology. We ensure transparency by providing
               essential information about our institution. Below are the key
               details:
             </p>
