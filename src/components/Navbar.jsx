@@ -320,6 +320,7 @@ const Navbar = () => {
               ],
             },
 
+            { label: "Mandatory", path: "/mandatory" },
             { label: "Career", path: "/career" },
             { label: "Contact", path: "/contact" },
             {

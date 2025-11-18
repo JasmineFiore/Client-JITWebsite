@@ -3,10 +3,10 @@ import { FaBed, FaWifi, FaShower, FaShieldAlt, FaUtensils, FaBolt, FaBook, FaReg
 import { useState, useEffect } from "react";
 
 const images = [
-  "/images/hostel/h1.jpg",
-  "/images/hostel/h2.jpg",
-  "/images/hostel/h3.jpg",
-  "/images/hostel/h4.jpg",
+    "/images/hostel/h3.png",
+    "/images/hostel/h4.webp",
+    "/images/hostel/h2.jpg",
+    "/images/hostel/hostel.avif",
 ];
 
 export default function HostelFacilities() {
@@ -35,7 +35,7 @@ export default function HostelFacilities() {
     <section className="bg-[#07172A] text-white">
       {/* HERO SECTION */}
       <div className="relative h-[45vh] md:h-[60vh] bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/hostel/hostel-banner.jpg')" }}>
+        style={{ backgroundImage: "url('/images/hostel/h2.jpg')" }}>
         <div className="absolute inset-0 bg-black/60"></div>
 
         <motion.div

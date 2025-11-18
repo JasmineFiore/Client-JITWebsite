@@ -12,6 +12,14 @@ const slides = [
     ctaLink: "https://jit-cet.uc-school.com/site/mobile-registration",
   },
   {
+    image: "/images/homec5.webp",
+    title: "A Campus Where Dreams Take Flight",
+    subtitle:
+      "At JIT, we cultivate excellence, spark creativity, and build values that guide learners toward meaningful success.",
+    cta: "Discover JIT",
+    ctaLink: "/vision-mission",
+  },
+  {
     image: "/images/homec3.jpg",
     title: "Experience World-Class Learning", //"Discover Top Programs",
     subtitle: "Where technology meets creativity and purpose.", //"Take advantage of JIT’s cutting-edge technology.",
@@ -19,7 +27,7 @@ const slides = [
     ctaLink: "/courses",
   },
   {
-    image: "/images/homec1.jpg",
+    image: "/images/homec.jpg",
     title: "Your Journey Begins at JIT", //"EMPOWERING STUDENTS\nFOR SUCCESS",
     subtitle: "Transform your passion into a career that makes an impact.", //"Don’t get framed by the competition, trust our solid reputation.",
     cta: "Book a Counselling",
@@ -58,7 +66,7 @@ export default function HeroCarousel() {
       {/* Text Section */}
       <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white px-4 sm:px-6 md:px-12">
         <motion.h1
-          key={slides[index].title}//clamp() for text sizes, works smoothly between min and max sizes based on screen width.
+          key={slides[index].title} //clamp() for text sizes, works smoothly between min and max sizes based on screen width.
           className="whitespace-pre-line font-extrabold tracking-wide drop-shadow-lg
           text-[clamp(1.8rem,5vw,5rem)] leading-[1.1]" //clamp(min, preferred, max)
           initial={{ opacity: 0, y: 40 }}

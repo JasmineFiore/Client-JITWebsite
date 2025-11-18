@@ -57,15 +57,20 @@ import NewsletterPage from "./components/pages/LifeJIT/newsletter/NewsletterPage
 import PrivacyPolicy from "./components/pages/PrivacyPolicy";
 import AlumniFeedback from "./components/pages/LifeJIT/student-corner/AlumniFeedback";
 import HostelFacilities from "./components/pages/LifeJIT/HostelFacilities";
+import Mandatory from "./components/pages/Mandatory/Mandatory";
+import TableC from "./components/pages/Mandatory/tables/TableC";
+import { useState } from "react";
+import MyDocument from "./components/pdfviewer/MyDocument";
 
 export default function App() {
   const location = useLocation();
   const isHome = location.pathname === "/";
+  const [isPDFMode, setisPDFMode] = useState(false);
 
   return (
     <div className="relative">
-      <Navbar />
-      <div className={isHome ? "" : "pt-28"}>
+      {!isPDFMode && <Navbar />}
+      <div className={!isPDFMode && !isHome ? "pt-28" : ""}>
         {" "}
         {/* 👈 Apply padding only on non-home pages */}
         <Routes>
@@ -152,12 +157,25 @@ export default function App() {
 
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
+          <Route path="/" element={<TableC />} />
+
+          <Route path="/mandatory" element={<Mandatory />} />
+          <Route
+            path="/affiltation.pdf"
+            element={
+              <MyDocument
+                setisPDFMode={setisPDFMode}
+                file="NOTIFICATION_UPTAC_2025.pdf"
+                fileName="Affiliation Certificate"
+              />
+            }
+          />
           <Route path="/career" element={<CareersPage />} />
 
           <Route path="/contact" element={<ContactPage />} />
         </Routes>
       </div>
-      <Footer />
+      {!isPDFMode && <Footer />}
     </div>
   );
 }

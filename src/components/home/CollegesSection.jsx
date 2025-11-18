@@ -100,6 +100,7 @@ const CollegesSection = () => {
         "Library & Information Science",
       ],
     },
+
     {
       id: 2,
       name: "College of Pharmacy",
@@ -116,6 +117,7 @@ const CollegesSection = () => {
       ],
       details2: ["D.Pharm (Diploma in Pharmacy)"],
     },
+
     {
       id: 3,
       name: "College of Business",
@@ -130,6 +132,7 @@ const CollegesSection = () => {
         "B.Com",
       ],
     },
+
     {
       id: 4,
       name: "College of ITI",
@@ -144,6 +147,7 @@ const CollegesSection = () => {
         "Draughtsman",
       ],
     },
+
     {
       id: 5,
       name: "College of Arts",
@@ -160,6 +164,7 @@ const CollegesSection = () => {
         "Urdu",
       ],
     },
+
     {
       id: 6,
       name: "College of Media & Journalism",
@@ -172,6 +177,38 @@ const CollegesSection = () => {
         "Certification in Film Making",
         "Certification in Anchoring & Journalism",
         "Certification in Video Editing",
+      ],
+    },
+
+    // ⭐ NEW CARD – Sports
+    {
+      id: 7,
+      name: "Sports",
+      img: "/images/sports.jpg", // ← add your sports image
+      path: "/sports",
+      details: [
+        "Cricket Academy",
+        "Football Training",
+        "Volleyball & Basketball Courts",
+        "Athletics & Track Events",
+        "Indoor Games – Table Tennis, Chess, Carrom",
+        "Annual JIT Sports Fest",
+      ],
+    },
+
+    // ⭐ NEW CARD – NCC
+    {
+      id: 8,
+      name: "NCC",
+      img: "/images/ncc.jpg", // ← add your NCC image
+      path: "/ncc",
+      details: [
+        "Regular NCC Drill & Parade Training",
+        "National Camps & Trekking",
+        "Weapon Training & Discipline Development",
+        "Social Service & Community Development",
+        "Annual NCC Certification Program",
+        "Opportunities for National Level Selections",
       ],
     },
   ];
