@@ -92,7 +92,7 @@ const Navbar = () => {
       className={`fixed top-0 left-0 w-full z-50 transition-[background-color] duration-300 ${navbarBg} ${textColor}`}
     >
       {/* 🔸 Top Bar */}
-      <div className="flex justify-between items-center px-4 sm:px-8 py-3 bg-black/40 backdrop-blur-sm">
+      <div className="flex justify-between items-center px-4 sm:px-8 py-3 bg-black/20 backdrop-blur-sm">
         {/* Left: Logo + Name */}
         <div className="flex items-center gap-3">
           <img
