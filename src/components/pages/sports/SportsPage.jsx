@@ -8,6 +8,13 @@ export default function SportsPage() {
     "/images/sports/volleyball.jfif",
     "/images/sports/athletics.jfif",
     "/images/sports/sports1.png",
+    "/images/sports/awards.png",
+    "/images/sports/cricket.png",
+    "/images/sports/awards2.png",
+    "/images/sports/yoga.png",
+    "/images/sports/yoga2.png",
+    "/images/sports/awards3.png",
+    "/images/sports/awards4.png",
   ];
 
   const sportsList = [
@@ -38,6 +45,29 @@ export default function SportsPage() {
       { breakpoint: 480, settings: { slidesToShow: 1 } },
     ],
   };
+
+  const sportEvents = [
+    {
+      title: "JETGI Badminton Tournament",
+      date: "04.01.2025",
+      images: ["/images/sports/sports1.png", "/images/sports/awards.png"],
+    },
+    {
+      title: "New Year Celebration with Cricket Match",
+      date: "01.01.2025",
+      images: ["/images/sports/cricket.png", "/images/sports/awards2.png"],
+    },
+    {
+      title: "JIT Premier League Cricket Tournament",
+      date: "03.02.2025 to 09.02.2025",
+      images: ["/images/sports/awards3.png", "/images/sports/awards4.png"],
+    },
+    {
+      title: "International Yoga Day Celebrations",
+      date: "21.06.2025",
+      images: ["/images/sports/yoga.png", "/images/sports/yoga2.png"],
+    },
+  ];
 
   return (
     <div className="bg-white text-gray-800">
@@ -98,6 +128,65 @@ export default function SportsPage() {
               <li key={i}>{item}</li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      {/* ⭐ SPORT EVENTS – Clean Aesthetic Version (No Buttons, No Crop) */}
+      <section className="max-w-7xl mx-auto px-6 py-12">
+        <h2 className="text-4xl font-extrabold text-blue-900 mb-12 text-center tracking-wide">
+          Sport Events
+        </h2>
+
+        <div className="grid md:grid-cols-2 gap-10">
+          {sportEvents.map((event, i) => (
+            <div
+              key={i}
+              className="
+          bg-white 
+          shadow-[0_5px_20px_rgba(0,0,0,0.1)]
+          rounded-2xl 
+          overflow-hidden 
+          hover:shadow-[0_10px_30px_rgba(0,0,0,0.15)]
+          transition-all duration-300
+          hover:-translate-y-1
+        "
+            >
+              {/* Image Row — Auto Height, No Cropping */}
+              <div className="flex gap-1 p-1">
+                {event.images.map((img, idx) => (
+                  <div
+                    key={idx}
+                    className="flex-1 overflow-hidden rounded-xl group"
+                  >
+                    <img
+                      src={img}
+                      className="
+                  w-full 
+                  h-48 sm:h-56 
+                  object-contain 
+                  bg-gray-50 
+                  rounded-xl 
+                  group-hover:scale-105 
+                  transition duration-500
+                  p-2
+                "
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {/* Content */}
+              <div className="p-3">
+                <h3 className="text-2xl font-bold text-blue-900">
+                  {event.title}
+                </h3>
+                <p className="text-gray-600 mt-1 text-lg">{event.date}</p>
+
+                {/* Decorative line */}
+                <div className="w-20 h-1 bg-blue-600 mt-4 rounded-full"></div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 

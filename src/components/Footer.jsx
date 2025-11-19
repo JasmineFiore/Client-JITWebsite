@@ -77,7 +77,7 @@ const Footer = () => {
           <ul className="space-y-2 text-sm text-gray-300">
             {[
               { label: "Courses", link: "/courses" },
-              { label: "Admissions", link: "/admissions", disabled: true },
+              { label: "Admissions", link: "/pdfs/NOTIFICATION_UPTAC_2025.pdf",},
               { label: "Placements", link: "/placements" },
               {
                 label: "Research & Publications",

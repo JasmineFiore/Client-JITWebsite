@@ -64,6 +64,7 @@ import MyDocument from "./components/pdfviewer/MyDocument";
 import EventsComponent from "./components/pages/LifeJIT/events/EventsComponent";
 import SportsPage from "./components/pages/sports/SportsPage";
 import NCCSection from "./components/pages/NCCSection/NCCSection";
+import JITNews from "./components/pages/JITNews/JITNews";
 
 export default function App() {
   const location = useLocation();
@@ -158,6 +159,7 @@ export default function App() {
           <Route path="/pass-out" element={<PassoutStudentForm />} />
           <Route path="/staff-feedback" element={<TeacherFeedback />} />
           <Route path="/e-Newsletter" element={<NewsletterPage />} />
+          <Route path="/JIT-in-news" element={<JITNews />} />
 
           <Route path="/placements" element={<PlacementPage />} />
           <Route path="/tp-cell" element={<PlacementPage />} />

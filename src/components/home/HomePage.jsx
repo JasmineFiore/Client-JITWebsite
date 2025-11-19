@@ -31,7 +31,7 @@ export default function HomePage() {
    
     {
       text: "Admission Guidelines for Academic Session 2025-26",
-      link: "/pdf/NOTIFICATION_UPTAC_2025.pdf",
+      link: "/pdfs/NOTIFICATION_UPTAC_2025.pdf",
       isNew: true, // 🔴 new icon
     },
   ];

@@ -40,12 +40,12 @@ const CollegeCard = ({ college }) => {
         </div>
 
         {/* BACK SIDE */}
-        <div className="flip-card-back absolute w-full h-full bg-[#0A2342] text-white rounded-2xl rotate-y-180 backface-hidden flex flex-col items-center justify-center p-5 text-center card-shadow card-shadow-hover">
+        <div className="flip-card-back absolute w-full h-full bg-[#e9ae0e] text-white rounded-2xl rotate-y-180 backface-hidden flex flex-col items-center justify-center p-5 text-center card-shadow card-shadow-hover">
           <div className="flex flex-col items-center justify-center space-y-3">
-            <h3 className="text-lg font-bold text-yellow-400">
+            <h3 className="text-lg font-bold text-[#0A2342]">
               {college.name}:
             </h3>
-            <ul className="text-sm text-gray-200 pl-4 list-disc text-left">
+            <ul className="text-sm text-gray-900 pl-4 list-disc text-left">
               {college.details?.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}
@@ -53,10 +53,10 @@ const CollegeCard = ({ college }) => {
 
             {college.name2 && college.details2 && (
               <>
-                <h3 className="text-lg font-bold text-yellow-400">
+                <h3 className="text-lg font-bold text-[#0A2342]">
                   {college.name2}:
                 </h3>
-                <ul className="text-sm text-gray-200 pl-4 list-disc text-left">
+                <ul className="text-sm text-gray-900 pl-4 list-disc text-left">
                   {college.details2.map((item, i) => (
                     <li key={i}>{item}</li>
                   ))}
@@ -67,7 +67,7 @@ const CollegeCard = ({ college }) => {
 
           <button
             onClick={() => navigate(college.path)}
-            className="mt-5 bg-yellow-400 text-[#0A2342] font-semibold py-2 px-5 rounded-md hover:bg-yellow-500 transition-all duration-300 cursor-pointer"
+            className="mt-5 bg-[#0A2342] text-yellow-400 font-semibold py-2 px-5 rounded-md hover:bg-yellow-300 hover:text-[#0A2342] transition-all duration-300 cursor-pointer"
           >
             Know More
           </button>
