@@ -92,7 +92,7 @@ export default function EnquiryModal({ isOpen, onClose }) {
             <label className="block text-sm font-semibold text-[#0A2342] mb-1">
               Select your State <span className="text-red-500">*</span>
             </label>
-            <select className="w-full p-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0A2342]">
+            <select className="w-full p-2 border border-gray-400 rounded-md text-white focus:text-black focus:bg-white">
               <option value="">Select State</option>
               <option value="Uttar Pradesh">Uttar Pradesh</option>
               <option value="Delhi">Delhi</option>
@@ -106,7 +106,7 @@ export default function EnquiryModal({ isOpen, onClose }) {
               Select Program Applying For{" "}
               <span className="text-red-500">*</span>
             </label>
-            <select className="w-full p-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0A2342]">
+            <select className="w-full p-2 border border-gray-400 rounded-md text-white focus:text-black focus:bg-white">
               <option value="">Select Program</option>
               <option>B.Tech CSE (AI & ML)</option>
               <option>B.Tech Civil</option>

@@ -338,7 +338,7 @@ export default function EventsComponent() {
           <div className="relative w-full max-w-5xl px-4 flex flex-col items-center">
             <img
               src={selectedImages[currentIndex]}
-              className="max-h-[600px] w-auto object-contain"
+              className="max-h-[420px] w-auto object-contain"
             />
 
             {/* Prev */}
@@ -360,9 +360,9 @@ export default function EventsComponent() {
             {/* Close */}
             <button
               onClick={closeGallery}
-              className="absolute -top-20 right-6 md:-top-16 md:-right-24 text-red-100 cursor-pointer bg-white/20 bg-opacity-40 px-3 py-1 rounded"
+              className="absolute -top-20 right-6 md:-top-4 md:-right-24 text-black cursor-pointer bg-white bg-opacity-40 px-3 py-2 rounded-full"
             >
-              <GrClose className="w-6 h-8 md:w-8 md:h-10 rounded-full" />
+              <GrClose className="w-6 h-8 md:w-6 md:h-8 rounded-full" />
             </button>
 
             {/* Counter */}
