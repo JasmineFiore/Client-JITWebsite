@@ -31,7 +31,7 @@ const NoticeMarquee = ({ notices }) => {
     <div className="w-full bg-white text-white border-y-2 border-yellow-600 ">
       <div className="flex">
         {/* Left label */}
-        <span className="bg-[#800000] px-4 py-2 font-bold border-r border-white">
+        <span className="bg-[#800000] px-4 py-1 font-bold border-r border-white">
           Notices
         </span>
 
@@ -39,7 +39,7 @@ const NoticeMarquee = ({ notices }) => {
         <div className="overflow-hidden w-full bg-white">
           <div
             ref={marqueeRef}
-            className="whitespace-nowrap flex items-center gap-6 py-2 px-4"
+            className="whitespace-nowrap flex items-center gap-6 py-1 px-4"
           >
             {notices.map((item, i) => (
               <span key={i} className="flex items-center gap-2 text-blue-700">

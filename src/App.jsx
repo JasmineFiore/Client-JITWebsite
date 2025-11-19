@@ -61,6 +61,8 @@ import Mandatory from "./components/pages/Mandatory/Mandatory";
 import TableC from "./components/pages/Mandatory/tables/TableC";
 import { useState } from "react";
 import MyDocument from "./components/pdfviewer/MyDocument";
+import EventsComponent from "./components/pages/LifeJIT/events/EventsComponent";
+import SportsPage from "./components/pages/sports/SportsPage";
 
 export default function App() {
   const location = useLocation();
@@ -127,6 +129,8 @@ export default function App() {
           <Route path="/iti-welder" element={<Welder />} />
           <Route path="/iti-fitter" element={<Fitter />} />
           <Route path="/iti-draughtsman" element={<Draughtsman />} />
+          
+          <Route path="/sports" element={<SportsPage />} />
 
           {/* General HOD page */}
           <Route path="/hod" element={<HODPage />} />
@@ -135,6 +139,7 @@ export default function App() {
 
           <Route path="/courses" element={<CollegesSection />} />
           <Route path="/collegeLife" element={<ImageCollage />} />
+          <Route path="/JIT-events" element={<EventsComponent />} />
           <Route path="/community" element={<CommunitySection />} />
 
           <Route path="/chairman" element={<ChairmansMessage />} />
