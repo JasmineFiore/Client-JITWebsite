@@ -43,12 +43,22 @@ body {
     0 0 35px rgba(255, 255, 0, 0.15);
 }
 
-/* Stronger shadow only when showing BACK SIDE */
-/* .flip-card-back.card-shadow-hover,
-.group:hover .flip-card-back.card-shadow-hover {
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.65),
-              0 0 35px rgba(255, 255, 0, 0.15);
-  transform: translateY(-4px);
-} */
+/* sports page slider arrows bg color */
+/* Change default arrow color */
+.slick-prev:before,
+.slick-next:before {
+  color: #1e3a8a !important;  /* blue-900 */
+  font-size: 30px !important;
+}
 
+/* Optional: change arrow background */
+.slick-prev,
+.slick-next {
+  z-index: 10;
+}
+
+.slick-prev:hover:before,
+.slick-next:hover:before {
+  color: #facc15 !important; /* yellow-400 on hover */
+}
 

@@ -27,10 +27,9 @@ export default function CounsellingSection() {
   };
 
   return (
-    <section className="relative flex flex-col md:flex-row w-full min-h-[80vh] bg-gradient-to-br from-[#0A2342] via-[#0A2342] to-[#5b7553]/50 overflow-hidden">
+    <section className="relative flex flex-col md:flex-row w-full min-h-[80vh] bg-linear-to-br from-[#0A2342] via-[#0A2342] to-[#5b7553]/50 overflow-hidden">
       {/* Decorative background circle */}
-      <div className="absolute top-[-10rem] right-[-10rem] w-[400px] h-[400px] bg-[#a6b97f]/20 rounded-full blur-3xl"></div>
-
+      <div className="absolute -top-40 -right-40 w-[400px] h-[400px] bg-[#a6b97f]/20 rounded-full blur-3xl"></div>
       {/* Left Section */}
       <div className="flex-1 text-white flex flex-col justify-center px-8 md:px-20  space-y-6">
         <motion.h3
@@ -102,12 +101,49 @@ export default function CounsellingSection() {
               name="state"
               value={formData.state}
               onChange={handleChange}
-              className="w-full p-3 rounded-md bg-white/20 border border-white/30 text-white focus:ring-2 focus:ring-yellow-500"
+              className="w-full p-3 rounded-md bg-white/20 border border-white/30 text-white focus:text-black focus:bg-white"
             >
               <option value="">Select State</option>
-              <option>Uttar Pradesh</option>
-              <option>Delhi</option>
+
+              {/* States */}
+              <option>Andhra Pradesh</option>
+              <option>Arunachal Pradesh</option>
+              <option>Assam</option>
+              <option>Bihar</option>
+              <option>Chhattisgarh</option>
+              <option>Goa</option>
+              <option>Gujarat</option>
               <option>Haryana</option>
+              <option>Himachal Pradesh</option>
+              <option>Jharkhand</option>
+              <option>Karnataka</option>
+              <option>Kerala</option>
+              <option>Madhya Pradesh</option>
+              <option>Maharashtra</option>
+              <option>Manipur</option>
+              <option>Meghalaya</option>
+              <option>Mizoram</option>
+              <option>Nagaland</option>
+              <option>Odisha</option>
+              <option>Punjab</option>
+              <option>Rajasthan</option>
+              <option>Sikkim</option>
+              <option>Tamil Nadu</option>
+              <option>Telangana</option>
+              <option>Tripura</option>
+              <option>Uttar Pradesh</option>
+              <option>Uttarakhand</option>
+              <option>West Bengal</option>
+
+              {/* <!-- Union Territories --> */}
+              <option>Andaman and Nicobar Islands</option>
+              <option>Chandigarh</option>
+              <option>Dadra and Nagar Haveli and Daman and Diu</option>
+              <option>Delhi</option>
+              <option>Ladakh</option>
+              <option>Lakshadweep</option>
+              <option>Puducherry</option>
+              <option>Jammu and Kashmir</option>
             </select>
           </div>
 
@@ -120,12 +156,18 @@ export default function CounsellingSection() {
               name="program"
               value={formData.program}
               onChange={handleChange}
-              className="w-full p-3 rounded-md bg-white/20 border border-white/30 text-white focus:ring-2 focus:ring-[#b6f399]"
+              className="w-full p-3 rounded-md bg-white/20 border border-white/30 text-white focus:text-black focus:bg-white"
             >
               <option value="">Select Program</option>
-              <option>B.Tech CSE (AI & ML)</option>
-              <option>B.Tech Civil</option>
-              <option>B.Tech ECE</option>
+              <option>MBA</option>
+              <option>Engineering</option>
+              <option>Engineering Diploma</option>
+              <option>B. Pharm</option>
+              <option>D. Pharm</option>
+              <option>Bachelor of Arts</option>
+              <option>PG Diploma</option>
+              <option>Journalism</option>
+              <option>ITI</option>
             </select>
           </div>
 

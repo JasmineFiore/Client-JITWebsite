@@ -6,9 +6,9 @@ const ChairmansMessage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Extract path (e.g., /chairman → "AboutUs")
+  // Extract path (e.g., /chairman → "Chairman")
   const pathToSection = {
-    "/chairman": "AboutUs",
+    "/chairman": "Chairman",
     "/director": "Director",
     "/history": "History",
     "/vision-mission": "Vision & Mission",
@@ -17,7 +17,7 @@ const ChairmansMessage = () => {
   };
 
   const sectionToPath = {
-    AboutUs: "/chairman",
+    Chairman: "/chairman",
     Director: "/director",
     History: "/history",
     "Vision & Mission": "/vision-mission",
@@ -25,7 +25,7 @@ const ChairmansMessage = () => {
     Affiliation: "/affiliation",
   };
 
-  const [activeSection, setActiveSection] = useState("AboutUs");
+  const [activeSection, setActiveSection] = useState("Chairman");
 
   // Sync section with URL
   useEffect(() => {
@@ -39,7 +39,7 @@ const ChairmansMessage = () => {
   };
 
   const content = {
-    AboutUs: {
+    Chairman: {
       title: "Chairman's Message",
       name: "MR. MANZOOR GHORI",
       name2: "Founder Chairman, Jahangirabad",
@@ -53,10 +53,19 @@ const ChairmansMessage = () => {
     Director: {
       title: "Director's Message",
       name: "Maj. Gen. Vikas Saini, SM, VSM (Veteran)",
-      image: "/images/about/director.jfif",
-      text: `At JIT, we believe education is not merely about acquiring knowledge but about shaping character, discipline, and leadership. With our focus on holistic learning, innovation, and values, we strive to create graduates who are confident, compassionate, and committed to excellence.`,
-    },
+      image: "/images/about/director.png",
+      text: `Dear Students, Parents, and Members of the JIT Family,
 
+  It is a privilege to share this message as I begin my association with Jahangirabad Institute of Technology. Stepping into this institution has filled me with confidence about what we can achieve together. Our students possess remarkable potential, and our faculty and staff bring dedication and expertise that strengthen the foundation of JIT.
+
+  My years in the Indian Army have taught me that discipline, commitment, and continuous self-improvement are the cornerstones of success. These are not just military values—they are life values. At JIT, we aim to instill the same principles in every learner, helping them grow as professionals and responsible citizens.
+
+  To our students, I encourage you to stay curious, determined, and open to challenges. Let your academic journey be the beginning of excellence and meaningful contribution to society.
+
+  With the support of our dedicated faculty, I am confident that JIT will continue to evolve as a centre of learning that prepares young minds for a dynamic world.
+
+  Jai Hind!`,
+    },
     History: {
       title: "History",
       text: `Jahangirabad Institute of Technology (JIT) operates under the Jahangirabad Educational Trust Group of Institutions and is approved by the All India Council for Technical Education (AICTE). It offers multiple disciplines in Engineering and Management through its integrated campus.`,
@@ -274,7 +283,7 @@ const ChairmansMessage = () => {
           {/* Sidebar */}
           <div className="flex flex-col space-y-3 md:col-span-1">
             {[
-              "AboutUs",
+              "Chairman",
               "Director",
               "History",
               "Vision & Mission",
@@ -361,7 +370,7 @@ const ChairmansMessage = () => {
                       <img
                         src={content[activeSection].image}
                         alt={content[activeSection].name || "Profile"}
-                        className="w-52 h-52 object-cover rounded-2xl shadow-lg border-4 border-[#F4C542]"
+                        className="w-52 h-60 object-cover rounded-2xl shadow-lg border-4 border-[#F4C542]"
                       />
 
                       {/* Name Details (Below Image) */}

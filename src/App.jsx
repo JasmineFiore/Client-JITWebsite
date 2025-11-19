@@ -63,6 +63,7 @@ import { useState } from "react";
 import MyDocument from "./components/pdfviewer/MyDocument";
 import EventsComponent from "./components/pages/LifeJIT/events/EventsComponent";
 import SportsPage from "./components/pages/sports/SportsPage";
+import NCCSection from "./components/pages/NCCSection/NCCSection";
 
 export default function App() {
   const location = useLocation();
@@ -131,6 +132,8 @@ export default function App() {
           <Route path="/iti-draughtsman" element={<Draughtsman />} />
           
           <Route path="/sports" element={<SportsPage />} />
+
+          {/* <Route path="/ncc" element={<NCCSection />} /> */}
 
           {/* General HOD page */}
           <Route path="/hod" element={<HODPage />} />

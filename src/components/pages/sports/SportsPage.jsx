@@ -1,19 +1,22 @@
-import { useState } from "react";
 import Slider from "react-slick";
 
 export default function SportsPage() {
-  const galleryImages = Array.from(
-    { length: 12 },
-    (_, i) => `/images/events/SPORTSDAY/s${i + 1}.jpg`
-  );
+  const galleryImages = [
+    "/images/sports/cricket.png",
+    "/images/sports/football.jpg",
+    "/images/sports/basketball.jpg",
+    "/images/sports/volleyball.jfif",
+    "/images/sports/athletics.jfif",
+    "/images/sports/sports1.png",
+  ];
 
   const sportsList = [
-    { name: "Cricket", img: "/images/sports/cricket.jpg" },
+    { name: "Cricket", img: "/images/sports/cricket.png" },
     { name: "Football", img: "/images/sports/football.jpg" },
     { name: "Basketball", img: "/images/sports/basketball.jpg" },
-    { name: "Volleyball", img: "/images/sports/volleyball.jpg" },
-    { name: "Athletics", img: "/images/sports/athletics.jpg" },
-    { name: "Badminton", img: "/images/sports/badminton.jpg" },
+    { name: "Volleyball", img: "/images/sports/volleyball.jfif" },
+    { name: "Athletics", img: "/images/sports/athletics.jfif" },
+    { name: "Badminton", img: "/images/sports/sports1.png" },
   ];
 
   const achievements = [
@@ -41,8 +44,8 @@ export default function SportsPage() {
       {/* HERO */}
       <section className="relative h-[70vh] overflow-hidden">
         <img
-          src="/images/sports/hero.jpg"
-          className="absolute inset-0 w-full h-full object-cover brightness-75"
+          src="/images/sports/cricket.png"
+          className="absolute inset-0 w-full h-full object-cover brightness-45"
         />
 
         <div className="absolute inset-0 flex items-center justify-center text-center text-white px-6">
@@ -50,7 +53,7 @@ export default function SportsPage() {
             <h1 className="text-5xl md:text-7xl font-extrabold drop-shadow">
               Sports at JIT
             </h1>
-            <p className="mt-4 text-xl md:text-2xl drop-shadow">
+            <p className="mt-4 text-yellow-400 text-xl md:text-2xl drop-shadow">
               Excellence • Discipline • Fitness • Team Spirit
             </p>
           </div>
@@ -142,7 +145,7 @@ export default function SportsPage() {
           <Slider {...sliderSettings}>
             {galleryImages.map((img, i) => (
               <div key={i} className="px-2">
-                <div className="rounded-lg overflow-hidden shadow-md hover:shadow-xl transition cursor-pointer group">
+                <div className="rounded-lg overflow-hidden shadow-md hover:shadow-xl transition text-black bg-black cursor-pointer group">
                   <img
                     src={img}
                     className="h-56 w-full object-cover group-hover:scale-110 transition"
@@ -165,17 +168,17 @@ export default function SportsPage() {
             {
               name: "Rahul Sharma",
               role: "Cricket Coach",
-              img: "/images/coaches/cricket.jpg",
+              img: "/images/hod/hodCSE.jpg",
             },
             {
               name: "Arun Verma",
               role: "Athletics Trainer",
-              img: "/images/coaches/athletics.jpg",
+              img: "/images/hod/hodECE.jpg",
             },
             {
               name: "Sonia Patel",
               role: "Indoor Sports Coach",
-              img: "/images/coaches/indoor.jpg",
+              img: "/images/hod/hodEe.jpg",
             },
           ].map((coach, i) => (
             <div
