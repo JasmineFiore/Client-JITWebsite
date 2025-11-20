@@ -9,7 +9,10 @@ import JITLogo from "/images/jitlogo.jpg";
 
 const Footer = () => {
   return (
-    <footer className=" bg-gradient-to-tr from-[#0A2342] via-[#0A2342] to-[#0f130e]/50 text-[#0f130e]">
+    <footer
+      id="footer-section"
+      className=" bg-linear-to-tr from-[#0A2342] via-[#0A2342] to-[#0f130e]/50 text-[#0f130e]"
+    >
       {/* 🔹 Main Footer Content */}
       <div className="max-w-7xl mx-auto px-6 sm:px-10 py-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 text-center md:text-left border-b border-gray-700">
         {/* Logo + Description */}
@@ -67,7 +70,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Quick Links */}
         {/* Quick Links */}
         <div>
           <h3 className="font-semibold text-lg mb-4 text-yellow-500">

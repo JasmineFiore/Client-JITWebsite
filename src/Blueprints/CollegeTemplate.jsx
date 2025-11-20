@@ -29,7 +29,9 @@ export default function CollegeTemplate({
             <p className="uppercase tracking-widest text-sm font-semibold opacity-70">
               EXPLORE THE FEATURES
             </p>
-            <h1 className="text-5xl font-extrabold mb-6 leading-tight">{title}</h1>
+            <h1 className="text-5xl font-extrabold mb-6 leading-tight">
+              {title}
+            </h1>
 
             <p className="text-gray-300 text-lg leading-relaxed mb-8">
               {heroDescription}
@@ -72,7 +74,12 @@ export default function CollegeTemplate({
               {aboutHeading}
             </h2>
             {aboutParagraphs.map((para, i) => (
-              <p key={i} className={`text-base leading-relaxed text-gray-600 ${i > 0 ? "mt-4" : ""}`}>
+              <p
+                key={i}
+                className={`text-base leading-relaxed text-gray-600 ${
+                  i > 0 ? "mt-4" : ""
+                }`}
+              >
                 {para}
               </p>
             ))}
@@ -87,7 +94,9 @@ export default function CollegeTemplate({
 
       {/* 🎓 Courses Section */}
       <section className="bg-[#0A2342] py-16 px-10 text-center">
-        <h2 className="text-4xl font-bold text-white mb-12">COURSES WE OFFER</h2>
+        <h2 className="text-4xl font-bold text-white mb-12">
+          COURSES WE OFFER
+        </h2>
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 place-items-center">
           {courses.map((course, index) => (
             <Link
@@ -101,7 +110,9 @@ export default function CollegeTemplate({
                 className="w-72 h-64 object-cover group-hover:scale-105 transition-transform duration-300"
               />
               <div className="p-4">
-                <h3 className="font-semibold text-gray-800 text-lg">{course.title}</h3>
+                <h3 className="font-semibold text-gray-800 text-lg">
+                  {course.title}
+                </h3>
               </div>
             </Link>
           ))}
@@ -113,7 +124,10 @@ export default function CollegeTemplate({
         isPrincipalModlOpen={isPrincipalModlOpen}
         setIsPrincipalModlOpen={setIsPrincipalModlOpen}
       />
-      <EnquiryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <EnquiryModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
 
       {/* 🏫 Infrastructure */}
       {infraImages.length > 0 && (

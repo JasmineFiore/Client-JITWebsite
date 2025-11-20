@@ -1,19 +1,43 @@
+import { useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import HODPage from "./Blueprints/HODPage";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import ScrollToTopButton from "./components/ScrollArrows";
+import ScrollToTop from "./components/ScrollToTop";
 import CollegesSection from "./components/home/CollegesSection";
 import CommunitySection from "./components/home/CommunitySection";
 import HomePage from "./components/home/HomePage";
 import ImageCollage from "./components/home/ImageGallery";
+import CareersPage from "./components/pages/Career/CareersPage";
+import CollegeOfITI from "./components/pages/College-iti/CollegeOfITI";
+import DigitalPhoto from "./components/pages/College-iti/DigitalPhoto";
+import Draughtsman from "./components/pages/College-iti/Draughtsman";
+import Electrician from "./components/pages/College-iti/Electrician";
+import Fitter from "./components/pages/College-iti/Fitter";
+import Welder from "./components/pages/College-iti/Welder";
+import CollegeOfMedia from "./components/pages/CollegeOfMedia/CollegeOfMedia";
+import ContactPage from "./components/pages/ContactPage";
+import JITNews from "./components/pages/JITNews/JITNews";
+import HostelFacilities from "./components/pages/LifeJIT/HostelFacilities";
+import EventsComponent from "./components/pages/LifeJIT/events/EventsComponent";
+import NewsletterPage from "./components/pages/LifeJIT/newsletter/NewsletterPage";
+import AlumniFeedback from "./components/pages/LifeJIT/student-corner/AlumniFeedback";
+import PassoutStudentForm from "./components/pages/LifeJIT/student-corner/PassoutStudentForm";
+import StudentFeedback from "./components/pages/LifeJIT/student-corner/StudentFeedback ";
+import TeacherFeedback from "./components/pages/LifeJIT/teacher-corner/StaffFeedback";
+import Mandatory from "./components/pages/Mandatory/Mandatory";
+import TableC from "./components/pages/Mandatory/tables/TableC";
+import NCCSection from "./components/pages/NCCSection/NCCSection";
+import PrivacyPolicy from "./components/pages/PrivacyPolicy";
 import ChairmansMessage from "./components/pages/about/ChairmansMessage";
 import BtechAiml from "./components/pages/coe/BtechAiml";
 import BtechCivil from "./components/pages/coe/BtechCivil";
-import CollegeOEngg from "./components/pages/coe/CollegeOEngg";
 import BtechCse from "./components/pages/coe/BtechCse";
 import BtechEce from "./components/pages/coe/BtechEce";
 import BtechEe from "./components/pages/coe/BtechEe";
 import BtechMechanical from "./components/pages/coe/BtechMechanical";
+import CollegeOEngg from "./components/pages/coe/CollegeOEngg";
 import DiplomaCe from "./components/pages/coe/DiplomaCe";
 import DiplomaCse from "./components/pages/coe/DiplomaCse";
 import DiplomaEe from "./components/pages/coe/DiplomaEe";
@@ -24,49 +48,24 @@ import BPharmaLater from "./components/pages/college-pharmacy/BPharmaLater";
 import CollegeOPharm from "./components/pages/college-pharmacy/CollegeOPharm";
 import FacultySection from "./components/pages/college-pharmacy/FacultySection";
 import DPharma from "./components/pages/college-pharmacy/diploma/DPharma";
-import MbaIt from "./components/pages/collegeObusiness/MbaIt";
-import MbaFinance from "./components/pages/collegeObusiness/MbaFinance";
-import MbaMarketing from "./components/pages/collegeObusiness/MbaMarketing";
-import MbaHr from "./components/pages/collegeObusiness/MbaHr";
 import BCom from "./components/pages/collegeObusiness/BCom";
 import CollegeOBusiness from "./components/pages/collegeObusiness/CollegeOBusiness";
-import CollegeOfArts from "./components/pages/collegeOfArts/CollegeOfArts";
-import PoliticalScience from "./components/pages/collegeOfArts/PoliticalScience";
-import Education from "./components/pages/collegeOfArts/Education";
-import LLB from "./components/pages/collegeOfArts/LLB";
-import Sociology from "./components/pages/collegeOfArts/Sociology";
+import MbaFinance from "./components/pages/collegeObusiness/MbaFinance";
+import MbaHr from "./components/pages/collegeObusiness/MbaHr";
+import MbaIt from "./components/pages/collegeObusiness/MbaIt";
+import MbaMarketing from "./components/pages/collegeObusiness/MbaMarketing";
 import AncientHistory from "./components/pages/collegeOfArts/AncientHistory";
-import Hindi from "./components/pages/collegeOfArts/Hindi";
+import CollegeOfArts from "./components/pages/collegeOfArts/CollegeOfArts";
+import Education from "./components/pages/collegeOfArts/Education";
 import English from "./components/pages/collegeOfArts/English";
+import Hindi from "./components/pages/collegeOfArts/Hindi";
+import LLB from "./components/pages/collegeOfArts/LLB";
+import PoliticalScience from "./components/pages/collegeOfArts/PoliticalScience";
+import Sociology from "./components/pages/collegeOfArts/Sociology";
 import Urdu from "./components/pages/collegeOfArts/Urdu";
-import CollegeOfMedia from "./components/pages/CollegeOfMedia/CollegeOfMedia";
-import CollegeOfITI from "./components/pages/College-iti/CollegeOfITI";
-import DigitalPhoto from "./components/pages/College-iti/DigitalPhoto";
-import Electrician from "./components/pages/College-iti/Electrician";
-import Welder from "./components/pages/College-iti/Welder";
-import Fitter from "./components/pages/College-iti/Fitter";
-import CareersPage from "./components/pages/Career/CareersPage";
-import ContactPage from "./components/pages/ContactPage";
-import PlacementSection from "./components/pages/placement/PlacementPage";
 import PlacementPage from "./components/pages/placement/PlacementPage";
-import Draughtsman from "./components/pages/College-iti/Draughtsman";
-import StudentFeedback from "./components/pages/LifeJIT/student-corner/StudentFeedback ";
-import PassoutStudentForm from "./components/pages/LifeJIT/student-corner/PassoutStudentForm";
-import TeacherFeedback from "./components/pages/LifeJIT/teacher-corner/StaffFeedback";
-import NewsletterPage from "./components/pages/LifeJIT/newsletter/NewsletterPage";
-import PrivacyPolicy from "./components/pages/PrivacyPolicy";
-import AlumniFeedback from "./components/pages/LifeJIT/student-corner/AlumniFeedback";
-import HostelFacilities from "./components/pages/LifeJIT/HostelFacilities";
-import Mandatory from "./components/pages/Mandatory/Mandatory";
-import TableC from "./components/pages/Mandatory/tables/TableC";
-import { useState } from "react";
-import MyDocument from "./components/pdfviewer/MyDocument";
-import EventsComponent from "./components/pages/LifeJIT/events/EventsComponent";
 import SportsPage from "./components/pages/sports/SportsPage";
-import NCCSection from "./components/pages/NCCSection/NCCSection";
-import JITNews from "./components/pages/JITNews/JITNews";
-import OurJourney from "./components/pages/about/OurJourney";
-import ScrollToTop from "./components/ScrollToTop";
+import MyDocument from "./components/pdfviewer/MyDocument";
 
 export default function App() {
   const location = useLocation();
@@ -78,6 +77,7 @@ export default function App() {
       {!isPDFMode && <Navbar />}
 
       <ScrollToTop />
+      <ScrollToTopButton />
 
       <div className={!isPDFMode && !isHome ? "pt-28" : ""}>
         {" "}

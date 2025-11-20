@@ -40,7 +40,7 @@ export default function JITVisionSection() {
       ],
       button: {
         label: "Read More",
-        link: "/mission",
+        link: "/vision-mission",
       },
     },
   ];

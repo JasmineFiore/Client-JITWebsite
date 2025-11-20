@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import countryCodes from "../../data/countryCodes";
 
 export default function CounsellingSection() {
+  const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    countryCode: "+91",
     phone: "",
     state: "",
     program: "",
@@ -14,16 +17,69 @@ export default function CounsellingSection() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const validateForm = () => {
+    let temp = {};
+    let isValid = true;
+
+    // Name validation
+    if (!formData.name.trim()) {
+      temp.name = "Name is required";
+      isValid = false;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email.trim()) {
+      temp.email = "Email is required";
+      isValid = false;
+    } else if (!emailRegex.test(formData.email)) {
+      temp.email = "Enter a valid email address";
+      isValid = false;
+    }
+
+    // Phone validation
+    const phoneRegex = /^[0-9]{10}$/;
+    if (!formData.phone.trim()) {
+      temp.phone = "Phone number is required";
+      isValid = false;
+    } else if (!phoneRegex.test(formData.phone)) {
+      temp.phone = "Phone must be 10 digits only";
+      isValid = false;
+    }
+
+    // State validation
+    if (!formData.state) {
+      temp.state = "Please select your state";
+      isValid = false;
+    }
+
+    // Program validation
+    if (!formData.program) {
+      temp.program = "Please select a program";
+      isValid = false;
+    }
+
+    setErrors(temp);
+    return isValid;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!validateForm()) return;
+
     alert("✅ Thank you! We’ll contact you soon.");
+
     setFormData({
       name: "",
       email: "",
+      countryCode: "+91",
       phone: "",
       state: "",
       program: "",
     });
+
+    setErrors({});
   };
 
   return (
@@ -74,9 +130,18 @@ export default function CounsellingSection() {
           className="w-full max-w-md bg-white/10 backdrop-blur-lg p-8 rounded-2xl shadow-2xl text-white border border-white/20 space-y-4"
         >
           {[
-            { label: "Name", name: "name", type: "text" },
-            { label: "Email", name: "email", type: "email" },
-            { label: "Phone No.", name: "phone", type: "tel" },
+            {
+              label: "Name",
+              name: "name",
+              placeholder: "Enter your full name",
+              type: "text",
+            },
+            {
+              label: "Email",
+              name: "email",
+              placeholder: "Enter your email",
+              type: "email",
+            },
           ].map((field) => (
             <div key={field.name}>
               <label className="block text-sm font-semibold mb-1">
@@ -85,13 +150,58 @@ export default function CounsellingSection() {
               <input
                 type={field.type}
                 name={field.name}
+                placeholder={field.placeholder}
                 value={formData[field.name]}
                 onChange={handleChange}
                 className="w-full p-3 rounded-md bg-white/20 border border-white/30 placeholder-gray-300 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
                 required
               />
+              {errors[field.name] && (
+                <p className="text-red-400 text-sm mt-1">
+                  {errors[field.name]}
+                </p>
+              )}
             </div>
           ))}
+
+          {/* Phone Number with Country Code */}
+          <div>
+            <label className="block text-sm font-semibold mb-1">
+              Phone No. <span className="text-red-400">*</span>
+            </label>
+
+            <div className="flex gap-3">
+              {/* Country Code */}
+              <select
+                name="countryCode"
+                value={formData.countryCode}
+                onChange={handleChange}
+                className="w-28 p-3 rounded-md bg-white/20 border border-white/30 text-white focus:text-black focus:bg-white"
+              >
+                {countryCodes.map((c, i) => (
+                  <option key={i} value={c.code}>
+                    {c.flag} {c.code}
+                  </option>
+                ))}
+              </select>
+
+              {/* Phone Input */}
+              <input
+                type="tel"
+                name="phone"
+                maxLength="12"
+                placeholder="Enter phone number"
+                value={formData.phone}
+                onChange={(e) => {
+                  const numericValue = e.target.value.replace(/[^0-9]/g, ""); // only digits
+                  setFormData({ ...formData, phone: numericValue });
+                  setErrors({ ...errors, phone: "" });
+                }}
+                className="flex-1 p-3 rounded-md bg-white/20 border border-white/30 placeholder-gray-300 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
+                required
+              />
+            </div>
+          </div>
 
           <div>
             <label className="block text-sm font-semibold mb-1">
