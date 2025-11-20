@@ -77,7 +77,10 @@ const Footer = () => {
           <ul className="space-y-2 text-sm text-gray-300">
             {[
               { label: "Courses", link: "/courses" },
-              { label: "Admissions", link: "/pdfs/NOTIFICATION_UPTAC_2025.pdf",},
+              {
+                label: "Admissions",
+                link: "/pdfs/NOTIFICATION_UPTAC_2025.pdf",
+              },
               { label: "Placements", link: "/placements" },
               {
                 label: "Research & Publications",
@@ -117,7 +120,7 @@ const Footer = () => {
             {[
               { label: "History", link: "/history" },
               { label: "Vision & Mission", link: "/vision-mission" },
-              { label: "Our Faculty", link: "/faculty", disabled: true },
+              { label: "Our Faculty", link: "/faculty" },
               { label: "Privacy Policy", link: "/privacy-policy" },
               { label: "JIT Radio", link: "/jit-radio", disabled: true }, // Example disabled
             ].map((item, i) => (
@@ -174,7 +177,7 @@ const Footer = () => {
           <ul className="space-y-2 text-sm text-gray-300">
             {[
               { label: "Syllabus", link: "/syllabus" },
-              { label: "T&P Cell", link: "/tpo" },
+              { label: "T&P Cell", link: "/tp-cell" },
               { label: "Anti Ragging", link: "/anti-ragging" },
               { label: "Pass Out Student", link: "/pass-out-students" },
             ].map((item, i) => (

@@ -259,17 +259,17 @@ const Navbar = () => {
 
             { label: "COURSES", dropdown: ["COURSES"] },
             {
-              label: "Life @ JIT",
+              label: "LIFE @ JIT",
               dropdown: [
                 {
                   label: "Students Corner",
                   children: [
                     { label: "Student Feedback", path: "/student-feedback" },
-                    { label: "Pass out Students", path: "/pass-out" },
-                    {
-                      label: "Achievements & Awards",
-                      path: "/achievements-awards",
-                    },
+                    { label: "Pass out Students", path: "/pass-out-students" },
+                    // {
+                    //   label: "Achievements & Awards",
+                    //   path: "/achievements-awards",
+                    // },
                     {
                       label: "Hostel Facilities",
                       path: "/hostel-facilities",
@@ -280,10 +280,10 @@ const Navbar = () => {
                   label: "Teachers Corner",
                   children: [
                     { label: "Staff Feedback", path: "/staff-feedback" },
-                    {
-                      label: "Achievements & Awards",
-                      path: "/achievements-awards",
-                    },
+                    // {
+                    //   label: "Achievements & Awards",
+                    //   path: "/achievements-awards",
+                    // },
                   ],
                 },
                 {
@@ -306,10 +306,10 @@ const Navbar = () => {
               ],
             },
             {
-              label: "Placements",
+              label: "PLACEMENTS",
               dropdown: [
                 {
-                  label: "Placements",
+                  label: "PLACEMENTS",
                   path: "/placements",
                 },
                 { label: "T&P Cell", path: "/tp-cell" },
@@ -387,7 +387,7 @@ const Navbar = () => {
                 )}
 
               {/* 🔽 Life @ JIT Dropdown */}
-              {item.label === "Life @ JIT" && activeMenu === "Life @ JIT" && (
+              {item.label === "LIFE @ JIT" && activeMenu === "LIFE @ JIT" && (
                 <div
                   className="md:absolute left-1/2 md:-translate-x-1/2 top-full w-full md:w-[52vw] bg-white text-black shadow-lg p-6 rounded-lg mt-2 z-50 
   max-h-[80vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100"
@@ -438,7 +438,7 @@ const Navbar = () => {
               )}
 
               {/* 🔽 Placements Dropdown */}
-              {item.label === "Placements" && activeMenu === "Placements" && (
+              {item.label === "PLACEMENTS" && activeMenu === "PLACEMENTS" && (
                 <div className="md:absolute left-1/2 md:-translate-x-1/2 top-full w-full md:w-[15vw] bg-white text-black shadow-lg p-4 rounded-lg mt-2 z-50">
                   <div className="grid grid-cols-1 gap-2 text-sm">
                     {item.dropdown.map((sub) => (

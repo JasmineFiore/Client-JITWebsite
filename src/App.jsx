@@ -65,6 +65,8 @@ import EventsComponent from "./components/pages/LifeJIT/events/EventsComponent";
 import SportsPage from "./components/pages/sports/SportsPage";
 import NCCSection from "./components/pages/NCCSection/NCCSection";
 import JITNews from "./components/pages/JITNews/JITNews";
+import OurJourney from "./components/pages/about/OurJourney";
+import ScrollToTop from "./components/ScrollToTop";
 
 export default function App() {
   const location = useLocation();
@@ -74,6 +76,9 @@ export default function App() {
   return (
     <div className="relative">
       {!isPDFMode && <Navbar />}
+
+      <ScrollToTop />
+
       <div className={!isPDFMode && !isHome ? "pt-28" : ""}>
         {" "}
         {/* 👈 Apply padding only on non-home pages */}
@@ -131,13 +136,14 @@ export default function App() {
           <Route path="/iti-welder" element={<Welder />} />
           <Route path="/iti-fitter" element={<Fitter />} />
           <Route path="/iti-draughtsman" element={<Draughtsman />} />
-          
+
           <Route path="/sports" element={<SportsPage />} />
 
-          {/* <Route path="/ncc" element={<NCCSection />} /> */}
+          <Route path="/ncc" element={<NCCSection />} />
 
           {/* General HOD page */}
           <Route path="/hod" element={<HODPage />} />
+          <Route path="/faculty" element={<HODPage />} />
           {/* Dynamic department-based pages */}
           <Route path="/hod/:dept" element={<HODPage />} />
 
@@ -152,11 +158,12 @@ export default function App() {
           <Route path="/vision-mission" element={<ChairmansMessage />} />
           <Route path="/alumni" element={<ChairmansMessage />} />
           <Route path="/affiliation" element={<ChairmansMessage />} />
+          <Route path="/our-journey" element={<ChairmansMessage />} />
           <Route path="/hostel-facilities" element={<HostelFacilities />} />
 
           <Route path="/student-feedback" element={<StudentFeedback />} />
           <Route path="/alumni-feedback" element={<AlumniFeedback />} />
-          <Route path="/pass-out" element={<PassoutStudentForm />} />
+          <Route path="/pass-out-students" element={<PassoutStudentForm />} />
           <Route path="/staff-feedback" element={<TeacherFeedback />} />
           <Route path="/e-Newsletter" element={<NewsletterPage />} />
           <Route path="/JIT-in-news" element={<JITNews />} />

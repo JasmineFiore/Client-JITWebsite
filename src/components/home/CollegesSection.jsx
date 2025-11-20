@@ -152,7 +152,7 @@ const CollegesSection = () => {
       id: 5,
       name: "College of Arts",
       img: "/images/arts.jpg",
-      path: "/arts",
+      path: "/CollegeOfArts",
       details: [
         "LLB",
         "Political Science",

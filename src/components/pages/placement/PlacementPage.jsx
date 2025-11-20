@@ -442,7 +442,7 @@ const PlacementPage = () => {
                   </tbody>
                 </table>
               </div>
-              <div className="mt-5">
+              <div className="mt-3">
                 <FAQ faqData={placementFAQ} title=" Placement – FAQs" />
               </div>
             </div>

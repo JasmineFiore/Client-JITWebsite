@@ -14,6 +14,7 @@ const ChairmansMessage = () => {
     "/vision-mission": "Vision & Mission",
     "/alumni": "NotableAlumni",
     "/affiliation": "Affiliation",
+    "/our-journey": "Our Journey",
   };
 
   const sectionToPath = {
@@ -23,6 +24,7 @@ const ChairmansMessage = () => {
     "Vision & Mission": "/vision-mission",
     NotableAlumni: "/alumni",
     Affiliation: "/affiliation",
+    "Our Journey": "/our-journey",
   };
 
   const [activeSection, setActiveSection] = useState("Chairman");
@@ -250,6 +252,41 @@ const ChairmansMessage = () => {
         },
       ],
     },
+    "Our Journey": {
+      title: "Our Journey",
+      timeline: [
+        {
+          year: "2005",
+          title: "Foundation of JIT",
+          desc: "Jahangirabad Institute of Technology was established with a vision to empower youth with quality technical and management education.",
+          image: "/images/about/2005.jpeg",
+        },
+        {
+          year: "2010",
+          title: "Expansion of Academic Programs",
+          desc: "New engineering branches, management programs, and research activities were introduced to meet industry standards.",
+          image: "/images/about/2006.jpeg",
+        },
+        {
+          year: "2015",
+          title: "Modern Labs & Infrastructure",
+          desc: "The campus witnessed major upgrades including advanced labs, digital classrooms, and skill-based learning centres.",
+          image: "/images/about/2005.jpeg",
+        },
+        {
+          year: "2020",
+          title: "Digital Transformation",
+          desc: "JIT adopted smart learning, virtual labs, and online platforms to ensure uninterrupted education during global challenges.",
+          image: "/images/about/2005.jpeg",
+        },
+        {
+          year: "2024",
+          title: "Excellence & Global Collaboration",
+          desc: "JIT expanded partnerships with global universities, strengthening research and career opportunities for students.",
+          image: "/images/about/2005.jpeg",
+        },
+      ],
+    },
   };
 
   return (
@@ -281,14 +318,15 @@ const ChairmansMessage = () => {
       <section className="relative bg-white py-16 px-6 sm:px-10">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Sidebar */}
-          <div className="flex flex-col space-y-3 md:col-span-1">
+          <div className="flex flex-col space-y-3 md:col-span-1 md:max-w-40">
             {[
               "Chairman",
               "Director",
-              "History",
-              "Vision & Mission",
-              "NotableAlumni",
               "Affiliation",
+              "Vision & Mission",
+              "Our Journey",
+              "History",
+              "NotableAlumni",
             ].map((section) => (
               <button
                 key={section}
@@ -309,6 +347,46 @@ const ChairmansMessage = () => {
             <h3 className="text-3xl font-bold mb-3">
               {content[activeSection].title}
             </h3>
+
+            {activeSection === "Our Journey" ? (
+              <div className="mt-12 relative">
+                <div className="border-l-4 border-[#0A2342] ml-6">
+                  {content["Our Journey"].timeline.map((item, index) => (
+                    <div key={index} className={`relative mb-16 pl-10 group`}>
+                      {/* Dot */}
+                      <div className="absolute -left-[18px] top-1 w-8 h-8 rounded-full bg-[#0A2342] border-4 border-white shadow-lg group-hover:bg-[#F4C542] transition-all duration-300"></div>
+
+                      {/* Year */}
+                      <span className="absolute -left-28 top-0 bg-[#0A2342] group-hover:bg-[#F4C542] text-white group-hover:text-[#0A2342] px-4 py-1 rounded-full text-md font-bold shadow">
+                        {item.year}
+                      </span>
+
+                      {/* Content Card */}
+                      <div className="bg-white shadow-xl rounded-2xl p-6 border border-gray-100 hover:shadow-2xl transition-all duration-500">
+                        {/* Image */}
+                        <div className="w-full h-56 rounded-xl overflow-hidden mb-4">
+                          <img
+                            src={item.image}
+                            alt={item.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
+
+                        {/* Title */}
+                        <h3 className="text-2xl font-bold text-[#0A2342] mb-3">
+                          {item.title}
+                        </h3>
+
+                        {/* Description */}
+                        <p className="text-gray-600 leading-relaxed text-lg">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : null}
 
             {/* --- Affiliation Section --- */}
             {activeSection === "Affiliation" ? (

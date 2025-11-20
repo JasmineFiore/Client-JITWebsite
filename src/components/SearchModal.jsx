@@ -108,7 +108,7 @@ export default function SearchModal({ open, onClose }) {
 
     // LIFE @ JIT
     { title: "Student Feedback", path: "/student-feedback" },
-    { title: "Pass Out Students", path: "/pass-out" },
+    { title: "Pass Out Students", path: "/pass-out-students" },
     { title: "Achievements & Awards", path: "/achievements-awards" },
     { title: "Staff Feedback", path: "/staff-feedback" },
     { title: "E-Newsletter", path: "/e-Newsletter" },

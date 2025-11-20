@@ -13,7 +13,7 @@ const FAQ = ({
   };
 
   return (
-    <section className="py-16 bg-gradient-to-b from-blue-50 to-white">
+    <section className="py-6 bg-gradient-to-b from-blue-50 to-white">
       <div className="max-w-5xl mx-auto px-6 sm:px-10">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-blue-700 mb-3">{title}</h2>

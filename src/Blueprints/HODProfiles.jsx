@@ -22,10 +22,10 @@ const HODProfiles = ({ hods }) => {
   }, [dept]);
 
   return (
-    <section className="bg-gradient-to-b from-[#0A2342] via-[#0E2E5C] to-[#0A2342] text-white py-16 px-6 md:px-12">
+    <section className="bg-gradient-to-b from-[#0A2342] via-[#0E2E5C] to-[#0A2342] text-white py-6 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
-        <div className="text-center mb-10">
+        <div className="text-center mb-2">
           <h1 className="text-4xl md:text-5xl font-bold text-yellow-400 mb-2">
             HOD Profile&apos;s
           </h1>
@@ -35,7 +35,7 @@ const HODProfiles = ({ hods }) => {
         </div>
 
         {/* Department Info */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-5">
           <h2 className="text-yellow-400 text-lg font-semibold tracking-wide uppercase">
             Department of {selectedHOD.headerdepartment}
           </h2>
