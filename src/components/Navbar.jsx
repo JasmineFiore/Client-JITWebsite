@@ -257,7 +257,6 @@ const Navbar = () => {
               ],
             },
 
-            { label: "COURSES", dropdown: ["COURSES"] },
             {
               label: "LIFE @ JIT",
               dropdown: [
@@ -305,6 +304,9 @@ const Navbar = () => {
                 },
               ],
             },
+
+            { label: "COURSES", dropdown: ["COURSES"] },
+
             {
               label: "PLACEMENTS",
               dropdown: [

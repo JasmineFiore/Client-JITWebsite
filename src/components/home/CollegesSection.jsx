@@ -122,7 +122,7 @@ const CollegesSection = () => {
       id: 3,
       name: "College of Business",
       img: "/images/Business.jpg",
-      path: "/business",
+      path: "/CollegeOfBusiness",
       details: [
         "MBA IT",
         "MBA IB",
@@ -137,7 +137,7 @@ const CollegesSection = () => {
       id: 4,
       name: "College of ITI",
       img: "/images/Mechanical-engineering.jpg",
-      path: "/iti",
+      path: "/CollegeOfITI",
       details: [
         "Multimedia Animation & Special Effects",
         "Digital Photographer",
@@ -169,7 +169,7 @@ const CollegesSection = () => {
       id: 6,
       name: "College of Media & Journalism",
       img: "/images/media.jpg",
-      path: "/media",
+      path: "/CollegeOfMedia",
       details: [
         "BA (Journalism & Mass)",
         "MA (Communication)",

@@ -293,8 +293,8 @@ const ChairmansMessage = () => {
     <>
       {/* Hero Section */}
       <section className="relative bg-[#0A2342] text-white overflow-hidden">
-        <div className="relative z-10 px-8 md:px-16 py-20 max-w-7xl mx-auto">
-          <h1 className="absolute text-[15rem] font-extrabold text-white opacity-10 top-9 left-2 leading-none hidden md:block">
+        <div className="relative z-10 px-8 md:px-16 py-16 max-w-7xl mx-auto">
+          <h1 className="absolute text-[13rem] font-extrabold text-white opacity-10 top-3 left-2 leading-none hidden md:block">
             About
           </h1>
           <p className="text-[#F4C542] text-lg font-medium mb-2">
@@ -309,7 +309,7 @@ const ChairmansMessage = () => {
           <img
             src="/images/about/aboutUs building.png"
             alt="JIT Campus"
-            className="h-full w-full object-cover opacity-100"
+            className="h-full w-3xl object-cover opacity-100"
           />
         </div>
       </section>

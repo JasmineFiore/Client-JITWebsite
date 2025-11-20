@@ -231,7 +231,7 @@ export default function CourseTemplate({
 
           {/* Download Syllabus (if present) */}
           {hasSyllabus && (
-            <div className="bg-yellow-400 text-gray-900 rounded-lg shadow-lg p-10 text-center">
+            <div className="bg-yellow-400 text-gray-900 rounded-lg shadow-lg hover:scale-[1.03] transition-transform duration-300 p-10 text-center">
               <h3 className="text-3xl font-bold mb-10">Download Syllabus</h3>
               <div className="flex justify-center gap-24">
                 {syllabusLinks?.map((link, i) => (

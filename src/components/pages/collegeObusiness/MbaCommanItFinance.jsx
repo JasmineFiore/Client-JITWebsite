@@ -162,7 +162,7 @@ export default function MbaCommanItFinance({ title }) {
             </button>
           </div>
 
-          <div className="bg-yellow-400 text-gray-900 rounded-lg shadow-lg p-10 text-center">
+          <div className="bg-yellow-400 text-gray-900 rounded-lg shadow-lg p-10 hover:scale-[1.03] transition-transform duration-300 text-center">
             <h3 className="text-3xl font-bold mb-10">Download Syllabus</h3>
 
             <div className="flex justify-center gap-24">

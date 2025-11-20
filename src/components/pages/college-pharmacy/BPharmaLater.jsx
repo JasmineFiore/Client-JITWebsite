@@ -77,7 +77,7 @@ export default function BPharmaLater() {
       <section className="bg-gradient-to-b from-[#0A2342] via-[#0E2E5C] to-[#0A2342] py-20 px-6 md:px-12">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
           {/* Career Prospective */}
-          <div className="bg-[#f4b942] text-black rounded-xl shadow-md p-10">
+          <div className="bg-[#f4b942] text-black rounded-xl shadow-md hover:scale-[1.03] transition-transform duration-300 p-10">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-6">
               Career Prospective
             </h2>
