@@ -18,7 +18,7 @@ export default function College360View({ imageUrl }) {
     const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
     camera.position.set(0, 0, 0);
 
-    // --- ZOOM SETTINGS ---
+    // Zoom settings
     let zoom = 75;
     const minZoom = 40;
     const maxZoom = 100;
@@ -28,7 +28,7 @@ export default function College360View({ imageUrl }) {
       camera.updateProjectionMatrix();
     };
 
-    // Renderer  ✅ MUST BE ABOVE any renderer. calls
+    // Renderer
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(width, height);
     renderer.setPixelRatio(window.devicePixelRatio);
@@ -50,35 +50,32 @@ export default function College360View({ imageUrl }) {
     const sphere = new THREE.Mesh(geometry, material);
     scene.add(sphere);
 
-    // --- Scroll wheel zoom ---
+    // Wheel Zoom
     const onWheel = (e) => {
       e.preventDefault();
-      e.stopPropagation();
+      if (!containerRef.current) return;
 
       zoom += e.deltaY * 0.05;
       zoom = Math.max(minZoom, Math.min(maxZoom, zoom));
       applyZoom();
     };
-
     renderer.domElement.addEventListener("wheel", onWheel, { passive: false });
 
-    // --- Zoom Button Events ---
+    // Zoom Buttons
     const zoomInListener = () => {
-      zoom -= 5;
-      zoom = Math.max(minZoom, zoom);
+      zoom = Math.max(minZoom, zoom - 5);
       applyZoom();
     };
 
     const zoomOutListener = () => {
-      zoom += 5;
-      zoom = Math.min(maxZoom, zoom);
+      zoom = Math.min(maxZoom, zoom + 5);
       applyZoom();
     };
 
     window.addEventListener("zoom-in", zoomInListener);
     window.addEventListener("zoom-out", zoomOutListener);
 
-    // Rotation controls
+    // Rotation control variables
     let isDragging = false;
     let lon = 0;
     let lat = 0;
@@ -91,44 +88,50 @@ export default function College360View({ imageUrl }) {
     const inertia = 0.95;
 
     const onPointerDown = (e) => {
+      if (!containerRef.current) return;
+
       isDragging = true;
       previousX = e.clientX;
       previousY = e.clientY;
+
       containerRef.current.style.cursor = "grabbing";
     };
 
     const onPointerMove = (e) => {
-      if (isDragging) {
-        const dx = e.clientX - previousX;
-        const dy = e.clientY - previousY;
+      if (!isDragging) return;
 
-        lon -= dx * speed;
-        lat += dy * speed;
+      const dx = e.clientX - previousX;
+      const dy = e.clientY - previousY;
 
-        velocityX = dx * speed;
-        velocityY = dy * speed;
+      lon -= dx * speed;
+      lat += dy * speed;
 
-        previousX = e.clientX;
-        previousY = e.clientY;
-      }
+      velocityX = dx * speed;
+      velocityY = dy * speed;
+
+      previousX = e.clientX;
+      previousY = e.clientY;
     };
 
     const onPointerUp = () => {
       isDragging = false;
-      containerRef.current.style.cursor = "grab";
+      if (containerRef.current) {
+        containerRef.current.style.cursor = "grab";
+      }
     };
 
+    // Touch wrappers
+    const onTouchStart = (e) => onPointerDown(e.touches[0]);
+    const onTouchMove = (e) => onPointerMove(e.touches[0]);
+
+    // Mouse listeners
     renderer.domElement.addEventListener("mousedown", onPointerDown);
     renderer.domElement.addEventListener("mousemove", onPointerMove);
     window.addEventListener("mouseup", onPointerUp);
 
-    // Touch support
-    renderer.domElement.addEventListener("touchstart", (e) =>
-      onPointerDown(e.touches[0])
-    );
-    renderer.domElement.addEventListener("touchmove", (e) =>
-      onPointerMove(e.touches[0])
-    );
+    // Touch listeners
+    renderer.domElement.addEventListener("touchstart", onTouchStart);
+    renderer.domElement.addEventListener("touchmove", onTouchMove);
     renderer.domElement.addEventListener("touchend", onPointerUp);
 
     // Auto rotate
@@ -164,8 +167,10 @@ export default function College360View({ imageUrl }) {
 
     animate();
 
-    // Resize
+    // Resize handler
     const handleResize = () => {
+      if (!containerRef.current) return;
+
       const newWidth = containerRef.current.clientWidth;
       const newHeight = containerRef.current.clientHeight;
       camera.aspect = newWidth / newHeight;
@@ -175,8 +180,18 @@ export default function College360View({ imageUrl }) {
 
     window.addEventListener("resize", handleResize);
 
+    // Cleanup
     return () => {
       renderer.domElement.removeEventListener("wheel", onWheel);
+
+      renderer.domElement.removeEventListener("mousedown", onPointerDown);
+      renderer.domElement.removeEventListener("mousemove", onPointerMove);
+      window.removeEventListener("mouseup", onPointerUp);
+
+      renderer.domElement.removeEventListener("touchstart", onTouchStart);
+      renderer.domElement.removeEventListener("touchmove", onTouchMove);
+      renderer.domElement.removeEventListener("touchend", onPointerUp);
+
       window.removeEventListener("zoom-in", zoomInListener);
       window.removeEventListener("zoom-out", zoomOutListener);
       window.removeEventListener("resize", handleResize);
