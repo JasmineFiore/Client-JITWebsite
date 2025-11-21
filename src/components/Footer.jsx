@@ -128,7 +128,7 @@ const Footer = () => {
             ].map((item, i) => (
               <li key={i}>
                 {item.disabled ? (
-                  <span className="cursor-not-allowed opacity-50">
+                  <span className="pointer-events-none opacity-50">
                     {item.label}
                   </span>
                 ) : (
@@ -155,16 +155,30 @@ const Footer = () => {
               { label: "Student Feedback", link: "/student-feedback" },
               { label: "Staff Feedback", link: "/staff-feedback" },
               { label: "Alumni Feedback", link: "/alumni-feedback" },
-              { label: "Parents Feedback", link: "/feedback/parents" },
-              { label: "Employer’s Feedback", link: "/feedback/employer" },
+              {
+                label: "Parents Feedback",
+                link: "/feedback/parents",
+                disabled: true,
+              },
+              {
+                label: "Employer’s Feedback",
+                link: "/feedback/employer",
+                disabled: true,
+              },
             ].map((item, i) => (
               <li key={i}>
-                <a
-                  href={item.link}
-                  className="hover:text-yellow-500 transition"
-                >
-                  {item.label}
-                </a>
+                {item.disabled ? (
+                  <span className="pointer-events-none opacity-50">
+                    {item.label}
+                  </span>
+                ) : (
+                  <a
+                    href={item.link}
+                    className="hover:text-yellow-500 transition"
+                  >
+                    {item.label}
+                  </a>
+                )}
               </li>
             ))}
           </ul>
@@ -178,18 +192,24 @@ const Footer = () => {
 
           <ul className="space-y-2 text-sm text-gray-300">
             {[
-              { label: "Syllabus", link: "/syllabus" },
+              { label: "Syllabus", link: "/syllabus", disabled: true },
               { label: "T&P Cell", link: "/tp-cell" },
-              { label: "Anti Ragging", link: "/anti-ragging" },
+              { label: "Anti Ragging", link: "/anti-ragging", disabled: true },
               { label: "Pass Out Student", link: "/pass-out-students" },
             ].map((item, i) => (
               <li key={i}>
-                <a
-                  href={item.link}
-                  className="hover:text-yellow-500 transition"
-                >
-                  {item.label}
-                </a>
+                {item.disabled ? (
+                  <span className="pointer-events-none opacity-50">
+                    {item.label}
+                  </span>
+                ) : (
+                  <a
+                    href={item.link}
+                    className="hover:text-yellow-500 transition"
+                  >
+                    {item.label}
+                  </a>
+                )}
               </li>
             ))}
           </ul>

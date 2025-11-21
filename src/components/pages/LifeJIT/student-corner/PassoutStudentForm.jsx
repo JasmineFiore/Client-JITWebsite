@@ -1,5 +1,29 @@
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import WhyChose from "../WhyChose";
+import { useState } from "react";
+import countryCodes from "../../../../data/countryCodes";
+
+const validators = {
+  name: (v) => (v.trim() ? true : "Name is required"),
+
+  email: (v) =>
+    v.trim()
+      ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
+        ? true
+        : "Enter a valid email address"
+      : "Email is required",
+
+  phone: (v) =>
+    v.trim()
+      ? /^[0-9]{10}$/.test(v)
+        ? true
+        : "Phone must be exactly 10 digits"
+      : "Phone number is required",
+
+  state: (v) => (v ? true : "Please select your state"),
+
+  program: (v) => (v ? true : "Please select a program"),
+};
 
 export default function PassoutStudentForm() {
   const contactInfo = [
@@ -27,6 +51,72 @@ Uttar Pradesh 225203, India`,
       isAddress: true,
     },
   ];
+
+  const [errors, setErrors] = useState({});
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    countryCode: "+91",
+    phone: "",
+    state: "",
+    program: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    let val = value;
+
+    // Only numbers for phone
+    if (name === "phone") {
+      val = val.replace(/[^0-9]/g, "");
+    }
+
+    setFormData({ ...formData, [name]: val });
+
+    if (validators[name]) {
+      const result = validators[name](val);
+      setErrors({
+        ...errors,
+        [name]: result === true ? "" : result,
+      });
+    }
+  };
+
+  const validateForm = () => {
+    let temp = {};
+    let isValid = true;
+
+    Object.keys(validators).forEach((field) => {
+      const result = validators[field](formData[field]);
+      if (result !== true) {
+        temp[field] = result;
+        isValid = false;
+      }
+    });
+
+    setErrors(temp);
+    return isValid;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) return;
+
+    alert("✅ Thank you! We’ll contact you soon.");
+
+    setFormData({
+      name: "",
+      email: "",
+      countryCode: "+91",
+      phone: "",
+      state: "",
+      program: "",
+    });
+
+    setErrors({});
+  };
 
   return (
     <div className="w-full bg-gray-50">
@@ -69,25 +159,40 @@ Uttar Pradesh 225203, India`,
         {/* ---------- RIGHT: FORM BOX ---------- */}
         <div className="bg-[#0A2342] p-10 rounded-2xl shadow-2xl">
           <form className="space-y-6">
-            {/* Name */}
-            <div>
-              <label className="text-sm text-gray-300">Name of Student *</label>
-              <input
-                type="text"
-                className="w-full bg-white/10 border border-gray-500 rounded p-3 mt-1 
-      focus:outline-none focus:border-yellow-400 text-white"
-              />
-            </div>
-
-            {/* Email */}
-            <div>
-              <label className="text-sm text-gray-300">Email ID *</label>
-              <input
-                type="email"
-                className="w-full bg-white/10 border border-gray-500 rounded p-3 mt-1 
-      focus:outline-none focus:border-yellow-400 text-white"
-              />
-            </div>
+            {[
+              {
+                label: "Name",
+                name: "name",
+                placeholder: "Enter your full name",
+                type: "text",
+              },
+              {
+                label: "Email",
+                name: "email",
+                placeholder: "Enter your email",
+                type: "email",
+              },
+            ].map((field) => (
+              <div key={field.name}>
+                <label className="block text-sm font-semibold text-gray-300 mb-1">
+                  {field.label} <span className="text-red-400">*</span>
+                </label>
+                <input
+                  type={field.type}
+                  name={field.name}
+                  placeholder={field.placeholder}
+                  value={formData[field.name]}
+                  onChange={handleChange}
+                  className="w-full p-3 rounded-md  text-gray-300 bg-white/20 border border-white/30 placeholder-gray-300 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
+                  required
+                />
+                {errors[field.name] && (
+                  <p className="text-red-400 text-sm mt-1">
+                    {errors[field.name]}
+                  </p>
+                )}
+              </div>
+            ))}
 
             {/* Registration Number */}
             <div>
@@ -137,12 +242,41 @@ Uttar Pradesh 225203, India`,
 
             {/* Contact No */}
             <div>
-              <label className="text-sm text-gray-300">Contact No. *</label>
-              <input
-                type="text"
-                className="w-full bg-white/10 border border-gray-500 rounded p-3 mt-1 
-      focus:outline-none focus:border-yellow-400 text-white"
-              />
+              <label className="block text-sm  text-gray-300 font-semibold mb-1">
+                Phone No. <span className="text-red-400">*</span>
+              </label>
+
+              <div className="flex gap-3">
+                {/* Country Code */}
+                <select
+                  name="countryCode"
+                  value={formData.countryCode}
+                  onChange={handleChange}
+                  className="w-28 p-3 rounded-md bg-white/20 border border-white/30 text-white focus:text-black focus:bg-white"
+                >
+                  {countryCodes.map((c, i) => (
+                    <option key={i} value={c.code}>
+                      {c.flag} {c.code}
+                    </option>
+                  ))}
+                </select>
+
+                {/* Phone Input */}
+                <input
+                  type="tel"
+                  name="phone"
+                  maxLength="12"
+                  placeholder="Enter phone number"
+                  value={formData.phone}
+                  onChange={(e) => {
+                    const numericValue = e.target.value.replace(/[^0-9]/g, ""); // only digits
+                    setFormData({ ...formData, phone: numericValue });
+                    setErrors({ ...errors, phone: "" });
+                  }}
+                  className="flex-1 p-3 rounded-md bg-white/20 border border-white/30 placeholder-gray-300 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
+                  required
+                />
+              </div>
             </div>
 
             {/* Date */}
@@ -212,7 +346,7 @@ Uttar Pradesh 225203, India`,
           </form>
         </div>
       </div>
-      <WhyChose/> 
+      <WhyChose />
     </div>
   );
 }

@@ -1,6 +1,87 @@
+import { useState } from "react";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import countryCodes from "../../data/countryCodes";
 
 export default function ContactPage() {
+  const [errors, setErrors] = useState({});
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    countryCode: "+91",
+    phone: "",
+    state: "",
+    program: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const validateForm = () => {
+    let temp = {};
+    let isValid = true;
+
+    // Name validation
+    if (!formData.name.trim()) {
+      temp.name = "Name is required";
+      isValid = false;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email.trim()) {
+      temp.email = "Email is required";
+      isValid = false;
+    } else if (!emailRegex.test(formData.email)) {
+      temp.email = "Enter a valid email address";
+      isValid = false;
+    }
+
+    // Phone validation
+    const phoneRegex = /^[0-9]{10}$/;
+    if (!formData.phone.trim()) {
+      temp.phone = "Phone number is required";
+      isValid = false;
+    } else if (!phoneRegex.test(formData.phone)) {
+      temp.phone = "Phone must be 10 digits only";
+      isValid = false;
+    }
+
+    // State validation
+    if (!formData.state) {
+      temp.state = "Please select your state";
+      isValid = false;
+    }
+
+    // Program validation
+    if (!formData.program) {
+      temp.program = "Please select a program";
+      isValid = false;
+    }
+
+    setErrors(temp);
+    return isValid;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) return;
+
+    alert("✅ Thank you! We’ll contact you soon.");
+
+    setFormData({
+      name: "",
+      email: "",
+      countryCode: "+91",
+      phone: "",
+      state: "",
+      program: "",
+    });
+
+    setErrors({});
+  };
+
   const contactInfo = [
     {
       icon: <FaPhone />,
@@ -35,9 +116,9 @@ Uttar Pradesh 225203, India`,
   return (
     <div className="w-full bg-gray-50">
       {/* ================= TOP SECTION ================= */}
-      <div className="max-w-7xl mx-auto py-20 px-6 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="max-w-7xl mx-auto py-10 px-6 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* ---------- LEFT: CONTACT INFO ---------- */}
-        <div>
+        <div className="max-w-72">
           <h2 className="text-4xl font-extrabold text-[#0A2342] mb-8">
             Contact Us
           </h2>
@@ -70,7 +151,41 @@ Uttar Pradesh 225203, India`,
         {/* ---------- RIGHT: FORM BOX ---------- */}
         <div className="bg-[#0A2342] p-10 rounded-2xl shadow-2xl">
           <form className="space-y-6">
-            <div>
+            {[
+              {
+                label: "Name",
+                name: "name",
+                placeholder: "Enter your full name",
+                type: "text",
+              },
+              {
+                label: "Email",
+                name: "email",
+                placeholder: "Enter your email",
+                type: "email",
+              },
+            ].map((field) => (
+              <div key={field.name}>
+                <label className="block text-sm font-semibold text-gray-300 mb-1">
+                  {field.label} <span className="text-red-400">*</span>
+                </label>
+                <input
+                  type={field.type}
+                  name={field.name}
+                  placeholder={field.placeholder}
+                  value={formData[field.name]}
+                  onChange={handleChange}
+                  className="w-full p-3 rounded-md  text-gray-300 bg-white/20 border border-white/30 placeholder-gray-300 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
+                  required
+                />
+                {errors[field.name] && (
+                  <p className="text-red-400 text-sm mt-1">
+                    {errors[field.name]}
+                  </p>
+                )}
+              </div>
+            ))}
+            {/* <div>
               <label className="text-sm text-gray-300">Name *</label>
               <input
                 type="text"
@@ -86,32 +201,122 @@ Uttar Pradesh 225203, India`,
                 className="w-full bg-white/10 border border-gray-500 rounded p-3 mt-1 
                 focus:outline-none focus:border-yellow-400 text-white"
               />
-            </div>
+            </div> */}
 
+            {/* Phone Number with Country Code */}
             <div>
-              <label className="text-sm text-gray-300">Phone *</label>
-              <input
-                type="text"
-                className="w-full bg-white/10 border border-gray-500 rounded p-3 mt-1 
-                focus:outline-none focus:border-yellow-400 text-white"
-              />
-            </div>
-
-            <div>
-              <label className="text-sm text-gray-300">
-                Select Your State *
+              <label className="block text-sm  text-gray-300 font-semibold mb-1">
+                Phone No. <span className="text-red-400">*</span>
               </label>
-              <select className="w-full bg-white/10 border border-gray-500 rounded p-3 mt-1 text-white">
-                <option className="text-black">-- Please Select --</option>
+
+              <div className="flex gap-3">
+                {/* Country Code */}
+                <select
+                  name="countryCode"
+                  value={formData.countryCode}
+                  onChange={handleChange}
+                  className="w-28 p-3 rounded-md bg-white/20 border border-white/30 text-white focus:text-black focus:bg-white"
+                >
+                  {countryCodes.map((c, i) => (
+                    <option key={i} value={c.code}>
+                      {c.flag} {c.code}
+                    </option>
+                  ))}
+                </select>
+
+                {/* Phone Input */}
+                <input
+                  type="tel"
+                  name="phone"
+                  maxLength="12"
+                  placeholder="Enter phone number"
+                  value={formData.phone}
+                  onChange={(e) => {
+                    const numericValue = e.target.value.replace(/[^0-9]/g, ""); // only digits
+                    setFormData({ ...formData, phone: numericValue });
+                    setErrors({ ...errors, phone: "" });
+                  }}
+                  className="flex-1 p-3 rounded-md bg-white/20 border border-white/30 placeholder-gray-300 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm text-gray-300 font-semibold mb-1">
+                Select your State <span className="text-red-400">*</span>
+              </label>
+              <select
+                name="state"
+                value={formData.state}
+                onChange={handleChange}
+                className="w-full p-3 rounded-md bg-white/20 border border-white/30 text-white focus:text-black focus:bg-white"
+              >
+                <option value="">Select State</option>
+
+                {/* States */}
+                <option>Andhra Pradesh</option>
+                <option>Arunachal Pradesh</option>
+                <option>Assam</option>
+                <option>Bihar</option>
+                <option>Chhattisgarh</option>
+                <option>Goa</option>
+                <option>Gujarat</option>
+                <option>Haryana</option>
+                <option>Himachal Pradesh</option>
+                <option>Jharkhand</option>
+                <option>Karnataka</option>
+                <option>Kerala</option>
+                <option>Madhya Pradesh</option>
+                <option>Maharashtra</option>
+                <option>Manipur</option>
+                <option>Meghalaya</option>
+                <option>Mizoram</option>
+                <option>Nagaland</option>
+                <option>Odisha</option>
+                <option>Punjab</option>
+                <option>Rajasthan</option>
+                <option>Sikkim</option>
+                <option>Tamil Nadu</option>
+                <option>Telangana</option>
+                <option>Tripura</option>
+                <option>Uttar Pradesh</option>
+                <option>Uttarakhand</option>
+                <option>West Bengal</option>
+
+                {/* <!-- Union Territories --> */}
+                <option>Andaman and Nicobar Islands</option>
+                <option>Chandigarh</option>
+                <option>Dadra and Nagar Haveli and Daman and Diu</option>
+                <option>Delhi</option>
+                <option>Ladakh</option>
+                <option>Lakshadweep</option>
+                <option>Puducherry</option>
+                <option>Jammu and Kashmir</option>
               </select>
             </div>
 
             <div>
-              <label className="text-sm text-gray-300">
-                Program Category *
+              <label className="block text-sm text-gray-300 font-semibold mb-1">
+                Select Program Applying For{" "}
+                <span className="text-red-400">*</span>
               </label>
-              <select className="w-full bg-white/10 border border-gray-500 rounded p-3 mt-1 text-white">
-                <option className="text-black">-- Please Select --</option>
+              <select
+                name="program"
+                value={formData.program}
+                onChange={handleChange}
+                className="w-full p-3 rounded-md bg-white/20 border border-white/30 text-white focus:text-black focus:bg-white"
+              >
+                <option value="">Select Program</option>
+                <option>MBA</option>
+                <option>Engineering</option>
+                <option>Engineering Diploma</option>
+                <option>B. Pharm</option>
+                <option>D. Pharm</option>
+                <option>Bachelor of Arts</option>
+                <option>PG Diploma</option>
+                <option>Journalism</option>
+                <option>ITI</option>
               </select>
             </div>
 

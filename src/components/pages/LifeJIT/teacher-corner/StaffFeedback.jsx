@@ -7,19 +7,33 @@ const StaffFeedback = () => {
       label: "Name of the Teacher ",
       placeholder: "Enter teacher name",
       required: true,
+      validate: (v) =>
+        v.trim().length >= 3 || "Name must be at least 3 characters",
     },
     {
-      label: "Contact No. ",
-      type: "text",
+      label: "Contact Number",
       placeholder: "Enter contact number",
       required: true,
+      onlyNumbers: true, //  allow only digits
+      inputMode: "numeric", //  mobile-friendly numeric keypad
+      pattern: "[0-9]*", //  restrict non-numeric entries
+      maxLength: 10, //  exact 10 digits
+      validate: (v) =>
+        /^[0-9]{10}$/.test(v) || "Enter valid 10-digit phone number",
     },
-    { label: "Designation ", placeholder: "Enter designation", required: true },
     {
-      label: "Email Id ",
+      label: "Designation ",
+      placeholder: "Enter designation",
+      required: true,
+      validate: (v) => v.trim() !== "" || "Designation is required",
+    },
+    {
+      label: "Email",
       type: "email",
       placeholder: "Enter email address",
       required: true,
+      validate: (v) =>
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || "Enter a valid email address",
     },
   ];
 
