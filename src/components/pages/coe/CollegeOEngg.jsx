@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import DepartmentActivities from "../../../Blueprints/DepartmentActivities";
 import EnquiryModal from "../../../Blueprints/EnquiryModal";
 import studentsImage2 from "/images/JIT.jpeg";
@@ -14,9 +14,13 @@ import eeImage from "/images/ee.jpg";
 import mechImage from "/images/mechanical.jpg";
 import studentsImage3 from "/images/university06.png";
 import Carousel from "../../../Blueprints/carousel";
+import PrincipalModal from "../college-pharmacy/PrincipalModal";
 
 export default function CollegeOEngg() {
+  const navigate = useNavigate();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPrincipalModlOpen, setIsPrincipalModlOpen] = useState(false);
 
   const slides = [
     studentsImage1,
@@ -78,10 +82,17 @@ export default function CollegeOEngg() {
               >
                 Admission Counseling
               </button>
-              <button className="bg-yellow-400 text-black font-semibold px-6 py-2 rounded-md shadow-lg hover:bg-yellow-500 transition-all">
+
+              <button
+                onClick={() => setIsPrincipalModlOpen(true)}
+                className="bg-yellow-400 text-black font-semibold px-6 py-2 rounded-md shadow-lg hover:bg-yellow-500 transition-all cursor-pointer"
+              >
                 Principal
               </button>
-              <button className="border border-yellow-400 text-white font-semibold px-6 py-2 rounded-md hover:bg-yellow-400 hover:text-black transition-all">
+              <button
+                onClick={() => navigate("/faculties")}
+                className="border border-yellow-400 text-white font-semibold px-6 py-2 rounded-md hover:bg-yellow-400 hover:text-black transition-all cursor-pointer"
+              >
                 Faculties
               </button>
             </div>
@@ -304,6 +315,12 @@ export default function CollegeOEngg() {
           </div>
         </div>
       </section>
+
+      {/* Modal */}
+      <PrincipalModal
+        isPrincipalModlOpen={isPrincipalModlOpen}
+        setIsPrincipalModlOpen={setIsPrincipalModlOpen}
+      />
 
       {/* Modal */}
       <EnquiryModal

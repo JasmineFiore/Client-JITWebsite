@@ -300,7 +300,7 @@ const Navbar = () => {
                 },
                 {
                   label: "Media & Gallery",
-                  path: "/media-gallery",
+                  // path: "/media-gallery",
                 },
               ],
             },

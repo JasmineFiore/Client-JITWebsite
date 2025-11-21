@@ -14,6 +14,22 @@ export default function EnquiryModal({ isOpen, onClose }) {
     program: "",
   });
 
+  useEffect(() => {
+    if (isOpen) {
+      // Reset form every time modal opens
+      setFormData({
+        name: "",
+        email: "",
+        countryCode: "+91",
+        phone: "",
+        state: "",
+        program: "",
+      });
+
+      setErrors({});
+    }
+  }, [isOpen]);
+
   // Error state
   const [errors, setErrors] = useState({});
 
@@ -107,7 +123,7 @@ export default function EnquiryModal({ isOpen, onClose }) {
               placeholder="Enter your full name"
               value={formData.name}
               onChange={handleChange}
-              className={`w-full p-2 border rounded-md focus:ring-2 focus:ring-[#0A2342] ${
+              className={`w-full p-2 text-gray-900 bg-white  placeholder-gray-400 border rounded-md focus:ring-2 focus:ring-[#0A2342] ${
                 errors.name ? "border-red-500" : "border-gray-400"
               }`}
             />
@@ -127,7 +143,7 @@ export default function EnquiryModal({ isOpen, onClose }) {
               placeholder="Enter your email"
               value={formData.email}
               onChange={handleChange}
-              className={`w-full p-2 border rounded-md focus:ring-2 focus:ring-[#0A2342] ${
+              className={`w-full p-2 text-gray-900 bg-white  placeholder-gray-400 border rounded-md focus:ring-2 focus:ring-[#0A2342] ${
                 errors.email ? "border-red-500" : "border-gray-400"
               }`}
             />
@@ -148,7 +164,7 @@ export default function EnquiryModal({ isOpen, onClose }) {
                 name="countryCode"
                 value={formData.countryCode}
                 onChange={handleChange}
-                className="w-28 p-3 rounded-md bg-white/20 border border-white/30 text-white focus:text-black focus:bg-white"
+                className="w-28 p-3 rounded-md bg-white border border-white/30 text-gray-900 focus:text-black focus:bg-white"
               >
                 {countryCodes.map((c, i) => (
                   <option key={i} value={c.code}>
@@ -169,7 +185,7 @@ export default function EnquiryModal({ isOpen, onClose }) {
                   setFormData({ ...formData, phone: numericValue });
                   setErrors({ ...errors, phone: "" });
                 }}
-                className={`flex-1 p-2 border rounded-md focus:ring-2 focus:ring-[#0A2342] ${
+                className={`flex-1 p-3 rounded-md text-gray-900 bg-white border border-white/30 placeholder-gray-400 focus:ring-2 focus:ring-gray-500 focus:outline-none ${
                   errors.phone ? "border-red-500" : "border-gray-400"
                 }`}
               />
@@ -190,7 +206,7 @@ export default function EnquiryModal({ isOpen, onClose }) {
               name="state"
               value={formData.state}
               onChange={handleChange}
-              className={`w-full p-2 border rounded-md focus:ring-2 focus:ring-[#0A2342] ${
+              className={`w-full p-3 rounded-md bg-white border border-white text-gray-900 focus:text-gray-900 focus:bg-white ${
                 errors.state ? "border-red-500" : "border-gray-400"
               }`}
             >
@@ -256,7 +272,7 @@ export default function EnquiryModal({ isOpen, onClose }) {
               name="program"
               value={formData.program}
               onChange={handleChange}
-              className={`w-full p-2 border rounded-md focus:ring-2 focus:ring-[#0A2342] ${
+              className={`w-full p-3 rounded-md bg-white border border-white text-gray-900 focus:text-gray-900 focus:bg-white ${
                 errors.program ? "border-red-500" : "border-gray-400"
               }`}
             >

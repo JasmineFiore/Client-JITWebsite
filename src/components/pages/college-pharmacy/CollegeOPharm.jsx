@@ -62,7 +62,7 @@ export default function CollegeOPharm() {
                     "_blank"
                   )
                 }
-                className="bg-yellow-400 text-black font-semibold px-6 py-2 rounded-md shadow-lg hover:bg-yellow-500 transition-all"
+                className="bg-yellow-400 text-black font-semibold px-6 py-2 rounded-md shadow-lg hover:bg-yellow-500 transition-all cursor-pointer"
               >
                 Apply
               </button>
@@ -74,13 +74,13 @@ export default function CollegeOPharm() {
               </button>
               <button
                 onClick={() => setIsPrincipalModlOpen(true)}
-                className="bg-yellow-400 text-black font-semibold px-6 py-2 rounded-md shadow-lg hover:bg-yellow-500 transition-all"
+                className="bg-yellow-400 text-black font-semibold px-6 py-2 rounded-md shadow-lg hover:bg-yellow-500 transition-all cursor-pointer"
               >
                 Principal
               </button>
               <button
                 onClick={() => navigate("/faculties")}
-                className="border border-yellow-400 text-white font-semibold px-6 py-2 rounded-md hover:bg-yellow-400 hover:text-black transition-all"
+                className="border border-yellow-400 text-white font-semibold px-6 py-2 rounded-md hover:bg-yellow-400 hover:text-black transition-all cursor-pointer"
               >
                 Faculties
               </button>

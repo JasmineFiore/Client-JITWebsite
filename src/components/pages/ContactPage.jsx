@@ -150,7 +150,7 @@ Uttar Pradesh 225203, India`,
 
         {/* ---------- RIGHT: FORM BOX ---------- */}
         <div className="bg-[#0A2342] p-10 rounded-2xl shadow-2xl">
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             {[
               {
                 label: "Name",
@@ -175,7 +175,7 @@ Uttar Pradesh 225203, India`,
                   placeholder={field.placeholder}
                   value={formData[field.name]}
                   onChange={handleChange}
-                  className="w-full p-3 rounded-md  text-gray-300 bg-white/20 border border-white/30 placeholder-gray-300 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
+                  className="w-full p-3 rounded-md  text-gray-900 bg-white border placeholder-gray-400 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
                   required
                 />
                 {errors[field.name] && (
@@ -185,23 +185,6 @@ Uttar Pradesh 225203, India`,
                 )}
               </div>
             ))}
-            {/* <div>
-              <label className="text-sm text-gray-300">Name *</label>
-              <input
-                type="text"
-                className="w-full bg-white/10 border border-gray-500 rounded p-3 mt-1 
-                focus:outline-none focus:border-yellow-400 text-white"
-              />
-            </div>
-
-            <div>
-              <label className="text-sm text-gray-300">Email *</label>
-              <input
-                type="email"
-                className="w-full bg-white/10 border border-gray-500 rounded p-3 mt-1 
-                focus:outline-none focus:border-yellow-400 text-white"
-              />
-            </div> */}
 
             {/* Phone Number with Country Code */}
             <div>
@@ -215,7 +198,7 @@ Uttar Pradesh 225203, India`,
                   name="countryCode"
                   value={formData.countryCode}
                   onChange={handleChange}
-                  className="w-28 p-3 rounded-md bg-white/20 border border-white/30 text-white focus:text-black focus:bg-white"
+                  className="w-28 p-3 rounded-md bg-white border border-white/30 text-gray-900 focus:text-black focus:bg-white"
                 >
                   {countryCodes.map((c, i) => (
                     <option key={i} value={c.code}>
@@ -236,12 +219,11 @@ Uttar Pradesh 225203, India`,
                     setFormData({ ...formData, phone: numericValue });
                     setErrors({ ...errors, phone: "" });
                   }}
-                  className="flex-1 p-3 rounded-md bg-white/20 border border-white/30 placeholder-gray-300 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
+                  className="flex-1 p-3 rounded-md text-gray-900 bg-white border border-white/30 placeholder-gray-400 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
                   required
                 />
               </div>
             </div>
-
             <div>
               <label className="block text-sm text-gray-300 font-semibold mb-1">
                 Select your State <span className="text-red-400">*</span>
@@ -250,7 +232,7 @@ Uttar Pradesh 225203, India`,
                 name="state"
                 value={formData.state}
                 onChange={handleChange}
-                className="w-full p-3 rounded-md bg-white/20 border border-white/30 text-white focus:text-black focus:bg-white"
+                className="w-full p-3 rounded-md bg-white border border-white text-gray-900 focus:text-gray-900 focus:bg-white"
               >
                 <option value="">Select State</option>
 
@@ -295,7 +277,6 @@ Uttar Pradesh 225203, India`,
                 <option>Jammu and Kashmir</option>
               </select>
             </div>
-
             <div>
               <label className="block text-sm text-gray-300 font-semibold mb-1">
                 Select Program Applying For{" "}
@@ -305,7 +286,7 @@ Uttar Pradesh 225203, India`,
                 name="program"
                 value={formData.program}
                 onChange={handleChange}
-                className="w-full p-3 rounded-md bg-white/20 border border-white/30 text-white focus:text-black focus:bg-white"
+                className="w-full p-3 rounded-md bg-white border border-white text-gray-900 focus:text-gray-900 focus:bg-white"
               >
                 <option value="">Select Program</option>
                 <option>MBA</option>
@@ -319,7 +300,6 @@ Uttar Pradesh 225203, India`,
                 <option>ITI</option>
               </select>
             </div>
-
             <button
               type="submit"
               className="bg-yellow-400 text-black px-8 py-3 rounded font-semibold 
