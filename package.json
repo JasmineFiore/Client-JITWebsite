@@ -2,7 +2,6 @@
   "name": "jit",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://jasminefiore.github.io/Client-JITWebsite",
   "type": "module",
   "scripts": {
     "dev": "vite",
