@@ -218,7 +218,9 @@ const Navbar = () => {
           mobileMenuOpen
             ? "max-h-screen opacity-100 pointer-events-auto"
             : "max-h-0 opacity-0 pointer-events-none md:max-h-none md:opacity-100 md:pointer-events-auto"
-        } bg-white ${textColor} md:bg-transparent `}
+        } bg-white ${
+          mobileMenuOpen ? "text-black" : textColor
+        } md:bg-transparent  `}
       >
         <div className="flex flex-col md:flex-row justify-center items-start md:items-center md:gap-6 p-4 md:p-0 font-semibold uppercase text-sm tracking-wide">
           {[
