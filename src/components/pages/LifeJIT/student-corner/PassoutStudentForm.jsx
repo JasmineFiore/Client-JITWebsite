@@ -273,7 +273,7 @@ Uttar Pradesh 225203, India`,
                     setFormData({ ...formData, phone: numericValue });
                     setErrors({ ...errors, phone: "" });
                   }}
-                  className="flex-1 p-3 rounded-md bg-white/20 border border-white/30 placeholder-gray-300 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
+                  className="w-10 flex-1 p-3 rounded-md bg-white/20 border border-white/30 placeholder-gray-300 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
                   required
                 />
               </div>

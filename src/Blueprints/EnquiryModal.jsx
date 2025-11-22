@@ -185,7 +185,7 @@ export default function EnquiryModal({ isOpen, onClose }) {
                   setFormData({ ...formData, phone: numericValue });
                   setErrors({ ...errors, phone: "" });
                 }}
-                className={`flex-1 p-3 rounded-md text-gray-900 bg-white border border-white/30 placeholder-gray-400 focus:ring-2 focus:ring-gray-500 focus:outline-none ${
+                className={`w-10 flex-1 p-3 rounded-md text-gray-900 bg-white border border-white/30 placeholder-gray-400 focus:ring-2 focus:ring-gray-500 focus:outline-none ${
                   errors.phone ? "border-red-500" : "border-gray-400"
                 }`}
               />
