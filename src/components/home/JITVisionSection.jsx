@@ -76,7 +76,7 @@ export default function JITVisionSection() {
         <div className="w-full min-h-[400px] rounded-lg overflow-hidden">
           <College360View imageUrl="/images/360 deg img/img-2.jpeg" />
           <h2
-            className="w-full max-w-5xl px-4 rounded-md
+            className="w-full max-w-5xl px-4 pt-2 rounded-md
         text-yellow-400 text-3xl font-extrabold
          flex items-center gap-2 justify-center select-none"
           >

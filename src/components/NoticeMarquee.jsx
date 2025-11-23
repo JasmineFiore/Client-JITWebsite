@@ -2,16 +2,57 @@ import { useRef, useEffect } from "react";
 
 const NoticeMarquee = ({ notices }) => {
   const marqueeRef = useRef(null);
+  const containerRef = useRef(null);
+
+  // useEffect(() => {
+  //   const el = marqueeRef.current;
+
+  //   let animation;
+
+  //   const start = () => {
+  //     animation = el.animate(
+  //       [{ transform: "translateX(100%)" }, { transform: "translateX(-100%)" }],
+
+  //       {
+  //         duration: 30000, // scrolling speed
+
+  //         iterations: Infinity,
+
+  //         easing: "linear",
+  //       }
+  //     );
+  //   };
+
+  //   start();
+
+  //   // Pause on hover
+
+  //   el.addEventListener("mouseenter", () => animation.pause());
+
+  //   el.addEventListener("mouseleave", () => animation.play());
+
+  //   return () => animation?.cancel();
+  // }, []);
 
   useEffect(() => {
     const el = marqueeRef.current;
+    const container = containerRef.current;
+    if (!el || !container) return;
+
     let animation;
 
     const start = () => {
+      const contentWidth = el.scrollWidth;
+      const containerWidth = container.clientWidth;
+
+      // Auto speed adjustment
+      const speedFactor = 10; // lower = faster, higher = slower
+      const duration = (contentWidth + containerWidth) * speedFactor;
+
       animation = el.animate(
         [{ transform: "translateX(100%)" }, { transform: "translateX(-100%)" }],
         {
-          duration: 50000, // scrolling speed
+          duration,
           iterations: Infinity,
           easing: "linear",
         }
@@ -20,23 +61,27 @@ const NoticeMarquee = ({ notices }) => {
 
     start();
 
-    // Pause on hover
-    el.addEventListener("mouseenter", () => animation.pause());
-    el.addEventListener("mouseleave", () => animation.play());
+    const pause = () => animation.pause();
+    const play = () => animation.play();
 
-    return () => animation?.cancel();
+    el.addEventListener("mouseenter", pause);
+    el.addEventListener("mouseleave", play);
+
+    return () => {
+      animation?.cancel();
+      el.removeEventListener("mouseenter", pause);
+      el.removeEventListener("mouseleave", play);
+    };
   }, []);
 
   return (
     <div className="w-full bg-white text-white border-y-2 border-yellow-600 ">
       <div className="flex">
-        {/* Left label */}
         <span className="bg-[#800000] px-4 py-1 font-bold border-r border-white">
           Notices
         </span>
 
-        {/* Scrolling area */}
-        <div className="overflow-hidden w-full bg-white">
+        <div ref={containerRef} className="overflow-hidden w-full bg-white">
           <div
             ref={marqueeRef}
             className="whitespace-nowrap flex items-center gap-6 py-1 px-4"
@@ -51,7 +96,6 @@ const NoticeMarquee = ({ notices }) => {
                   {item.text}
                 </a>
 
-                {/* NEW icon */}
                 {item.isNew && (
                   <img
                     src="/images/new_red.gif"
@@ -60,7 +104,6 @@ const NoticeMarquee = ({ notices }) => {
                   />
                 )}
 
-                {/* separators */}
                 <span className="text-gray-500">||</span>
               </span>
             ))}

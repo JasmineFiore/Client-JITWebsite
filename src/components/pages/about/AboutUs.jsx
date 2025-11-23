@@ -28,6 +28,7 @@ const ChairmansMessage = () => {
   };
 
   const [activeSection, setActiveSection] = useState("Chairman");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Sync section with URL
   useEffect(() => {
@@ -292,7 +293,7 @@ const ChairmansMessage = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-[#0A2342] text-white overflow-hidden">
+      {/* <section className="relative bg-[#0A2342] text-white overflow-hidden">
         <div className="relative z-10 px-8 md:px-16 py-16 max-w-7xl mx-auto">
           <h1 className="absolute text-[13rem] font-extrabold text-white opacity-10 top-3 left-2 leading-none hidden md:block">
             About
@@ -304,7 +305,6 @@ const ChairmansMessage = () => {
             JIT At Glance
           </h2>
         </div>
-
         <div className="absolute right-0 top-0 w-full md:w-1/2 h-full flex justify-end">
           <img
             src="/images/about/aboutUs building.png"
@@ -312,13 +312,55 @@ const ChairmansMessage = () => {
             className="h-full w-3xl object-cover opacity-100"
           />
         </div>
+      </section> */}
+
+      <section className="relative bg-[#0A2342] text-white overflow-hidden">
+        {/* Content */}
+        <div className="relative z-10 px-6 sm:px-8 md:px-12 py-4 max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center md:items-start">
+          {/* Text */}
+          <div className="w-full md:w-1/2 text-center md:text-left mt-8 md:mt-0">
+            <h1 className="absolute text-[8rem] md:text-[13rem] font-extrabold bottom-8 md:bottom-20 text-white opacity-10 left-2 leading-none ">
+              About
+            </h1>
+            <p className="text-[#F4C542] text-base sm:text-lg font-medium mb-2 pt-4 md:pt-24">
+              Unleash Your Potential with Our Cutting-Edge Curriculum!
+            </p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
+              JIT At Glance
+            </h2>
+          </div>
+
+          {/* Image */}
+          <div className="w-full md:w-1/2 flex justify-center md:justify-end">
+            <img
+              src="/images/about/aboutUs building.png"
+              alt="JIT Campus"
+              className="w-full sm:w-4/5 md:w-xl max-h-72 sm:max-h-96 md:max-h-72 object-cover rounded-xl shadow-xl transition-transform duration-500 hover:scale-105"
+            />
+          </div>
+        </div>
       </section>
 
       {/* Main Content */}
-      <section className="relative bg-white py-16 px-6 sm:px-10">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+      <section className="relative bg-white py-4 px-6 sm:px-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-4">
+          {/* Mobile Toggle Button */}
+          <div className="md:hidden mb-2">
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="w-full bg-[#0A2342] text-white py-3 px-4 rounded-md font-semibold flex items-center justify-between"
+            >
+              <span>Menu</span>
+              <span>{sidebarOpen ? "▲" : "▼"}</span>
+            </button>
+          </div>
+
           {/* Sidebar */}
-          <div className="flex flex-col space-y-3 md:col-span-1 md:max-w-40">
+          <div
+            className={`flex flex-col space-y-3 md:col-span-1 md:max-w-40 
+    ${sidebarOpen ? "block" : "hidden"} 
+    md:block`}
+          >
             {[
               "Chairman",
               "Director",
@@ -330,11 +372,14 @@ const ChairmansMessage = () => {
             ].map((section) => (
               <button
                 key={section}
-                onClick={() => handleSectionClick(section)}
+                onClick={() => {
+                  handleSectionClick(section);
+                  setSidebarOpen(false); // auto-close on mobile selection
+                }}
                 className={`text-left py-3 px-5 rounded-md font-semibold transition-all duration-300 ${
                   activeSection === section
                     ? "bg-[#0A2342] text-white shadow-md"
-                    : "bg-gray-100 text-[#0A2342] hover:bg-[#F4C542] hover:text-[#0A2342]"
+                    : "bg-gray-100 text-[#0A2342] hover:bg-[#F4C542]"
                 }`}
               >
                 {section.replace(/([A-Z])/g, " $1")}
@@ -349,7 +394,7 @@ const ChairmansMessage = () => {
             </h3>
 
             {activeSection === "Our Journey" ? (
-              <div className="mt-12 relative">
+              <div className="mt-7 relative">
                 <div className="border-l-4 border-[#0A2342] ml-6">
                   {content["Our Journey"].timeline.map((item, index) => (
                     <div key={index} className={`relative mb-16 pl-10 group`}>

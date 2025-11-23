@@ -6,203 +6,247 @@ export default function College360View({ imageUrl }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+  if (!containerRef.current) return;
 
-    const width = containerRef.current.clientWidth;
-    const height = containerRef.current.clientHeight;
+  const width = containerRef.current.clientWidth;
+  const height = containerRef.current.clientHeight;
 
-    // Scene
-    const scene = new THREE.Scene();
+  // Scene
+  const scene = new THREE.Scene();
 
-    // Camera
-    const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    camera.position.set(0, 0, 0);
+  // Camera
+  const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+  camera.position.set(0, 0, 0);
 
-    // Zoom settings
-    let zoom = 75;
-    const minZoom = 40;
-    const maxZoom = 100;
+  // Zoom settings
+  let zoom = 75;
+  const minZoom = 40;
+  const maxZoom = 100;
 
-    const applyZoom = () => {
-      camera.fov = zoom;
-      camera.updateProjectionMatrix();
-    };
+  const applyZoom = () => {
+    camera.fov = zoom;
+    camera.updateProjectionMatrix();
+  };
 
-    // Renderer
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(width, height);
-    renderer.setPixelRatio(window.devicePixelRatio);
-    containerRef.current.appendChild(renderer.domElement);
+  // Renderer
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(width, height);
+  renderer.setPixelRatio(window.devicePixelRatio);
+  containerRef.current.appendChild(renderer.domElement);
 
-    // Load Texture
-    const textureLoader = new THREE.TextureLoader();
-    const texture = textureLoader.load(
-      imageUrl,
-      () => setLoading(false),
-      undefined,
-      () => setLoading(false)
-    );
+  // Load Texture
+  const textureLoader = new THREE.TextureLoader();
+  const texture = textureLoader.load(
+    imageUrl,
+    () => setLoading(false),
+    undefined,
+    () => setLoading(false)
+  );
 
-    // Sphere
-    const geometry = new THREE.SphereGeometry(500, 60, 40);
-    geometry.scale(-1, 1, 1);
-    const material = new THREE.MeshBasicMaterial({ map: texture });
-    const sphere = new THREE.Mesh(geometry, material);
-    scene.add(sphere);
+  // Sphere
+  const geometry = new THREE.SphereGeometry(500, 60, 40);
+  geometry.scale(-1, 1, 1);
+  const material = new THREE.MeshBasicMaterial({ map: texture });
+  const sphere = new THREE.Mesh(geometry, material);
+  scene.add(sphere);
 
-    // Wheel Zoom
-    const onWheel = (e) => {
-      e.preventDefault();
-      if (!containerRef.current) return;
+  // Wheel Zoom
+  const onWheel = (e) => {
+    e.preventDefault();
+    zoom += e.deltaY * 0.05;
+    zoom = Math.max(minZoom, Math.min(maxZoom, zoom));
+    applyZoom();
+  };
+  renderer.domElement.addEventListener("wheel", onWheel, { passive: false });
 
-      zoom += e.deltaY * 0.05;
-      zoom = Math.max(minZoom, Math.min(maxZoom, zoom));
-      applyZoom();
-    };
-    renderer.domElement.addEventListener("wheel", onWheel, { passive: false });
+  // Zoom Buttons
+  const zoomInListener = () => {
+    zoom = Math.max(minZoom, zoom - 5);
+    applyZoom();
+  };
 
-    // Zoom Buttons
-    const zoomInListener = () => {
-      zoom = Math.max(minZoom, zoom - 5);
-      applyZoom();
-    };
+  const zoomOutListener = () => {
+    zoom = Math.min(maxZoom, zoom + 5);
+    applyZoom();
+  };
 
-    const zoomOutListener = () => {
-      zoom = Math.min(maxZoom, zoom + 5);
-      applyZoom();
-    };
+  window.addEventListener("zoom-in", zoomInListener);
+  window.addEventListener("zoom-out", zoomOutListener);
 
-    window.addEventListener("zoom-in", zoomInListener);
-    window.addEventListener("zoom-out", zoomOutListener);
+  // ------------------------------
+  // 🎉 NEW IMPROVED TOUCH + DRAG CONTROLS
+  // ------------------------------
+  let isDragging = false;
+  let lon = 0;
+  let lat = 0;
+  let velocityX = 0;
+  let velocityY = 0;
+  let previousX = 0;
+  let previousY = 0;
 
-    // Rotation control variables
-    let isDragging = false;
-    let lon = 0;
-    let lat = 0;
-    let velocityX = 0;
-    let velocityY = 0;
-    let previousX = 0;
-    let previousY = 0;
+  const speed = 0.15;   // smoother
+  const inertia = 0.93; // smoother friction
 
-    const speed = 0.3;
-    const inertia = 0.95;
+  // Pointer (mouse)
+  const onPointerDown = (e) => {
+    isDragging = true;
+    previousX = e.clientX;
+    previousY = e.clientY;
+    containerRef.current.style.cursor = "grabbing";
+  };
 
-    const onPointerDown = (e) => {
-      if (!containerRef.current) return;
+  const onPointerMove = (e) => {
+    if (!isDragging) return;
 
+    const dx = e.clientX - previousX;
+    const dy = e.clientY - previousY;
+
+    lon -= dx * speed;
+    lat += dy * speed;
+
+    velocityX = dx * 0.08; 
+    velocityY = dy * 0.08;
+
+    previousX = e.clientX;
+    previousY = e.clientY;
+  };
+
+  const onPointerUp = () => {
+    isDragging = false;
+    containerRef.current.style.cursor = "grab";
+  };
+
+  // ------------------------------
+  // 🎉 TOUCH + PINCH ZOOM
+  // ------------------------------
+  let lastPinchDistance = null;
+
+  const getPinchDistance = (touches) => {
+    const dx = touches[0].pageX - touches[1].pageX;
+    const dy = touches[0].pageY - touches[1].pageY;
+    return Math.sqrt(dx * dx + dy * dy);
+  };
+
+  const onTouchStart = (e) => {
+    if (e.touches.length === 1) {
+      const t = e.touches[0];
       isDragging = true;
-      previousX = e.clientX;
-      previousY = e.clientY;
+      previousX = t.pageX;
+      previousY = t.pageY;
+    }
 
-      containerRef.current.style.cursor = "grabbing";
-    };
+    if (e.touches.length === 2) {
+      lastPinchDistance = getPinchDistance(e.touches);
+    }
+  };
 
-    const onPointerMove = (e) => {
-      if (!isDragging) return;
+  const onTouchMove = (e) => {
+    e.preventDefault(); // ⚡ prevents browser scroll interfering
 
-      const dx = e.clientX - previousX;
-      const dy = e.clientY - previousY;
+    // One-finger drag
+    if (e.touches.length === 1 && isDragging) {
+      const t = e.touches[0];
+      const dx = t.pageX - previousX;
+      const dy = t.pageY - previousY;
 
       lon -= dx * speed;
       lat += dy * speed;
 
-      velocityX = dx * speed;
-      velocityY = dy * speed;
+      velocityX = dx * 0.08;
+      velocityY = dy * 0.08;
 
-      previousX = e.clientX;
-      previousY = e.clientY;
-    };
+      previousX = t.pageX;
+      previousY = t.pageY;
+    }
 
-    const onPointerUp = () => {
-      isDragging = false;
-      if (containerRef.current) {
-        containerRef.current.style.cursor = "grab";
+    // Two-finger pinch zoom
+    if (e.touches.length === 2) {
+      const newDistance = getPinchDistance(e.touches);
+      if (lastPinchDistance) {
+        const delta = lastPinchDistance - newDistance;
+        zoom += delta * 0.05;
+        zoom = Math.max(minZoom, Math.min(maxZoom, zoom));
+        applyZoom();
       }
-    };
+      lastPinchDistance = newDistance;
+    }
+  };
 
-    // Touch wrappers
-    const onTouchStart = (e) => onPointerDown(e.touches[0]);
-    const onTouchMove = (e) => onPointerMove(e.touches[0]);
+  // Add event listeners
+  renderer.domElement.addEventListener("mousedown", onPointerDown);
+  renderer.domElement.addEventListener("mousemove", onPointerMove);
+  window.addEventListener("mouseup", onPointerUp);
 
-    // Mouse listeners
-    renderer.domElement.addEventListener("mousedown", onPointerDown);
-    renderer.domElement.addEventListener("mousemove", onPointerMove);
-    window.addEventListener("mouseup", onPointerUp);
+  renderer.domElement.addEventListener("touchstart", onTouchStart, { passive: false });
+  renderer.domElement.addEventListener("touchmove", onTouchMove, { passive: false });
+  renderer.domElement.addEventListener("touchend", onPointerUp);
 
-    // Touch listeners
-    renderer.domElement.addEventListener("touchstart", onTouchStart);
-    renderer.domElement.addEventListener("touchmove", onTouchMove);
-    renderer.domElement.addEventListener("touchend", onPointerUp);
+  // ------------------------------
+  // Animation loop
+  // ------------------------------
+  const animate = () => {
+    requestAnimationFrame(animate);
 
-    // Auto rotate
-    let autoRotate = false;
-    const autoRotateSpeed = 0.05;
+    if (!isDragging) {
+      lon -= velocityX;
+      lat += velocityY;
 
-    const animate = () => {
-      requestAnimationFrame(animate);
+      velocityX *= inertia;
+      velocityY *= inertia;
+    }
 
-      if (!isDragging) {
-        lon -= velocityX;
-        lat += velocityY;
+    lat = Math.max(-85, Math.min(85, lat));
+    lon = (lon + 360) % 360; // smooth wrap
 
-        velocityX *= inertia;
-        velocityY *= inertia;
+    const phi = THREE.MathUtils.degToRad(90 - lat);
+    const theta = THREE.MathUtils.degToRad(lon);
 
-        if (autoRotate) lon += autoRotateSpeed;
-      }
+    camera.lookAt(
+      Math.sin(phi) * Math.cos(theta),
+      Math.cos(phi),
+      Math.sin(phi) * Math.sin(theta)
+    );
 
-      lat = Math.max(-85, Math.min(85, lat));
+    renderer.render(scene, camera);
+  };
 
-      const phi = THREE.MathUtils.degToRad(90 - lat);
-      const theta = THREE.MathUtils.degToRad(lon);
+  animate();
 
-      camera.lookAt(
-        Math.sin(phi) * Math.cos(theta),
-        Math.cos(phi),
-        Math.sin(phi) * Math.sin(theta)
-      );
+  // Resize
+  const handleResize = () => {
+    const newWidth = containerRef.current.clientWidth;
+    const newHeight = containerRef.current.clientHeight;
+    camera.aspect = newWidth / newHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(newWidth, newHeight);
+  };
 
-      renderer.render(scene, camera);
-    };
+  window.addEventListener("resize", handleResize);
 
-    animate();
+  // Cleanup
+  return () => {
+    renderer.domElement.removeEventListener("wheel", onWheel);
 
-    // Resize handler
-    const handleResize = () => {
-      if (!containerRef.current) return;
+    renderer.domElement.removeEventListener("mousedown", onPointerDown);
+    renderer.domElement.removeEventListener("mousemove", onPointerMove);
+    window.removeEventListener("mouseup", onPointerUp);
 
-      const newWidth = containerRef.current.clientWidth;
-      const newHeight = containerRef.current.clientHeight;
-      camera.aspect = newWidth / newHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(newWidth, newHeight);
-    };
+    renderer.domElement.removeEventListener("touchstart", onTouchStart);
+    renderer.domElement.removeEventListener("touchmove", onTouchMove);
+    renderer.domElement.removeEventListener("touchend", onPointerUp);
 
-    window.addEventListener("resize", handleResize);
+    window.removeEventListener("zoom-in", zoomInListener);
+    window.removeEventListener("zoom-out", zoomOutListener);
+    window.removeEventListener("resize", handleResize);
 
-    // Cleanup
-    return () => {
-      renderer.domElement.removeEventListener("wheel", onWheel);
+    renderer.dispose();
+    geometry.dispose();
+    material.dispose();
+    texture.dispose();
+    renderer.domElement.remove();
+  };
+}, [imageUrl]);
 
-      renderer.domElement.removeEventListener("mousedown", onPointerDown);
-      renderer.domElement.removeEventListener("mousemove", onPointerMove);
-      window.removeEventListener("mouseup", onPointerUp);
-
-      renderer.domElement.removeEventListener("touchstart", onTouchStart);
-      renderer.domElement.removeEventListener("touchmove", onTouchMove);
-      renderer.domElement.removeEventListener("touchend", onPointerUp);
-
-      window.removeEventListener("zoom-in", zoomInListener);
-      window.removeEventListener("zoom-out", zoomOutListener);
-      window.removeEventListener("resize", handleResize);
-
-      renderer.domElement.remove();
-      renderer.dispose();
-      geometry.dispose();
-      material.dispose();
-      texture.dispose();
-    };
-  }, [imageUrl]);
 
   return (
     <div className="w-full min-h-[450px] p-1 bg-linear-to-r from-yellow-50 via-yellow-100 to-blue-100 mt-5 flex justify-center">

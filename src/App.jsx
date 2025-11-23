@@ -30,7 +30,7 @@ import Mandatory from "./components/pages/Mandatory/Mandatory";
 import TableC from "./components/pages/Mandatory/tables/TableC";
 import NCCSection from "./components/pages/NCCSection/NCCSection";
 import PrivacyPolicy from "./components/pages/PrivacyPolicy";
-import ChairmansMessage from "./components/pages/about/ChairmansMessage";
+import AboutUs from "./components/pages/about/AboutUs";
 import BtechAiml from "./components/pages/coe/BtechAiml";
 import BtechCivil from "./components/pages/coe/BtechCivil";
 import BtechCse from "./components/pages/coe/BtechCse";
@@ -152,13 +152,13 @@ export default function App() {
           <Route path="/JIT-events" element={<EventsComponent />} />
           <Route path="/community" element={<CommunitySection />} />
 
-          <Route path="/chairman" element={<ChairmansMessage />} />
-          <Route path="/director" element={<ChairmansMessage />} />
-          <Route path="/history" element={<ChairmansMessage />} />
-          <Route path="/vision-mission" element={<ChairmansMessage />} />
-          <Route path="/alumni" element={<ChairmansMessage />} />
-          <Route path="/affiliation" element={<ChairmansMessage />} />
-          <Route path="/our-journey" element={<ChairmansMessage />} />
+          <Route path="/chairman" element={<AboutUs />} />
+          <Route path="/director" element={<AboutUs />} />
+          <Route path="/history" element={<AboutUs />} />
+          <Route path="/vision-mission" element={<AboutUs />} />
+          <Route path="/alumni" element={<AboutUs />} />
+          <Route path="/affiliation" element={<AboutUs />} />
+          <Route path="/our-journey" element={<AboutUs />} />
           <Route path="/hostel-facilities" element={<HostelFacilities />} />
 
           <Route path="/student-feedback" element={<StudentFeedback />} />
