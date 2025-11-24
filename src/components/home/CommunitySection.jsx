@@ -29,7 +29,7 @@ export default function CommunitySection() {
   ];
 
   return (
-    <section className="bg-gradient-to-br from-[#F9FAFB] to-[#E8EEF6] py-20 px-6 md:px-20 relative overflow-hidden">
+    <section className="bg-linear-to-br from-[#F9FAFB] to-[#E8EEF6] py-20 px-6 md:px-20 relative overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-center relative z-10">
         {/* Left Side – Intro */}
         <motion.div
@@ -40,7 +40,7 @@ export default function CommunitySection() {
           className="flex-1"
         >
           <h2 className="text-4xl md:text-5xl font-extrabold text-[#002147] leading-tight mb-5">
-            Join a Community of{" "}
+            Join a Community of
             <span className="text-[#FFB81C]">Scholars & Achievers</span>
           </h2>
           <p className="text-gray-700 leading-relaxed mb-8 text-[15px]">
@@ -62,7 +62,7 @@ export default function CommunitySection() {
         {/* Right Side – Zig-Zag Steps */}
         <div className="flex-1 relative bg-[#002147] text-white p-10 rounded-2xl shadow-2xl overflow-hidden">
           {/* Vertical line */}
-          <div className="absolute left-[28px] top-10 bottom-10 w-[3px] bg-[#FFB81C] shadow-[0_0_20px_#FFB81C] hidden md:block"></div>
+          <div className="absolute left-7 top-10 bottom-10 w-[3px] bg-[#FFB81C] shadow-[0_0_20px_#FFB81C] hidden md:block"></div>
 
           <div className="flex flex-col gap-16 relative">
             {steps.map((step, index) => (
@@ -134,7 +134,7 @@ export default function CommunitySection() {
           >
             <button
               onClick={() => setIsModalOpen(true)}
-              className="bg-[#FFB81C] text-[#002147] font-semibold py-3 px-8 rounded-md shadow-md hover:bg-[#e0a914] transition-transform duration-300 hover:scale-105"
+              className="bg-[#FFB81C] text-[#002147] font-semibold py-3 px-8 cursor-pointer rounded-md shadow-md hover:bg-[#e0a914] transition-transform duration-300 hover:scale-105"
             >
               Book a Counselling
             </button>

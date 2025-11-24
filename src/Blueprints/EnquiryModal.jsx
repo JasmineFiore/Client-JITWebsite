@@ -1,39 +1,31 @@
 import { useEffect, useRef, useState } from "react";
 import countryCodes from "../data/countryCodes";
+import { validateField, validateForm } from "../data/validation";
 
 export default function EnquiryModal({ isOpen, onClose }) {
   const modalRef = useRef(null);
 
-  // Form state
-  const [formData, setFormData] = useState({
+  const initialForm = {
     name: "",
     email: "",
     countryCode: "+91",
     phone: "",
     state: "",
     program: "",
-  });
+  };
 
+  const [formData, setFormData] = useState(initialForm);
+  const [errors, setErrors] = useState({});
+
+  // Reset form when modal opens
   useEffect(() => {
     if (isOpen) {
-      // Reset form every time modal opens
-      setFormData({
-        name: "",
-        email: "",
-        countryCode: "+91",
-        phone: "",
-        state: "",
-        program: "",
-      });
-
+      setFormData(initialForm);
       setErrors({});
     }
   }, [isOpen]);
 
-  // Error state
-  const [errors, setErrors] = useState({});
-
-  // Close when clicking outside modal + lock scroll
+  // Close on outside click + disable scroll
   useEffect(() => {
     function handleClickOutside(event) {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
@@ -56,30 +48,23 @@ export default function EnquiryModal({ isOpen, onClose }) {
 
   if (!isOpen) return null;
 
-  // Handle input change
+  // Input change handler
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setErrors({ ...errors, [e.target.name]: "" });
   };
 
-  // Validation
+  // OnBlur field validation
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    const errorMessage = validateField(name, value);
+    setErrors((prev) => ({ ...prev, [name]: errorMessage }));
+  };
+
+  // Full form validation on submit
   const validate = () => {
-    let newErrors = {};
-
-    if (!formData.name.trim()) newErrors.name = "Name is required";
-    if (!formData.email.trim()) newErrors.email = "Email is required";
-    else if (!/\S+@\S+\.\S+/.test(formData.email))
-      newErrors.email = "Enter a valid email";
-
-    if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
-    else if (!/^[0-9]{7,12}$/.test(formData.phone))
-      newErrors.phone = "Enter a valid phone number";
-
-    if (!formData.state) newErrors.state = "Select your state";
-    if (!formData.program) newErrors.program = "Select a program";
-
+    const newErrors = validateForm(formData);
     setErrors(newErrors);
-
     return Object.keys(newErrors).length === 0;
   };
 
@@ -89,8 +74,7 @@ export default function EnquiryModal({ isOpen, onClose }) {
     if (!validate()) return;
 
     console.log("FORM SUBMITTED:", formData);
-
-    alert("Your request has been submitted! We will contact you soon.");
+    alert("✅ Your request has been submitted! We will contact you soon.");
     onClose();
   };
 
@@ -98,12 +82,12 @@ export default function EnquiryModal({ isOpen, onClose }) {
     <div className="fixed inset-0 z-50 flex justify-center items-center bg-black/50 backdrop-blur-sm overflow-y-auto">
       <div
         ref={modalRef}
-        className="bg-[#f4c542] rounded-lg shadow-2xl w-[90%] md:w-[600px] my-10 p-8 relative animate-fadeIn"
+        className="bg-[#f4c542] rounded-lg shadow-2xl w-[90%] md:w-[600px] my-4 p-4 relative animate-fadeIn"
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-3 right-4 text-black text-2xl font-bold hover:text-red-600"
+          className="absolute top-3 right-4 text-black text-2xl font-bold hover:text-red-600 cursor-pointer"
         >
           ✕
         </button>
@@ -112,7 +96,7 @@ export default function EnquiryModal({ isOpen, onClose }) {
           SCHEDULE A CALL
         </h2>
 
-        <form className="space-y-4" onSubmit={handleSubmit}>
+        <form className="space-y-2" onSubmit={handleSubmit}>
           {/* Name */}
           <div>
             <label className="block text-sm font-semibold text-[#0A2342] mb-1">
@@ -123,7 +107,8 @@ export default function EnquiryModal({ isOpen, onClose }) {
               placeholder="Enter your full name"
               value={formData.name}
               onChange={handleChange}
-              className={`w-full p-2 text-gray-900 bg-white  placeholder-gray-400 border rounded-md focus:ring-2 focus:ring-[#0A2342] ${
+              onBlur={handleBlur}
+              className={`w-full p-2 bg-white border rounded-md ${
                 errors.name ? "border-red-500" : "border-gray-400"
               }`}
             />
@@ -143,7 +128,8 @@ export default function EnquiryModal({ isOpen, onClose }) {
               placeholder="Enter your email"
               value={formData.email}
               onChange={handleChange}
-              className={`w-full p-2 text-gray-900 bg-white  placeholder-gray-400 border rounded-md focus:ring-2 focus:ring-[#0A2342] ${
+              onBlur={handleBlur}
+              className={`w-full p-2 bg-white border rounded-md ${
                 errors.email ? "border-red-500" : "border-gray-400"
               }`}
             />
@@ -152,7 +138,7 @@ export default function EnquiryModal({ isOpen, onClose }) {
             )}
           </div>
 
-          {/* Phone + Country Code */}
+          {/* Phone */}
           <div>
             <label className="block text-sm font-semibold text-[#0A2342] mb-1">
               Phone Number <span className="text-red-500">*</span>
@@ -164,7 +150,7 @@ export default function EnquiryModal({ isOpen, onClose }) {
                 name="countryCode"
                 value={formData.countryCode}
                 onChange={handleChange}
-                className="w-28 p-3 rounded-md bg-white border border-white/30 text-gray-900 focus:text-black focus:bg-white"
+                className="w-28 p-3 rounded-md bg-white border text-gray-900"
               >
                 {countryCodes.map((c, i) => (
                   <option key={i} value={c.code}>
@@ -185,7 +171,8 @@ export default function EnquiryModal({ isOpen, onClose }) {
                   setFormData({ ...formData, phone: numericValue });
                   setErrors({ ...errors, phone: "" });
                 }}
-                className={`w-10 flex-1 p-3 rounded-md text-gray-900 bg-white border border-white/30 placeholder-gray-400 focus:ring-2 focus:ring-gray-500 focus:outline-none ${
+                onBlur={handleBlur}
+                className={`w-10 flex-1 p-3 rounded-md bg-white border ${
                   errors.phone ? "border-red-500" : "border-gray-400"
                 }`}
               />
@@ -201,60 +188,50 @@ export default function EnquiryModal({ isOpen, onClose }) {
             <label className="block text-sm font-semibold text-[#0A2342] mb-1">
               Select Your State <span className="text-red-500">*</span>
             </label>
-
             <select
               name="state"
               value={formData.state}
               onChange={handleChange}
-              className={`w-full p-3 rounded-md bg-white border border-white text-gray-900 focus:text-gray-900 focus:bg-white ${
+              onBlur={handleBlur}
+              className={`w-full p-3 bg-white border rounded-md ${
                 errors.state ? "border-red-500" : "border-gray-400"
               }`}
             >
               <option value="">Select State</option>
-
-              {/* Indian States */}
-              <option value="Andhra Pradesh">Andhra Pradesh</option>
-              <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-              <option value="Assam">Assam</option>
-              <option value="Bihar">Bihar</option>
-              <option value="Chhattisgarh">Chhattisgarh</option>
-              <option value="Goa">Goa</option>
-              <option value="Gujarat">Gujarat</option>
-              <option value="Haryana">Haryana</option>
-              <option value="Himachal Pradesh">Himachal Pradesh</option>
-              <option value="Jharkhand">Jharkhand</option>
-              <option value="Karnataka">Karnataka</option>
-              <option value="Kerala">Kerala</option>
-              <option value="Madhya Pradesh">Madhya Pradesh</option>
-              <option value="Maharashtra">Maharashtra</option>
-              <option value="Manipur">Manipur</option>
-              <option value="Meghalaya">Meghalaya</option>
-              <option value="Mizoram">Mizoram</option>
-              <option value="Nagaland">Nagaland</option>
-              <option value="Odisha">Odisha</option>
-              <option value="Punjab">Punjab</option>
-              <option value="Rajasthan">Rajasthan</option>
-              <option value="Sikkim">Sikkim</option>
-              <option value="Tamil Nadu">Tamil Nadu</option>
-              <option value="Telangana">Telangana</option>
-              <option value="Tripura">Tripura</option>
-              <option value="Uttar Pradesh">Uttar Pradesh</option>
-              <option value="Uttarakhand">Uttarakhand</option>
-              <option value="West Bengal">West Bengal</option>
-
-              {/* Union Territories */}
-              <option value="Andaman and Nicobar Islands">
-                Andaman and Nicobar Islands
-              </option>
-              <option value="Chandigarh">Chandigarh</option>
-              <option value="Dadra and Nagar Haveli and Daman & Diu">
-                Dadra & Nagar Haveli and Daman & Diu
-              </option>
-              <option value="Delhi">Delhi</option>
-              <option value="Jammu & Kashmir">Jammu & Kashmir</option>
-              <option value="Ladakh">Ladakh</option>
-              <option value="Lakshadweep">Lakshadweep</option>
-              <option value="Puducherry">Puducherry</option>
+              {/* State list */}
+              <option>Andhra Pradesh</option>
+              <option>Arunachal Pradesh</option>
+              <option>Assam</option>
+              <option>Bihar</option>
+              <option>Chhattisgarh</option>
+              <option>Goa</option>
+              <option>Gujarat</option>
+              <option>Haryana</option>
+              <option>Himachal Pradesh</option>
+              <option>Jharkhand</option>
+              <option>Karnataka</option>
+              <option>Kerala</option>
+              <option>Madhya Pradesh</option>
+              <option>Maharashtra</option>
+              <option>Manipur</option>
+              <option>Meghalaya</option>
+              <option>Mizoram</option>
+              <option>Nagaland</option>
+              <option>Odisha</option>
+              <option>Punjab</option>
+              <option>Rajasthan</option>
+              <option>Sikkim</option>
+              <option>Tamil Nadu</option>
+              <option>Telangana</option>
+              <option>Tripura</option>
+              <option>Uttar Pradesh</option>
+              <option>Uttarakhand</option>
+              <option>West Bengal</option>
+              <option>Delhi</option>
+              <option>Jammu & Kashmir</option>
+              <option>Ladakh</option>
+              <option>Lakshadweep</option>
+              <option>Puducherry</option>
             </select>
 
             {errors.state && (
@@ -272,7 +249,8 @@ export default function EnquiryModal({ isOpen, onClose }) {
               name="program"
               value={formData.program}
               onChange={handleChange}
-              className={`w-full p-3 rounded-md bg-white border border-white text-gray-900 focus:text-gray-900 focus:bg-white ${
+              onBlur={handleBlur}
+              className={`w-full p-3 bg-white border rounded-md ${
                 errors.program ? "border-red-500" : "border-gray-400"
               }`}
             >
@@ -296,7 +274,7 @@ export default function EnquiryModal({ isOpen, onClose }) {
           {/* Submit */}
           <button
             type="submit"
-            className="bg-[#0A2342] text-white font-semibold px-6 py-2 rounded-md hover:bg-[#12315b] transition-all w-full"
+            className="bg-[#0A2342] text-white font-semibold px-6 py-2 rounded-md hover:bg-[#12315b] transition-all w-full cursor-pointer"
           >
             Schedule a Call
           </button>

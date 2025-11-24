@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import countryCodes from "../../data/countryCodes";
+import {
+  validateField,
+  validateForm as validateAll,
+} from "../../data/validation";
 
 export default function ContactPage() {
   const [errors, setErrors] = useState({});
@@ -15,58 +19,27 @@ export default function ContactPage() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+
+    // Clear specific field error on change
+    setErrors({ ...errors, [e.target.name]: "" });
   };
 
-  const validateForm = () => {
-    let temp = {};
-    let isValid = true;
-
-    // Name validation
-    if (!formData.name.trim()) {
-      temp.name = "Name is required";
-      isValid = false;
-    }
-
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!formData.email.trim()) {
-      temp.email = "Email is required";
-      isValid = false;
-    } else if (!emailRegex.test(formData.email)) {
-      temp.email = "Enter a valid email address";
-      isValid = false;
-    }
-
-    // Phone validation
-    const phoneRegex = /^[0-9]{10}$/;
-    if (!formData.phone.trim()) {
-      temp.phone = "Phone number is required";
-      isValid = false;
-    } else if (!phoneRegex.test(formData.phone)) {
-      temp.phone = "Phone must be 10 digits only";
-      isValid = false;
-    }
-
-    // State validation
-    if (!formData.state) {
-      temp.state = "Please select your state";
-      isValid = false;
-    }
-
-    // Program validation
-    if (!formData.program) {
-      temp.program = "Please select a program";
-      isValid = false;
-    }
-
-    setErrors(temp);
-    return isValid;
+  // --------------------
+  // OnBlur single-field validation
+  // --------------------
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    const message = validateField(name, value);
+    setErrors((prev) => ({ ...prev, [name]: message }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!validateForm()) return;
+    const newErrors = validateAll(formData);
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) return;
 
     alert("✅ Thank you! We’ll contact you soon.");
 
@@ -175,8 +148,8 @@ Uttar Pradesh 225203, India`,
                   placeholder={field.placeholder}
                   value={formData[field.name]}
                   onChange={handleChange}
-                  className="w-full p-3 rounded-md  text-gray-900 bg-white border placeholder-gray-400 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
-                  required
+                  onBlur={handleBlur}
+                  className="w-full p-3 rounded-md bg-white"
                 />
                 {errors[field.name] && (
                   <p className="text-red-400 text-sm mt-1">
@@ -193,12 +166,11 @@ Uttar Pradesh 225203, India`,
               </label>
 
               <div className="flex gap-3">
-                {/* Country Code */}
                 <select
                   name="countryCode"
                   value={formData.countryCode}
                   onChange={handleChange}
-                  className="w-28 p-3 rounded-md bg-white border border-white/30 text-gray-900 focus:text-black focus:bg-white"
+                  className="w-28 p-3 rounded-md bg-white"
                 >
                   {countryCodes.map((c, i) => (
                     <option key={i} value={c.code}>
@@ -209,7 +181,6 @@ Uttar Pradesh 225203, India`,
 
                 {/* Phone Input */}
                 <input
-                  type="tel"
                   name="phone"
                   maxLength="12"
                   placeholder="Enter phone number"
@@ -219,24 +190,31 @@ Uttar Pradesh 225203, India`,
                     setFormData({ ...formData, phone: numericValue });
                     setErrors({ ...errors, phone: "" });
                   }}
-                  className="w-10 flex-1 p-3 rounded-md text-gray-900 bg-white border border-white/30 placeholder-gray-400 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
-                  required
+                  onBlur={handleBlur}
+                  className="flex-1 p-3 rounded-md bg-white"
                 />
               </div>
+
+              {errors.phone && (
+                <p className="text-red-400 text-sm mt-1">{errors.phone}</p>
+              )}
             </div>
+
+            {/* State */}
             <div>
-              <label className="block text-sm text-gray-300 font-semibold mb-1">
+              <label className="block text-sm text-gray-300 mb-1">
                 Select your State <span className="text-red-400">*</span>
               </label>
+
               <select
                 name="state"
                 value={formData.state}
                 onChange={handleChange}
-                className="w-full p-3 rounded-md bg-white border border-white text-gray-900 focus:text-gray-900 focus:bg-white"
+                onBlur={handleBlur}
+                className="w-full p-3 rounded-md bg-white"
               >
-                <option value="">Select State</option>
-
-                {/* States */}
+                <option value="" disabled>Select State</option>
+                {/* All states */}
                 <option>Andhra Pradesh</option>
                 <option>Arunachal Pradesh</option>
                 <option>Assam</option>
@@ -276,19 +254,28 @@ Uttar Pradesh 225203, India`,
                 <option>Puducherry</option>
                 <option>Jammu and Kashmir</option>
               </select>
+              {errors.state && (
+                <p className="text-red-400 text-sm mt-1">{errors.state}</p>
+              )}
             </div>
+
+            {/* Program */}
             <div>
-              <label className="block text-sm text-gray-300 font-semibold mb-1">
+              <label className="block text-sm text-gray-300 mb-1">
                 Select Program Applying For{" "}
                 <span className="text-red-400">*</span>
               </label>
+
               <select
                 name="program"
                 value={formData.program}
                 onChange={handleChange}
-                className="w-full p-3 rounded-md bg-white border border-white text-gray-900 focus:text-gray-900 focus:bg-white"
+                onBlur={handleBlur}
+                className="w-full p-3 rounded-md bg-white"
               >
-                <option value="">Select Program</option>
+                <option value="" disabled>
+                  Select Program
+                </option>
                 <option>MBA</option>
                 <option>Engineering</option>
                 <option>Engineering Diploma</option>
@@ -299,11 +286,15 @@ Uttar Pradesh 225203, India`,
                 <option>Journalism</option>
                 <option>ITI</option>
               </select>
+
+              {errors.program && (
+                <p className="text-red-400 text-sm mt-1">{errors.program}</p>
+              )}
             </div>
+
             <button
               type="submit"
-              className="bg-yellow-400 text-black px-8 py-3 rounded font-semibold 
-              hover:bg-yellow-500 transition mt-4 w-full md:w-auto"
+              className="bg-yellow-400 text-black px-8 py-3 cursor-pointer rounded font-semibold hover:bg-yellow-500 transition mt-4 w-full md:w-auto"
             >
               Apply Now
             </button>
