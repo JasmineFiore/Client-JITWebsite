@@ -1,4 +1,6 @@
+import axios from "axios";
 import { useState } from "react";
+import { validateField } from "../../../data/validation";
 
 export default function FeedbackForm({
   title,
@@ -8,95 +10,129 @@ export default function FeedbackForm({
 }) {
   const [formData, setFormData] = useState({});
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
 
-  // handle input change
   const handleChange = (label, value) => {
     setFormData((prev) => ({ ...prev, [label]: value }));
   };
 
-  // onBlur validation for each field
+  // FIELD onBlur validation using validation.js
   const handleBlur = (field) => {
     const value = formData[field.label] || "";
     let error = "";
 
-    if (field.required && !value.trim()) {
+    if (field.mapToValidation) {
+      error = validateField(field.mapToValidation, value);
+    } else if (field.required && !value.trim()) {
       error = `${field.label} is required`;
-    } else if (field.validate) {
-      const result = field.validate(value);
-      if (result !== true) error = result; // validator returns error string
     }
 
-    setErrors((prev) => ({ ...prev, [field.label]: error }));
+    setErrors((prev) => {
+      const updated = { ...prev };
+      if (error) updated[field.label] = error;
+      else delete updated[field.label];
+      return updated;
+    });
   };
 
-  // onBlur validation for questions
+  // QUESTION onBlur
   const handleQuestionBlur = (q) => {
     const value = formData[q.text] || "";
-    let error = "";
+    const error = q.required && !value.trim() ? "Please select an answer" : "";
 
-    if (q.required && !value.trim()) {
-      error = "Please select an answer";
-    }
-
-    setErrors((prev) => ({ ...prev, [q.text]: error }));
+    setErrors((prev) => {
+      const updated = { ...prev };
+      if (error) updated[q.text] = error;
+      else delete updated[q.text];
+      return updated;
+    });
   };
 
-  // final submit validation
-  const validateForm = () => {
-    let newErrors = {};
+  // FORM SUBMIT
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
 
+    let finalErrors = {};
+
+    // VALIDATE TEXT FIELDS
     fields.forEach((field) => {
       const value = formData[field.label] || "";
 
       if (field.required && !value.trim()) {
-        newErrors[field.label] = `${field.label} is required`;
-      } else if (field.validate) {
-        const result = field.validate(value);
-        if (result !== true) newErrors[field.label] = result;
+        finalErrors[field.label] = `${field.label} is required`;
+        return;
+      }
+
+      if (field.mapToValidation) {
+        const err = validateField(field.mapToValidation, value);
+        if (err) finalErrors[field.label] = err;
       }
     });
 
+    // VALIDATE QUESTIONS
     questions.forEach((q) => {
-      const value = formData[q.text] || "";
-      if (q.required && !value.trim()) {
-        newErrors[q.text] = "Please select an answer";
+      if (q.required && !formData[q.text]) {
+        finalErrors[q.text] = "Please select an answer";
       }
     });
 
-    return newErrors;
-  };
+    // STOP IF ERRORS
+    if (Object.keys(finalErrors).length > 0) {
+      setErrors(finalErrors);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+      const firstErrorField = Object.keys(finalErrors)[0];
+      const el = document.querySelector(`[name="${firstErrorField}"]`);
 
-    const validationErrors = validateForm();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        el.focus();
+      }
+
+      setLoading(false);
       return;
     }
 
-    alert("Form submitted successfully!");
+    // try {
+    //   await axios.post("http://localhost:5000/api/send-feedback", formData);
+    //   alert("✅ Form submitted successfully!");
+
+    //   // Reset form
+    //   setFormData({});
+    //   setErrors({});
+    // } catch (err) {
+    //   console.error(err);
+    //   alert("❌ Failed to submit form. Try again later.");
+    // }
+
+    alert("✅ Form submitted successfully!");
+
+    // Reset form
+    setFormData({});
+    setErrors({});
+
+    setLoading(false);
+    console.log("formData is ", formData);
+    // 🔥 Smooth scroll to top
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <section className="bg-linear-to-b from-[#07172A] to-[#0A2342] py-6 px-6 md:px-16">
-      {/* Header */}
       <div className="max-w-6xl mx-auto">
-        <h2
-          className="text-5xl font-extrabold text-[#14202d] bg-[#f4c03b] 
-          pl-10 py-8 rounded-b-2xl shadow-lg tracking-wide"
-        >
-          {title}
-        </h2>
-
-        <p className="text-center text-gray-300 mb-8 text-lg">{description}</p>
+        {title && (
+          <h2 className="text-5xl font-extrabold bg-[#f4c03b] text-[#14202d] pl-10 py-3 md:py-8 rounded-b-2xl shadow-lg">
+            {title}
+          </h2>
+        )}
+        {title && (
+          <p className="text-center text-gray-300 mb-8 mt-2 text-lg">
+            {description}
+          </p>
+        )}
       </div>
 
-      {/* Form */}
-      <div
-        className="max-w-6xl mx-auto bg-[#1E3044] text-white 
-        px-10 md:px-14 py-6 rounded-xl shadow-2xl border border-white/10"
-      >
+      <div className="max-w-6xl mx-auto bg-[#1E3044] text-white px-10 md:px-14 py-6 rounded-xl shadow-2xl">
         <form className="space-y-6" onSubmit={handleSubmit}>
           {/* TEXT FIELDS */}
           {fields.map((field, idx) => (
@@ -106,24 +142,14 @@ export default function FeedbackForm({
                 {field.required && <span className="text-red-500">*</span>}
               </label>
 
-              {/* <input
-                type={field.type || "text"}
-                placeholder={field.placeholder}
-                value={formData[field.label] || ""}
-                onChange={(e) => handleChange(field.label, e.target.value)}
-                onBlur={() => handleBlur(field)}
-                className="w-full p-3 rounded bg-white text-black"
-              /> */}
-
               <input
                 type={field.type || "text"}
                 placeholder={field.placeholder}
                 value={formData[field.label] || ""}
                 onChange={(e) => handleChange(field.label, e.target.value)}
                 onBlur={() => handleBlur(field)}
-                inputMode={field.inputMode || undefined}
-                pattern={field.pattern || undefined}
-                maxLength={field.maxLength || undefined}
+                inputMode={field.inputMode}
+                maxLength={field.maxLength}
                 onInput={(e) => {
                   if (field.onlyNumbers) {
                     e.target.value = e.target.value.replace(/[^0-9]/g, "");
@@ -145,7 +171,7 @@ export default function FeedbackForm({
             <div key={idx}>
               <label className="block mb-2">
                 {q.text}
-                {q.required && <span className="text-red-500"> *</span>}
+                {q.required && <span className="text-red-500">*</span>}
               </label>
 
               <select
@@ -189,14 +215,27 @@ export default function FeedbackForm({
             ></textarea>
           </div>
 
-          {/* Submit */}
+          {/* SUBMIT BUTTON */}
           <button
             type="submit"
-            className="w-full bg-yellow-400 text-black font-semibold py-3 rounded 
-            hover:bg-yellow-300 transition"
+            disabled={loading}
+            className={`w-full font-semibold py-3 rounded transition
+  ${
+    loading
+      ? "bg-gray-400 cursor-not-allowed"
+      : "bg-yellow-400 text-black hover:bg-yellow-300 cursor-pointer"
+  }`}
           >
-            Submit Form
+            {loading ? "Submitting..." : "Submit Form"}
           </button>
+
+          {/* ERROR COUNT DISPLAY */}
+          {Object.keys(errors).length > 0 && (
+            <p className="text-red-400 text-center mt-3">
+              ⚠️ {Object.keys(errors).length} field(s) need attention before
+              submitting.
+            </p>
+          )}
         </form>
       </div>
     </section>

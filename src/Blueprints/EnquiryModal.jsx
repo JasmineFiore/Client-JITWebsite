@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import countryCodes from "../data/countryCodes";
 import { validateField, validateForm } from "../data/validation";
+import axios from "axios";
 
 export default function EnquiryModal({ isOpen, onClose }) {
   const modalRef = useRef(null);
@@ -16,6 +17,7 @@ export default function EnquiryModal({ isOpen, onClose }) {
 
   const [formData, setFormData] = useState(initialForm);
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
 
   // Reset form when modal opens
   useEffect(() => {
@@ -69,12 +71,28 @@ export default function EnquiryModal({ isOpen, onClose }) {
   };
 
   // Submit handler
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     if (!validate()) return;
 
-    console.log("FORM SUBMITTED:", formData);
+    // try {
+    //   await axios.post("http://localhost:5000/api/send-feedback", formData);
+    //   alert("✅ Your request has been submitted! We will contact you soon.");
+
+    //   // Reset form
+    //   setFormData({});
+    //   setErrors({});
+    // } catch (err) {
+    //   console.error(err);
+    //   alert("❌ Failed to submit form. Try again later.");
+    // }
     alert("✅ Your request has been submitted! We will contact you soon.");
+    // Reset form
+      setFormData({});
+      setErrors({});
+    setLoading(false);
+    console.log("FORM SUBMITTED:", formData);
     onClose();
   };
 
@@ -274,9 +292,16 @@ export default function EnquiryModal({ isOpen, onClose }) {
           {/* Submit */}
           <button
             type="submit"
-            className="bg-[#0A2342] text-white font-semibold px-6 py-2 rounded-md hover:bg-[#12315b] transition-all w-full cursor-pointer"
+            disabled={loading}
+            // className="bg-[#0A2342] text-white font-semibold px-6 py-2 rounded-md hover:bg-[#12315b] transition-all w-full cursor-pointer"
+            className={`w-full font-semibold py-3 rounded transition
+  ${
+    loading
+      ? "bg-gray-400 cursor-not-allowed"
+      : "bg-[#0A2342] text-white hover:bg-indigo-900 cursor-pointer"
+  }`}
           >
-            Schedule a Call
+            {loading ? "Submitting..." : "Schedule a Call"}
           </button>
         </form>
       </div>

@@ -7,54 +7,45 @@ const StudentFeedback = () => {
       label: "Name of Student",
       placeholder: "Enter student name",
       required: true,
-      validate: (v) =>
-        v.trim().length >= 3 || "Name must be at least 3 characters",
+      mapToValidation: "name",
     },
     {
       label: "Email",
       type: "email",
       placeholder: "Enter email address",
       required: true,
-      validate: (v) =>
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || "Enter a valid email address",
+      mapToValidation: "email",
     },
     {
       label: "Registration Number",
       placeholder: "Enter registration number",
       required: true,
-      onlyNumbers: true, //  allow only digits
-      inputMode: "numeric",
-      validate: (v) => v.trim() !== "" || "Registration number is required",
+      onlyNumbers: true,
     },
     {
       label: "Subject",
       placeholder: "Enter subject name",
       required: true,
-      validate: (v) => v.trim() !== "" || "Subject is required",
     },
     {
       label: "Course & Semester",
       placeholder: "Enter course & semester",
       required: true,
-      validate: (v) => v.trim() !== "" || "Course & semester is required",
     },
     {
       label: "Name of the Teacher (Subject taught)",
       placeholder: "Enter teacher name",
       required: true,
-      validate: (v) =>
-        v.trim().length >= 3 || "Teacher name must be at least 3 characters",
+      mapToValidation: "name",
     },
     {
       label: "Contact Number",
       placeholder: "Enter contact number",
       required: true,
-      onlyNumbers: true, //  allow only digits
-      inputMode: "numeric", //  mobile-friendly numeric keypad
-      pattern: "[0-9]*", //  restrict non-numeric entries
-      maxLength: 10, //  exact 10 digits
-      validate: (v) =>
-        /^[0-9]{10}$/.test(v) || "Enter valid 10-digit phone number",
+      onlyNumbers: true,
+      maxLength: 10,
+      inputMode: "numeric",
+      mapToValidation: "phone",
     },
   ];
 

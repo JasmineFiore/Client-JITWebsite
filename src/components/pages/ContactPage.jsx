@@ -5,8 +5,10 @@ import {
   validateField,
   validateForm as validateAll,
 } from "../../data/validation";
+import axios from "axios";
 
 export default function ContactPage() {
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     name: "",
@@ -33,26 +35,63 @@ export default function ContactPage() {
     setErrors((prev) => ({ ...prev, [name]: message }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
+    // 1️⃣ Perform validation
     const newErrors = validateAll(formData);
     setErrors(newErrors);
 
-    if (Object.keys(newErrors).length > 0) return;
+    if (Object.keys(newErrors).length > 0) {
+      // Scroll to the first invalid field
+      const firstErrorField = Object.keys(newErrors)[0];
+      const el = document.querySelector(`[name="${firstErrorField}"]`);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        el.focus();
+      }
 
-    alert("✅ Thank you! We’ll contact you soon.");
+      setLoading(false); // Stop loading if errors
+      return;
+    }
 
-    setFormData({
-      name: "",
-      email: "",
-      countryCode: "+91",
-      phone: "",
-      state: "",
-      program: "",
-    });
+    // 2️⃣ Send data to backend
+    // try {
+    //   await axios.post("http://localhost:5000/api/send-feedback", formData);
+    //   alert("✅ Form submitted successfully!");
 
-    setErrors({});
+    //   // Reset form
+    //   setFormData({
+    //     name: "",
+    //     email: "",
+    //     countryCode: "+91",
+    //     phone: "",
+    //     state: "",
+    //     program: "",
+    //     // add other fields if needed
+    //   });
+    //   setErrors({});
+    // } catch (err) {
+    //   console.error(err);
+    //   alert("❌ Failed to submit form. Try again later.");
+    // }
+
+    alert("✅ Form submitted successfully!");
+
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        countryCode: "+91",
+        phone: "",
+        state: "",
+        program: "",
+        // add other fields if needed
+      });
+      setErrors({});
+    setLoading(false);
+    console.log("formData is ",formData)
   };
 
   const contactInfo = [
@@ -78,9 +117,8 @@ export default function ContactPage() {
     },
     {
       icon: <FaMapMarkerAlt />,
-      label: `Jahangirabad Educational Trust Group Of Institutions,
-Jahangirabad, Barabanki District,
-Uttar Pradesh 225203, India`,
+      label: `JIT, Jahangirabad Fort, Jahangirabad, Barabanki Dist.,
+              UP 225203, India`,
       action: "https://maps.app.goo.gl/6ALHKXG8LZ2iYC3X7", // <-- Your map link
       isAddress: true,
     },
@@ -213,7 +251,9 @@ Uttar Pradesh 225203, India`,
                 onBlur={handleBlur}
                 className="w-full p-3 rounded-md bg-white"
               >
-                <option value="" disabled>Select State</option>
+                <option value="" disabled>
+                  Select State
+                </option>
                 {/* All states */}
                 <option>Andhra Pradesh</option>
                 <option>Arunachal Pradesh</option>

@@ -106,7 +106,7 @@ const Navbar = () => {
             </h1>
             <div className="hidden md:flex items-center gap-2 text-sm">
               <FaMapMarkerAlt className="text-yellow-400" />
-              <span> Lucknow, Uttar Pradesh, India</span>
+              <span> Barabanki, Uttar Pradesh, India</span>
             </div>
           </div>
         </div>
@@ -542,6 +542,10 @@ const Navbar = () => {
                           // M.Pharm (Pharm. Chemistry)
                           // M.Pharm (Pharmaceutics)
                           // M.Pharm (Pharmacology)
+                          ["b-pharma", "M.Pharm (Pharmaceutical Chemistry)"],
+                          ["b-pharma", "M.Pharm (Pharmaceutics)"],
+                          ["b-pharma", "M.Pharm (Pharmacology)"],
+
                           ["b-pharma", "B.Pharm (Bachelor of Pharmacy)"],
                           [
                             "b-pharmalater",
@@ -698,6 +702,24 @@ const Navbar = () => {
                           [
                             "iti-multimedia",
                             "Multimedia Animation & Special Effects",
+                          ],
+                        ].map(([path, name]) => (
+                          <li key={path}>
+                            <Link
+                              // to={`/${path}`}
+                              onClick={handleLinkClick}
+                              className="block hover:text-blue-700 px-2 py-1"
+                            >
+                              {name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                      <ul className="space-y-1 text-xs">
+                        {[
+                          [
+                            // "iti-multimedia",
+                            // "Multimedia Animation & Special Effects",
                           ],
                           ["digital-photography", "Digital Photographer"],
                           ["iti-electrician", "Electrician"],
