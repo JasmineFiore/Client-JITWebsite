@@ -3,15 +3,15 @@ import WhyJIT from "./WhyJIT";
 
 export default function CareersPage() {
   const jobs = [
-    {
-      title: "ICT",
-      jobtitle: "Sr. IT Manager",
-      qualification:
-        "MCA or M.Tech in Computer Science with minimum 5+ years experience.",
-      specialization:
-        "Sound knowledge in Network and WiFi Management with Microtik Wireless, computer hardware and printer and proficient in Server Administration.",
-      experience: "05+ Years",
-    },
+    // {
+    //   title: "ICT",
+    //   jobtitle: "Sr. IT Manager",
+    //   qualification:
+    //     "MCA or M.Tech in Computer Science with minimum 5+ years experience.",
+    //   specialization:
+    //     "Sound knowledge in Network and WiFi Management with Microtik Wireless, computer hardware and printer and proficient in Server Administration.",
+    //   experience: "05+ Years",
+    // },
     {
       title: "Cook",
       jobtitle: "Cook",
@@ -28,13 +28,13 @@ export default function CareersPage() {
       //   experience: "10+ Years",
       branch: "Degree College of Arts & Commerce, MBA",
     },
-    {
-      title: "NCC Trainer",
-      jobtitle: "NCC Trainer",
-      qualification: "Ex Serviceman from Defence forces",
-      //   specialization: "Training cadets & drill instructions",
-      //   experience: "3+ Years",
-    },
+    // {
+    //   title: "NCC Trainer",
+    //   jobtitle: "NCC Trainer",
+    //   qualification: "Ex Serviceman from Defence forces",
+    //   //   specialization: "Training cadets & drill instructions",
+    //   //   experience: "3+ Years",
+    // },
   ];
 
   return (

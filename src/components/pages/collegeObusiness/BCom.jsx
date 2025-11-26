@@ -102,7 +102,7 @@ export default function BCom() {
               </button>
               <button
                 onClick={() => navigate("/hod/electrical")}
-                className="border border-yellow-400 text-white font-semibold px-6 py-2 rounded-md bg-[#0A2342] transition-all"
+                className="border border-yellow-400 cursor-pointer text-white font-semibold px-6 py-2 rounded-md bg-[#0A2342] transition-all"
               >
                 Hod Profile
               </button>
@@ -207,7 +207,7 @@ export default function BCom() {
             <div className="flex justify-center gap-24">
               {/* 1st Year */}
               <a
-                // href="/syllabus/MBA-1st-Year-AKTU.pdf"
+                href="/syllabus/MBA-1st-Year-AKTU.pdf"
                 target="_blank"
                 className="flex flex-col items-center text-[#0A2342] hover:text-blue-700 transition-transform hover:scale-110"
               >
@@ -224,7 +224,7 @@ export default function BCom() {
 
               {/* 2nd Year */}
               <a
-                // href="/syllabus/MBA-2nd-Year-AKTU-.pdf"
+                href="/syllabus/MBA-2nd-Year-AKTU-.pdf"
                 target="_blank"
                 className="flex flex-col items-center text-[#0A2342] hover:text-blue-700 transition-transform hover:scale-110"
               >
@@ -241,7 +241,7 @@ export default function BCom() {
 
               {/* 3nd Year */}
               <a
-                // href="/syllabus/MBA-2nd-Year-AKTU-.pdf"
+                href="/syllabus/MBA-2nd-Year-AKTU-.pdf"
                 target="_blank"
                 className="flex flex-col items-center text-[#0A2342] hover:text-blue-700 transition-transform hover:scale-110"
               >
@@ -253,7 +253,7 @@ export default function BCom() {
                 >
                   <path d="M12 16l4-5h-3V4h-2v7H8l4 5zm8 2H4v2h16v-2z" />
                 </svg>
-                <span className="text-lg font-bold">2nd Year</span>
+                <span className="text-lg font-bold">3rd Year</span>
               </a>
             </div>
           </div>

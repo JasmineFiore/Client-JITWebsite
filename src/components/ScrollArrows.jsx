@@ -6,7 +6,7 @@ export default function ScrollToTopButton() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 4300) {
+      if (window.scrollY > 3000) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
@@ -27,7 +27,7 @@ export default function ScrollToTopButton() {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 bg-yellow-400 text-blue-900 p-3 rounded-full shadow-xl hover:scale-110 transition-all duration-300 z-50"
+          className="fixed bottom-6 right-6 bg-yellow-500 text-blue-900 p-3 rounded-full shadow-xl hover:scale-110 transition-all duration-300 z-50"
         >
           <FaArrowUp size={25} />
         </button>

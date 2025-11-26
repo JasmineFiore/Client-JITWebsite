@@ -72,15 +72,15 @@ export default function Hindi() {
       syllabusLinks={[
         {
           label: "1st Year",
-          // url: "/syllabus/LLB-1st-Year.pdf"
+           url: "/syllabus/MBA-2nd-Year-AKTU-.pdf"
         },
         {
           label: "2nd Year",
-          //  url: "/syllabus/LLB-2nd-Year.pdf"
+            url: "/syllabus/MBA-2nd-Year-AKTU-.pdf"
         },
         {
           label: "3rd Year",
-          //  url: "/syllabus/LLB-3rd-Year.pdf"
+            url: "/syllabus/MBA-2nd-Year-AKTU-.pdf"
         },
       ]}
     />

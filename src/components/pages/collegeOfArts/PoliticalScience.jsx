@@ -220,7 +220,7 @@ export default function PoliticalScience() {
             <div className="flex justify-center gap-24">
               {/* 1st Year */}
               <a
-                // href="/syllabus/MBA-1st-Year-AKTU.pdf"
+                href="/syllabus/MBA-1st-Year-AKTU.pdf"
                 target="_blank"
                 className="flex flex-col items-center text-[#0A2342] hover:text-blue-700 transition-transform hover:scale-110"
               >
@@ -237,7 +237,7 @@ export default function PoliticalScience() {
 
               {/* 2nd Year */}
               <a
-                // href="/syllabus/MBA-2nd-Year-AKTU-.pdf"
+                href="/syllabus/MBA-2nd-Year-AKTU-.pdf"
                 target="_blank"
                 className="flex flex-col items-center text-[#0A2342] hover:text-blue-700 transition-transform hover:scale-110"
               >
@@ -254,7 +254,7 @@ export default function PoliticalScience() {
 
               {/* 3nd Year */}
               <a
-                // href="/syllabus/MBA-2nd-Year-AKTU-.pdf"
+                href="/syllabus/MBA-2nd-Year-AKTU-.pdf"
                 target="_blank"
                 className="flex flex-col items-center text-[#0A2342] hover:text-blue-700 transition-transform hover:scale-110"
               >
@@ -266,7 +266,7 @@ export default function PoliticalScience() {
                 >
                   <path d="M12 16l4-5h-3V4h-2v7H8l4 5zm8 2H4v2h16v-2z" />
                 </svg>
-                <span className="text-lg font-bold">2nd Year</span>
+                <span className="text-lg font-bold">3rd Year</span>
               </a>
             </div>
           </div>
