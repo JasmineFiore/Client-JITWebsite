@@ -98,7 +98,7 @@ export default function HeroCarousel() {
           transition={{ duration: 0.9, delay: 0.4 }}
           className="mt-8 sm:mt-10"
         >
-          {slides[index].cta === "Apply Now" ? (
+          {slides[index].cta === "Explore JETGI" ? (
             <motion.button
               onClick={() => setShowCircleModal(true)}
               className="bg-[#FFB81C] text-[#002147] font-bold py-2 sm:py-3 px-6 sm:px-8 rounded-full shadow-lg 
