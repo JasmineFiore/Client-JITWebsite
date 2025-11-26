@@ -1,9 +1,14 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import countryCodes from "../../data/countryCodes";
+import {
+  validateField,
+  validateForm as validateAll,
+} from "../../data/validation";
 
 export default function CounsellingSection() {
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -15,61 +20,62 @@ export default function CounsellingSection() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+
+    // Clear specific field error on change
+    setErrors({ ...errors, [e.target.name]: "" });
   };
 
-  const validateForm = () => {
-    let temp = {};
-    let isValid = true;
-
-    // Name validation
-    if (!formData.name.trim()) {
-      temp.name = "Name is required";
-      isValid = false;
-    }
-
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!formData.email.trim()) {
-      temp.email = "Email is required";
-      isValid = false;
-    } else if (!emailRegex.test(formData.email)) {
-      temp.email = "Enter a valid email address";
-      isValid = false;
-    }
-
-    // Phone validation
-    const phoneRegex = /^[0-9]{10}$/;
-    if (!formData.phone.trim()) {
-      temp.phone = "Phone number is required";
-      isValid = false;
-    } else if (!phoneRegex.test(formData.phone)) {
-      temp.phone = "Phone must be 10 digits only";
-      isValid = false;
-    }
-
-    // State validation
-    if (!formData.state) {
-      temp.state = "Please select your state";
-      isValid = false;
-    }
-
-    // Program validation
-    if (!formData.program) {
-      temp.program = "Please select a program";
-      isValid = false;
-    }
-
-    setErrors(temp);
-    return isValid;
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    const message = validateField(name, value);
+    setErrors((prev) => ({ ...prev, [name]: message }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
-    if (!validateForm()) return;
+    // 1️⃣ Perform validation
+    const newErrors = validateAll(formData);
+    setErrors(newErrors);
 
-    alert("✅ Thank you! We’ll contact you soon.");
+    if (Object.keys(newErrors).length > 0) {
+      // Scroll to the first invalid field
+      const firstErrorField = Object.keys(newErrors)[0];
+      const el = document.querySelector(`[name="${firstErrorField}"]`);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        el.focus();
+      }
 
+      setLoading(false); // Stop loading if errors
+      return;
+    }
+
+    // 2️⃣ Send data to backend
+    // try {
+    //   await axios.post("http://localhost:5000/api/send-feedback", formData);
+    //   alert("✅ Form submitted successfully!");
+
+    //   // Reset form
+    //   setFormData({
+    //     name: "",
+    //     email: "",
+    //     countryCode: "+91",
+    //     phone: "",
+    //     state: "",
+    //     program: "",
+    //     // add other fields if needed
+    //   });
+    //   setErrors({});
+    // } catch (err) {
+    //   console.error(err);
+    //   alert("❌ Failed to submit form. Try again later.");
+    // }
+
+    alert("✅ Form submitted successfully!");
+
+    // Reset form
     setFormData({
       name: "",
       email: "",
@@ -77,9 +83,11 @@ export default function CounsellingSection() {
       phone: "",
       state: "",
       program: "",
+      // add other fields if needed
     });
-
     setErrors({});
+    setLoading(false);
+    console.log("formData is ", formData);
   };
 
   return (
@@ -153,8 +161,8 @@ export default function CounsellingSection() {
                 placeholder={field.placeholder}
                 value={formData[field.name]}
                 onChange={handleChange}
+                onBlur={handleBlur}
                 className="w-full p-3 rounded-md bg-white/20 border border-white/30 placeholder-gray-300 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
-                required
               />
               {errors[field.name] && (
                 <p className="text-red-400 text-sm mt-1">
@@ -187,7 +195,6 @@ export default function CounsellingSection() {
 
               {/* Phone Input */}
               <input
-                type="tel"
                 name="phone"
                 maxLength="12"
                 placeholder="Enter phone number"
@@ -197,25 +204,33 @@ export default function CounsellingSection() {
                   setFormData({ ...formData, phone: numericValue });
                   setErrors({ ...errors, phone: "" });
                 }}
+                onBlur={handleBlur}
                 className="w-10 flex-1 p-3 rounded-md bg-white/20 border border-white/30 placeholder-gray-300 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
-                required
               />
             </div>
+
+            {errors.phone && (
+              <p className="text-red-400 text-sm mt-1">{errors.phone}</p>
+            )}
           </div>
 
+          {/* State */}
           <div>
             <label className="block text-sm font-semibold mb-1">
               Select your State <span className="text-red-400">*</span>
             </label>
+
             <select
               name="state"
               value={formData.state}
               onChange={handleChange}
+              onBlur={handleBlur}
               className="w-full p-3 rounded-md bg-white/20 border border-white/30 text-white focus:text-black focus:bg-white"
             >
-              <option value="">Select State</option>
-
-              {/* States */}
+              <option value="" disabled>
+                Select State
+              </option>
+              {/* All states */}
               <option>Andhra Pradesh</option>
               <option>Arunachal Pradesh</option>
               <option>Assam</option>
@@ -255,20 +270,28 @@ export default function CounsellingSection() {
               <option>Puducherry</option>
               <option>Jammu and Kashmir</option>
             </select>
+            {errors.state && (
+              <p className="text-red-400 text-sm mt-1">{errors.state}</p>
+            )}
           </div>
 
+          {/* Program */}
           <div>
             <label className="block text-sm font-semibold mb-1">
               Select Program Applying For{" "}
               <span className="text-red-400">*</span>
             </label>
+
             <select
               name="program"
               value={formData.program}
               onChange={handleChange}
+              onBlur={handleBlur}
               className="w-full p-3 rounded-md bg-white/20 border border-white/30 text-white focus:text-black focus:bg-white"
             >
-              <option value="">Select Program</option>
+              <option value="" disabled>
+                Select Program
+              </option>
               <option>MBA</option>
               <option>Engineering</option>
               <option>Engineering Diploma</option>
@@ -279,15 +302,26 @@ export default function CounsellingSection() {
               <option>Journalism</option>
               <option>ITI</option>
             </select>
+
+            {errors.program && (
+              <p className="text-red-400 text-sm mt-1">{errors.program}</p>
+            )}
           </div>
 
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
             type="submit"
-            className="bg-gradient-to-r from-[#0A2342]/50 to-[#0A2342]/30 text-yellow-500 font-semibold px-6 py-3 rounded-lg w-full shadow-md hover:shadow-xl transition-all"
+            disabled={loading}
+            className={`bg-linear-to-r from-[#0A2342]/50 to-[#0A2342]/30 text-yellow-500 cursor-pointer font-semibold px-6 py-3 rounded-lg w-full shadow-md hover:shadow-xl transition-all
+        
+            $
+            {loading
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-[#0A2342] text-white hover:bg-indigo-900 cursor-pointer"}
+            `}
           >
-            Apply Now
+            {loading ? "Submitting..." : "Apply Now"}
           </motion.button>
         </motion.form>
       </div>

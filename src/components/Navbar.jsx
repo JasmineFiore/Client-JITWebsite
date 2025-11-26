@@ -102,7 +102,7 @@ const Navbar = () => {
           />
           <div>
             <h1 className="text-lg sm:text-2xl font-bold leading-tight">
-              Jahangirabad Institute of Technology
+              Jahangirabad Educational Trust Group of Institutions{" "}
             </h1>
             <div className="hidden md:flex items-center gap-2 text-sm">
               <FaMapMarkerAlt className="text-yellow-400" />

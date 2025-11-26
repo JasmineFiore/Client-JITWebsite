@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
+import CircleModal from "./CircleModal";
 
 const slides = [
   {
@@ -8,8 +9,7 @@ const slides = [
     title: "Welcome to JIT",
     subtitle:
       "Delivering world-class education that’s accessible and affordable for every learner.", //"A hub of innovation, research, and excellence."
-    cta: "Apply Now",
-    ctaLink: "https://jit-cet.uc-school.com/site/mobile-registration",
+    cta: "Explore JETGI",
   },
   {
     image: "/images/homec5.webp",
@@ -36,6 +36,7 @@ const slides = [
 ];
 
 export default function HeroCarousel() {
+  const [showCircleModal, setShowCircleModal] = useState(false);
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -97,12 +98,21 @@ export default function HeroCarousel() {
           transition={{ duration: 0.9, delay: 0.4 }}
           className="mt-8 sm:mt-10"
         >
-          {slides[index].ctaLink.startsWith("http") ? (
+          {slides[index].cta === "Apply Now" ? (
+            <motion.button
+              onClick={() => setShowCircleModal(true)}
+              className="bg-[#FFB81C] text-[#002147] font-bold py-2 sm:py-3 px-6 sm:px-8 rounded-full shadow-lg 
+      hover:bg-[#e0a914] hover:scale-105 transition-all duration-300 
+      text-[clamp(0.9rem,1.5vw,1.2rem)]"
+            >
+              {slides[index].cta}
+            </motion.button>
+          ) : slides[index].ctaLink.startsWith("http") ? (
             <motion.button
               onClick={() => window.open(slides[index].ctaLink, "_blank")}
               className="bg-[#FFB81C] text-[#002147] font-bold py-2 sm:py-3 px-6 sm:px-8 rounded-full shadow-lg 
-              hover:bg-[#e0a914] hover:scale-105 transition-all duration-300 
-              text-[clamp(0.9rem,1.5vw,1.2rem)]"
+      hover:bg-[#e0a914] hover:scale-105 transition-all duration-300 
+      text-[clamp(0.9rem,1.5vw,1.2rem)]"
             >
               {slides[index].cta}
             </motion.button>
@@ -110,8 +120,8 @@ export default function HeroCarousel() {
             <Link
               to={slides[index].ctaLink}
               className="bg-[#FFB81C] text-[#002147] font-bold py-2 sm:py-3 px-6 sm:px-8 rounded-full shadow-lg 
-              hover:bg-[#e0a914] hover:scale-105 transition-all duration-300
-              text-[clamp(0.9rem,1.5vw,1.2rem)]"
+      hover:bg-[#e0a914] hover:scale-105 transition-all duration-300
+      text-[clamp(0.9rem,1.5vw,1.2rem)]"
             >
               {slides[index].cta}
             </Link>
@@ -133,6 +143,10 @@ export default function HeroCarousel() {
           />
         ))}
       </div>
+      <CircleModal
+        isOpen={showCircleModal}
+        onClose={() => setShowCircleModal(false)}
+      />
     </div>
   );
 }

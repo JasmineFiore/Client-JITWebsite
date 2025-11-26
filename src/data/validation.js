@@ -6,14 +6,20 @@ export const validateName = (value) => {
 };
 
 export const validateEmail = (value) => {
-  if (!value.trim()) return "Email is required";
-  if (!/\S+@\S+\.\S+/.test(value)) return "Enter a valid email";
-  return "";
+  const trimmed = value.trim();
+
+  if (!trimmed) return "Email is required";
+
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/;
+
+  return emailRegex.test(trimmed)
+    ? ""
+    : "Invalid email format. ex: abc@gmail.com";
 };
 
 export const validatePhone = (value) => {
   if (!value.trim()) return "Phone number is required";
-  if (!/^[0-9]{7,12}$/.test(value)) return "Enter a valid phone number";
+  if (!/^[0-9]{10}$/.test(value)) return "Enter a valid phone number";
   return "";
 };
 
@@ -60,19 +66,20 @@ export const validateField = (name, value) => {
 export const validateForm = (formData) => {
   const errors = {};
 
-  if (validateName(formData.name)) errors.name = validateName(formData.name);
+  const nameError = validateName(formData.name);
+  if (nameError) errors.name = nameError;
 
-  if (validateEmail(formData.email))
-    errors.email = validateEmail(formData.email);
+  const emailError = validateEmail(formData.email);
+  if (emailError) errors.email = emailError;
 
-  if (validatePhone(formData.phone))
-    errors.phone = validatePhone(formData.phone);
+  const phoneError = validatePhone(formData.phone);
+  if (phoneError) errors.phone = phoneError;
 
-  if (validateState(formData.state))
-    errors.state = validateState(formData.state);
+  const stateError = validateState(formData.state);
+  if (stateError) errors.state = stateError;
 
-  if (validateProgram(formData.program))
-    errors.program = validateProgram(formData.program);
+  const programError = validateProgram(formData.program);
+  if (programError) errors.program = programError;
 
   return errors;
 };

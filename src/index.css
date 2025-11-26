@@ -62,3 +62,52 @@ body {
   color: #facc15 !important; /* yellow-400 on hover */
 }
 
+
+
+
+/* for circle modal at home carousel */
+
+@keyframes scaleIn {
+  0% { transform: scale(0.7); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-scaleIn { animation: scaleIn 0.4s ease-out forwards; }
+
+@keyframes slowRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.rotate-slow { animation: slowRotate 35s linear infinite; }
+
+@keyframes particle {
+  0% { transform: translate(0,0) scale(1); opacity: 0.2; }
+  50% { transform: translate(20px,-30px) scale(1.4); opacity: 0.5; }
+  100% { transform: translate(-20px,20px) scale(1); opacity: 0.2; }
+}
+.particle { animation: particle 8s ease-in-out infinite; }
+
+/* Clean floating animation */
+@keyframes floatX {
+  0% { transform: translateX(0px); }
+  50% { transform: translateX(12px); }
+  100% { transform: translateX(0px); }
+}
+@keyframes floatY {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
+
+.floating {
+  animation: floatX 6s ease-in-out infinite alternate,
+             floatY 5s ease-in-out infinite alternate;
+}
+
+/* Scrollbar */
+.custom-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: #ffffff40;
+  border-radius: 8px;
+}
