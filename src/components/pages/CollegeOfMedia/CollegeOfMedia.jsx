@@ -15,32 +15,32 @@ export default function CollegeOfMedia() {
       aboutHeading="College of Media & Journalism​"
       aboutParagraphs={[
         "Jahangirabad Media Institute has been set up with the target to prepare national and universal understudies to be the significant main thrust in the media business as the leaders. The grounds spread over a region of 50 considerations is bound with every one of the enhancements important to give a healthy air to the understudies in learning and improvement JMI is an approved Study Centre of Mahatma Gandhi Antarrashtriya Hindi Vishwavidyalaya (MGAHV), Wardha and Indira Gandhi National Open University (IGNOU), New Delhi. The JMI has various modern facilities & infrastructure including well equipped theaters & JIT Radio for imparting world class training in media courses. Highly qualified & experienced faculty & administration from reputed Indian universities and visiting faculties from USA and Europe provide global exposure to the students.",
-      ]}    
+      ]}
       courses={[
         {
           title: "BA Journalism & Mass Communication",
           image: "/images/CollegeOfMedia/slide1.jpg",
-        //   path: "/llb",
+          path: "/ba-journalism",
         },
         {
           title: "Certification in Acting",
           image: "/images/CollegeOfMedia/media2.jpg",
-        //   path: "/political-science",
+            path: "/acting-cert",
         },
         {
           title: "Certification in Film Making",
           image: "/images/CollegeOfMedia/slide2.jpg",
-        //   path: "/political-science",
+          //   path: "/political-science",
         },
         {
           title: "Certification in Anchoring & Journalism",
-          image:"/images/CollegeOfMedia/slide2.jpg",
-        //   path: "/political-science",
+          image: "/images/CollegeOfMedia/slide2.jpg",
+          //   path: "/political-science",
         },
         {
           title: "Certification in Video Editing",
           image: "/images/CollegeOfMedia/slide2.jpg",
-        //   path: "/political-science",
+          //   path: "/political-science",
         },
       ]}
       infraImages={[
