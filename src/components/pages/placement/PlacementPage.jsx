@@ -3,12 +3,28 @@ import PlacementCard from "./PlacementCard";
 import { useNavigate, useLocation } from "react-router-dom";
 import FAQ from "../../../Blueprints/FAQ";
 import { FaEnvelope, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
+import countryCodes from "../../../data/countryCodes";
+import {
+  validateField,
+  validateForm as validateAll,
+} from "../../../data/validation";
 
 const PlacementPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const [activeSection, setActiveSection] = useState("Placement");
+  const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    countryCode: "+91",
+    phone: "",
+    program: "",
+    subject: "",
+    message: "",
+  });
 
   // Route → Section
   const pathToSection = {
@@ -32,6 +48,77 @@ const PlacementPage = () => {
   const handleSectionClick = (section) => {
     setActiveSection(section);
     navigate(sectionToPath[section]);
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+    // Clear specific field error on change
+    setErrors({ ...errors, [e.target.name]: "" });
+  };
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    const message = validateField(name, value);
+    setErrors((prev) => ({ ...prev, [name]: message }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    // 1️⃣ Perform validation
+    const newErrors = validateAll(formData);
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) {
+      // Scroll to the first invalid field
+      const firstErrorField = Object.keys(newErrors)[0];
+      const el = document.querySelector(`[name="${firstErrorField}"]`);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        el.focus();
+      }
+
+      setLoading(false); // Stop loading if errors
+      return;
+    }
+
+    // 2️⃣ Send data to backend
+    // try {
+    //   await axios.post("http://localhost:5000/api/send-feedback", formData);
+    //   alert("✅ Form submitted successfully!");
+
+    //   // Reset form
+    //   setFormData({
+    //     name: "",
+    //     email: "",
+    //     countryCode: "+91",
+    //     phone: "",
+    //     state: "",
+    //     program: "",
+    //     // add other fields if needed
+    //   });
+    //   setErrors({});
+    // } catch (err) {
+    //   console.error(err);
+    //   alert("❌ Failed to submit form. Try again later.");
+    // }
+
+    alert("✅ Form submitted successfully!");
+
+    // Reset form
+    setFormData({
+      name: "",
+      email: "",
+      countryCode: "+91",
+      phone: "",
+      program: "",
+      // add other fields if needed
+    });
+    setErrors({});
+    setLoading(false);
+    console.log("formData is ", formData);
   };
 
   // ---- TPO Members ----
@@ -297,7 +384,7 @@ const PlacementPage = () => {
           </div>
 
           {/* RIGHT SIDE FORM */}
-          <div className="bg-[#1A2A40] p-6 rounded-xl shadow-lg text-white space-y-4">
+          {/* <div className="bg-[#1A2A40] p-6 rounded-xl shadow-lg text-white space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <input
                 className="p-3 rounded bg-[#24364f] w-full"
@@ -328,6 +415,159 @@ const PlacementPage = () => {
             <button className="w-full py-3 rounded bg-yellow-500 text-black font-semibold hover:bg-yellow-400 transition">
               Submit
             </button>
+          </div> */}
+          <div className="bg-[#0A2342] p-10 rounded-2xl shadow-2xl">
+            <form className="space-y-6" onSubmit={handleSubmit}>
+              {[
+                {
+                  label: "Name",
+                  name: "name",
+                  placeholder: "Enter your full name",
+                  type: "text",
+                },
+                {
+                  label: "Email",
+                  name: "email",
+                  placeholder: "Enter your email",
+                  type: "email",
+                },
+              ].map((field) => (
+                <div key={field.name}>
+                  <label className="block text-sm font-semibold text-gray-300 mb-1">
+                    {field.label} <span className="text-red-400">*</span>
+                  </label>
+                  <input
+                    type={field.type}
+                    name={field.name}
+                    placeholder={field.placeholder}
+                    value={formData[field.name]}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className="w-full p-3 rounded-md bg-white"
+                  />
+                  {errors[field.name] && (
+                    <p className="text-red-400 text-sm mt-1">
+                      {errors[field.name]}
+                    </p>
+                  )}
+                </div>
+              ))}
+
+              {/* Phone Number with Country Code */}
+              <div>
+                <label className="block text-sm  text-gray-300 font-semibold mb-1">
+                  Phone No. <span className="text-red-400">*</span>
+                </label>
+
+                <div className="flex gap-3">
+                  <select
+                    name="countryCode"
+                    value={formData.countryCode}
+                    onChange={handleChange}
+                    className="w-28 p-3 rounded-md bg-white"
+                  >
+                    {countryCodes.map((c, i) => (
+                      <option key={i} value={c.code}>
+                        {c.flag} {c.code}
+                      </option>
+                    ))}
+                  </select>
+
+                  {/* Phone Input */}
+                  <input
+                    name="phone"
+                    maxLength="12"
+                    placeholder="Enter phone number"
+                    value={formData.phone}
+                    onChange={(e) => {
+                      const numericValue = e.target.value.replace(
+                        /[^0-9]/g,
+                        ""
+                      ); // only digits
+                      setFormData({ ...formData, phone: numericValue });
+                      setErrors({ ...errors, phone: "" });
+                    }}
+                    onBlur={handleBlur}
+                    className="flex-1 p-3 w-10 rounded-md bg-white"
+                  />
+                </div>
+
+                {errors.phone && (
+                  <p className="text-red-400 text-sm mt-1">{errors.phone}</p>
+                )}
+              </div>
+
+              {/* Program */}
+              <div>
+                <label className="block text-sm text-gray-300 mb-1">
+                  Select Program Applying For{" "}
+                  <span className="text-red-400">*</span>
+                </label>
+
+                <select
+                  name="program"
+                  value={formData.program}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className="w-full p-3 rounded-md bg-white"
+                >
+                  <option value="" disabled>
+                    Select Program
+                  </option>
+                  <option>MBA</option>
+                  <option>Engineering</option>
+                  <option>Engineering Diploma</option>
+                  <option>B. Pharm</option>
+                  <option>D. Pharm</option>
+                  <option>Bachelor of Arts</option>
+                  <option>PG Diploma</option>
+                  <option>Journalism</option>
+                  <option>ITI</option>
+                </select>
+
+                {errors.program && (
+                  <p className="text-red-400 text-sm mt-1">{errors.program}</p>
+                )}
+              </div>
+
+              <div>
+                <input
+                  type="text"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className="w-full p-3 rounded-md bg-white"
+                  placeholder="Subject"
+                />
+                {/* {errors && (
+                  <p className="text-red-400 text-sm mt-1">{errors}</p>
+                )} */}
+              </div>
+
+              <div>
+                <textarea
+                  type="text"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  rows="4"
+                  className="w-full p-3 rounded-md bg-white"
+                  placeholder="Your Message"
+                ></textarea>
+                {/* {errors && (
+                  <p className="text-red-400 text-sm mt-1">{errors}</p>
+                )} */}
+              </div>
+
+              <button
+                type="submit"
+                className="bg-yellow-400 text-black px-8 py-3 cursor-pointer rounded font-semibold hover:bg-yellow-500 transition mt-4 w-full md:w-auto"
+              >
+                Apply Now
+              </button>
+            </form>
           </div>
         </div>,
       ],

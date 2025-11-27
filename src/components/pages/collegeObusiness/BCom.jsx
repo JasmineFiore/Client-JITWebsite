@@ -89,7 +89,7 @@ export default function BCom() {
               >
                 Counselling Now
               </button>
-              <button
+              {/* <button
                 onClick={() =>
                   window.open(
                     "https://jit-cet.uc-school.com/site/mobile-registration",
@@ -99,7 +99,7 @@ export default function BCom() {
                 className="border border-yellow-400 text-[#0A2342] font-semibold cursor-pointer px-6 py-2 rounded-md bg-yellow-300 hover:bg-yellow-400 hover:text-black transition-all"
               >
                 Apply Now
-              </button>
+              </button> */}
               <button
                 onClick={() => navigate("/hod/electrical")}
                 className="border border-yellow-400 cursor-pointer text-white font-semibold px-6 py-2 rounded-md bg-[#0A2342] transition-all"

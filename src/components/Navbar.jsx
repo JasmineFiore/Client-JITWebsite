@@ -13,12 +13,14 @@ import {
 } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import SearchModal from "./SearchModal";
+import EnquiryModal from "../Blueprints/EnquiryModal";
 
 const Navbar = () => {
   const [activeMenu, setActiveMenu] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const location = useLocation();
   let timeoutId = null;
@@ -329,6 +331,8 @@ const Navbar = () => {
             { label: "Contact", path: "/contact" },
             {
               label: "STUDENT LOGIN",
+              // onClick: () => setIsModalOpen(true),
+
               onClick: () => {
                 window.open(
                   "https://jit-cet.uc-school.com/site/mobile-registration",
@@ -603,7 +607,7 @@ const Navbar = () => {
                       <ul className="space-y-1 text-xs">
                         {[
                           ["mba-it", "MBA IT"],
-                          ["mba-it", "MBA IB"],
+                          ["mba-ib", "MBA IB"],
                           ["mba-finance", "MBA Finance"],
                           ["mba-marketing", "MBA Marketing"],
                           ["mba-hr", "MBA HR"],
@@ -642,7 +646,7 @@ const Navbar = () => {
                         ].map(([path, name]) => (
                           <li key={path}>
                             <Link
-                              // to={`/${path}`}
+                              to={`/${path}`}
                               onClick={handleLinkClick}
                               className="block hover:text-blue-700 px-2 py-1"
                             >
@@ -744,6 +748,11 @@ const Navbar = () => {
               )}
             </div>
           ))}
+          {/* Modal */}
+          {/* <EnquiryModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+          /> */}
         </div>
       </nav>
       <SearchModal open={isSearchOpen} onClose={() => setIsSearchOpen(false)} />

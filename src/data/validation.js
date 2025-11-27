@@ -33,6 +33,16 @@ export const validateProgram = (value) => {
   return "";
 };
 
+export const validateSubject = (value) => {
+  if (!value) return "Enter a Subject";
+  return "";
+};
+
+export const validateMessage = (value) => {
+  if (!value) return "Enter a Message";
+  return "";
+};
+
 // =========================================
 // GENERIC FIELD VALIDATOR (USED in onBlur)
 // =========================================
@@ -53,6 +63,12 @@ export const validateField = (name, value) => {
 
     case "program":
       return validateProgram(value);
+
+    case "subject":
+      return validateSubject(value);
+
+    case "message":
+      return validateMessage(value);
 
     default:
       return "";
@@ -80,6 +96,13 @@ export const validateForm = (formData) => {
 
   const programError = validateProgram(formData.program);
   if (programError) errors.program = programError;
+
+  const subjectError = validateSubject(formData.program);
+  if (subjectError) errors.subject = subjectError;
+
+  const messageError = validateMessage(formData.message);
+  if (messageError) errors.message = messageError;
+
 
   return errors;
 };

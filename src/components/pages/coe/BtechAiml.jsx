@@ -74,7 +74,7 @@ export default function BtechAiml() {
               >
                 Enquire Now
               </button>
-              <button
+              {/* <button
                 onClick={() =>
                   window.open(
                     "https://jit-cet.uc-school.com/site/mobile-registration",
@@ -84,7 +84,7 @@ export default function BtechAiml() {
                 className="border border-yellow-400 text-[#0A2342] font-semibold cursor-pointer px-6 py-2 rounded-md hover:bg-yellow-400 hover:text-black transition-all"
               >
                 Apply Now
-              </button>
+              </button> */}
             </div>
           </div>
 
@@ -215,7 +215,7 @@ export default function BtechAiml() {
                 Enquire Now
               </button>
 
-              <button
+              {/* <button
                 onClick={() =>
                   window.open(
                     "https://jit-cet.uc-school.com/site/mobile-registration",
@@ -225,7 +225,7 @@ export default function BtechAiml() {
                 className="border border-yellow-400 text-[#0A2342] font-semibold cursor-pointer px-6 py-2 rounded-md hover:bg-yellow-400 hover:text-black transition-all"
               >
                 Apply Now
-              </button>
+              </button> */}
             </div>
           </div>
 

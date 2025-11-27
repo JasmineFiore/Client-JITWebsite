@@ -65,7 +65,7 @@ export default function CollegeOEngg() {
 
             {/* Buttons */}
             <div className="flex flex-wrap gap-4">
-              <button
+              {/* <button
                 onClick={() =>
                   window.open(
                     "https://jit-cet.uc-school.com/site/mobile-registration",
@@ -75,10 +75,10 @@ export default function CollegeOEngg() {
                 className="bg-yellow-400 text-black font-semibold px-6 py-2 rounded-md shadow-lg hover:bg-yellow-500 transition-all"
               >
                 Apply
-              </button>
+              </button> */}
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="border border-yellow-400 text-white font-semibold px-6 py-2 rounded-md hover:bg-yellow-400 hover:text-black cursor-pointer transition-all"
+                className="border border-yellow-400 bg-yellow-400 text-black font-semibold px-6 py-2 rounded-md hover:bg-yellow-500 hover:text-black cursor-pointer transition-all"
               >
                 Admission Counseling
               </button>
@@ -91,7 +91,7 @@ export default function CollegeOEngg() {
               </button>
               <button
                 onClick={() => navigate("/faculties")}
-                className="border border-yellow-400 text-white font-semibold px-6 py-2 rounded-md hover:bg-yellow-400 hover:text-black transition-all cursor-pointer"
+                className="border border-yellow-400 bg-yellow-400 text-black font-semibold px-6 py-2 rounded-md hover:bg-yellow-500 hover:text-black transition-all cursor-pointer"
               >
                 Faculties
               </button>
