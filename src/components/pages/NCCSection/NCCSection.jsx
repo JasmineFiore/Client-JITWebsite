@@ -45,7 +45,7 @@ export default function NCCSection() {
 
         <img
           src="/images/ncc/ncc2.jpg"
-          className="rounded-xl shadow-lg object-cover w-full h-80 border-4 border-yellow-400"
+          className="rounded-xl shadow-lg object-cover hover:scale-105 transition duration-300 w-full h-80 border-4 border-yellow-400"
           alt="About NCC"
         />
       </section>

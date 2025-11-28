@@ -639,7 +639,7 @@ const Navbar = () => {
                       <ul className="space-y-1 text-xs">
                         {[
                           ["ba-journalism", "BA Journalism"],
-                          ["acting-cert", "Acting Certificate"],
+                          ["acting-certificate", "Acting Certificate"],
                           ["film-making", "Film Making"],
                           ["anchoring", "Anchoring"],
                           ["video-editing", "Video Editing"],

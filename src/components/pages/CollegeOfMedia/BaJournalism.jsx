@@ -9,7 +9,7 @@ export default function BaJournalism() {
         "A Bachelor of Arts (BA) in Journalism is an undergraduate degree program that focuses on developing skills in news reporting, writing, and media communication. The program typically covers topics such as news writing, digital journalism, broadcast journalism, media ethics, communication theories, and investigative reporting. Students also learn about editing, multimedia storytelling, and the use of modern journalistic tools and technologies. The course helps students understand how the media operates, how to gather accurate information, and how to present it effectively across print, digital, and broadcast platforms.",
         "The degree program is usually completed in three years and can lead to a variety of career opportunities in fields such as news reporting, digital media, content creation, public relations, broadcasting, and media management. Additionally, graduates may choose to pursue further studies in journalism or related fields such as mass communication, media studies, advertising, or film and television production.",
       ]}
-      image="/images/CollegeOfMedia/bajournalism.webp"
+      image="/images/CollegeOfMedia/ba-journalism-hero.jpg"
       // hodLink="/hod/arts"
       careerProspects={[
         // {
