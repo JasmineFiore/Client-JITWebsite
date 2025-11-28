@@ -81,7 +81,7 @@ export default function LLB() {
               >
                 Counselling Now
               </button>
-              <button
+              {/* <button
                 onClick={() =>
                   window.open(
                     "https://jit-cet.uc-school.com/site/mobile-registration",
@@ -91,7 +91,7 @@ export default function LLB() {
                 className="border border-yellow-400 text-[#0A2342] font-semibold cursor-pointer px-6 py-2 rounded-md bg-yellow-300 hover:bg-yellow-400 hover:text-black transition-all"
               >
                 Apply Now
-              </button>
+              </button> */}
               <button
                 onClick={() => navigate("/hod/arts")}
                 className="border border-yellow-400 text-white font-semibold cursor-pointer px-6 py-2 rounded-md bg-[#0A2342] transition-all"
@@ -238,7 +238,7 @@ export default function LLB() {
             </p>
 
             <div className="flex justify-center mt-8">
-              <button
+              {/* <button
                 onClick={() =>
                   window.open(
                     "https://jit-cet.uc-school.com/site/mobile-registration",
@@ -248,7 +248,7 @@ export default function LLB() {
                 className="bg-[#0A2342] text-white font-semibold cursor-pointer px-6 py-2 rounded-md hover:bg-gray-900 hover:text-yellow-400 transition-all"
               >
                 Apply Now
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

@@ -77,7 +77,7 @@ const NoticeMarquee = ({ notices }) => {
   return (
     <div className="w-full bg-white text-white border-y-2 border-yellow-600 ">
       <div className="flex">
-        <span className="bg-[#800000] px-4 py-1 font-bold border-r border-white">
+        <span className="bg-[#0A2342]/95 px-4 py-1 font-bold border-r border-white">
           Notices
         </span>
 

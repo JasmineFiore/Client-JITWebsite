@@ -207,7 +207,7 @@ export default function DPharma() {
             </p>
 
             <div className="flex justify-center mt-8">
-              <button
+              {/* <button
                 onClick={() =>
                   window.open(
                     "https://jit-cet.uc-school.com/site/mobile-registration",
@@ -217,7 +217,7 @@ export default function DPharma() {
                 className="bg-[#0A2342] text-white font-semibold cursor-pointer px-6 py-2 rounded-md hover:bg-gray-900 hover:text-yellow-400 transition-all"
               >
                 Apply Now
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

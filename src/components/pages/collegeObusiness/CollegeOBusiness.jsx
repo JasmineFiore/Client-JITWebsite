@@ -49,7 +49,7 @@ export default function CollegeOBusiness() {
 
             {/* Buttons */}
             <div className="flex flex-wrap gap-4">
-              <button
+              {/* <button
                 onClick={() =>
                   window.open(
                     "https://jit-cet.uc-school.com/site/mobile-registration",
@@ -59,7 +59,7 @@ export default function CollegeOBusiness() {
                 className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 cursor-pointer font-semibold px-6 py-2 rounded shadow-lg transition"
               >
                 Apply Now
-              </button>
+              </button> */}
               <button
                 onClick={() => setIsModalOpen(true)}
                 className="bg-yellow-300 hover:bg-yellow-400 text-gray-900 font-semibold cursor-pointer px-6 py-2 rounded shadow-lg transition"

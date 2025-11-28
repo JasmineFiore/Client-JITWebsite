@@ -6,7 +6,7 @@ import JItStudentjourney from "/images/JIt-Student-journey-1024x1024.jpg";
 import ProgramObjectivesImg from "/images/ProgramObjectivesImg.jpg";
 import ReasonsToJoinImg from "/images/ReasonsToJoinImg.jpg";
 
-export default function MbaCommanItFinance({ title }) {
+export default function MbaIb({ title }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const achievers = [
@@ -109,7 +109,7 @@ export default function MbaCommanItFinance({ title }) {
           {/* ✅ Right Image / Carousel */}
           <div className="relative md:w-1/2 flex justify-center items-center">
             <img
-              src="/images/college business/MBA-600x600.jpg"
+              src="/images/college business/mbaib.png"
               alt="AI & ML Engineering"
               className="rounded-2xl shadow-xl w-full h-[500px] object-cover transition-all duration-700 hover:scale-105"
             />

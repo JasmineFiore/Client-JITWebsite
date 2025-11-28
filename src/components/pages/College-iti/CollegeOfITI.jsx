@@ -6,7 +6,7 @@ export default function CollegeOfITI() {
       title="College of ITI"
       heroImage="/images/CollegeOfITI/iti.png"
       heroDescription="ITIs offer training programs in a diverse range of fields, including mechanical engineering, electrical engineering, electronics, computer hardware, automobile technology, welding, plumbing, carpentry, and more. . These programs are designed to impart specialized knowledge and skills related to specific trades and industries."
-      applyNowLink="https://jit-cet.uc-school.com/site/mobile-registration"
+       applyNowLink="https://jit-cet.uc-school.com/site/mobile-registration"
       slides={[
         "/images/CollegeOfITI/iti1.jpg",
         "/images/CollegeOfITI/iti2.jpg",
