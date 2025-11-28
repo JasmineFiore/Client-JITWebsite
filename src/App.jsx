@@ -66,6 +66,8 @@ import Urdu from "./components/pages/collegeOfArts/Urdu";
 import PlacementPage from "./components/pages/placement/PlacementPage";
 import SportsPage from "./components/pages/sports/SportsPage";
 import MyDocument from "./components/pdfviewer/MyDocument";
+import CircleModal from "./components/home/CircleModal";
+import MbaIb from "./components/pages/collegeObusiness/MbaIb";
 import BaJournalism from "./components/pages/CollegeOfMedia/BaJournalism";
 import ActingCertificate from "./components/pages/CollegeOfMedia/ActingCertificate";
 import FilmMaking from "./components/pages/CollegeOfMedia/FilmMaking";
@@ -76,10 +78,54 @@ export default function App() {
   const location = useLocation();
   const isHome = location.pathname === "/";
   const [isPDFMode, setisPDFMode] = useState(false);
+  const [isCircleModalOpen, setIsCircleModalOpen] = useState(false);
 
   return (
     <div className="relative">
       {!isPDFMode && <Navbar />}
+
+      {/* LEFT VERTICAL BUTTON */}
+
+      <button
+        onClick={() => setIsCircleModalOpen(true)}
+        className="
+    fixed left-0 top-1/2 -translate-y-1/2
+    z-50
+    bg-yellow-400
+    px-6 py-4
+    font-semibold tracking-wider
+    border-[#030b1aa0] hover:border-[#0A2342] border-4
+    rounded-r-full rounded-l-none
+    group
+    hover:scale-105 transition-all duration-300
+    flex items-center justify-center
+  "
+      >
+        {/* Blurred background */}
+        <span
+          className="
+      absolute inset-0 z-0
+      opacity-40 blur-sm
+      group-hover:opacity-100 group-hover:blur-0
+      rounded-l-full rounded-r-none
+      transition-all duration-300
+    "
+        ></span>
+
+        {/* Text - Horizontal */}
+        <span
+          className="
+      relative z-10
+      text-[#0A2342]
+      opacity-30
+      group-hover:opacity-100
+      transition-all duration-300
+      whitespace-nowrap
+    "
+        >
+          Explore
+        </span>
+      </button>
 
       <ScrollToTop />
       <ScrollToTopButton />
@@ -118,6 +164,7 @@ export default function App() {
 
           <Route path="/CollegeOfBusiness" element={<CollegeOBusiness />} />
           <Route path="/mba-it" element={<MbaIt />} />
+          <Route path="/mba-ib" element={<MbaIb />} />
           <Route path="/mba-finance" element={<MbaFinance />} />
           <Route path="/mba-marketing" element={<MbaMarketing />} />
           <Route path="/mba-hr" element={<MbaHr />} />
@@ -202,6 +249,11 @@ export default function App() {
           <Route path="/contact" element={<ContactPage />} />
         </Routes>
       </div>
+      <CircleModal
+        isOpen={isCircleModalOpen}
+        onClose={() => setIsCircleModalOpen(false)}
+      />
+
       {!isPDFMode && <Footer />}
     </div>
   );
