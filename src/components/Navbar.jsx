@@ -635,14 +635,14 @@ const Navbar = () => {
                       <ul className="space-y-1 text-xs">
                         {[
                           ["ba-journalism", "BA Journalism"],
-                          ["acting-cert", "Acting Certificate"],
+                          ["acting-certificate", "Acting Certificate"],
                           ["film-making", "Film Making"],
                           ["anchoring", "Anchoring"],
                           ["video-editing", "Video Editing"],
                         ].map(([path, name]) => (
                           <li key={path}>
                             <Link
-                              // to={`/${path}`}
+                              to={`/${path}`}
                               onClick={handleLinkClick}
                               className="block hover:text-blue-700 px-2 py-1"
                             >

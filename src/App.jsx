@@ -66,6 +66,11 @@ import Urdu from "./components/pages/collegeOfArts/Urdu";
 import PlacementPage from "./components/pages/placement/PlacementPage";
 import SportsPage from "./components/pages/sports/SportsPage";
 import MyDocument from "./components/pdfviewer/MyDocument";
+import BaJournalism from "./components/pages/CollegeOfMedia/BaJournalism";
+import ActingCertificate from "./components/pages/CollegeOfMedia/ActingCertificate";
+import FilmMaking from "./components/pages/CollegeOfMedia/FilmMaking";
+import Anchoring from "./components/pages/CollegeOfMedia/Anchoring";
+import VideoEditing from "./components/pages/CollegeOfMedia/VideoEditing";
 
 export default function App() {
   const location = useLocation();
@@ -129,6 +134,11 @@ export default function App() {
           <Route path="/urdu" element={<Urdu />} />
 
           <Route path="/CollegeOfMedia" element={<CollegeOfMedia />} />
+          <Route path="/ba-journalism" element={<BaJournalism />} />
+          <Route path="/acting-certificate" element={<ActingCertificate />} />
+          <Route path="/film-making" element={<FilmMaking />} />
+          <Route path="/anchoring" element={<Anchoring />} />
+          <Route path="/video-editing" element={<VideoEditing />} />
 
           <Route path="/CollegeOfITI" element={<CollegeOfITI />} />
           <Route path="/digital-photography" element={<DigitalPhoto />} />
