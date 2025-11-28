@@ -10,7 +10,7 @@ export default function VideoEditing() {
 
         "The certificate program is usually completed in a short duration—ranging from a few months to one year—and can lead to various opportunities in fields such as film and television editing, digital content creation, social media video production, advertising, motion graphics, short films, and multimedia projects. Additionally, learners may choose to pursue further studies in video production, film editing, cinematography, motion graphics, or digital media production.",
       ]}
-      image="public/images/CollegeOfMedia/VideoEditing-hero.jpg"
+      image="/images/CollegeOfMedia/VideoEditing-hero.jpg"
       // hodLink="/hod/arts"
       careerProspects={[
         // {

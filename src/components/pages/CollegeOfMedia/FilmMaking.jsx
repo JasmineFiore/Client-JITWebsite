@@ -10,7 +10,7 @@ export default function FilmMaking() {
 
         "The certificate program is usually completed in a short duration—ranging from a few months to one year—and can lead to various opportunities in fields such as film production, direction, cinematography, video editing, screenwriting, sound design, and digital media creation. Additionally, learners may choose to pursue further studies in film Making or related fields such as film direction, cinematography, animation, VFX, media production, or mass communication.",
       ]}
-      image="public/images/CollegeOfMedia/filmMaking-hero.jpg"
+      image="/images/CollegeOfMedia/filmMaking-hero.jpg"
       // hodLink="/hod/arts"
       careerProspects={[
         // {
