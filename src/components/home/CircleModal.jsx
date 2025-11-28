@@ -180,14 +180,14 @@ export default function CircleModal({ isOpen, onClose }) {
     // </div>
     <div className="fixed inset-0 backdrop-blur-lg flex items-center justify-center z-50">
       {/* OUTSIDE CLOSE BUTTON */}
-      <button
+         <button
         onClick={onClose}
         className="
-    absolute top-8 right-20 
-    text-white bg-white/10 hover:bg-white/20
-    px-4 py-2 rounded-full shadow-lg 
-    backdrop-blur-xl transition-all hover:scale-110
-  "
+      absolute top-8 right-44 cursor-pointer
+      text-yellow-300 bg-[#0A2342]/80 hover:bg-blue-900/60
+      px-4 py-2 rounded-full shadow-lg
+      backdrop-blur-lg transition-all hover:scale-110
+    "
       >
         Close ✕
       </button>
