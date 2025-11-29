@@ -58,7 +58,7 @@ export default function Mandatory() {
 
             <p className="mt-6 max-w-3xl text-lg md:text-xl lg:text-2xl opacity-90 leading-relaxed drop-shadow-md">
               Welcome to the Mandatory Disclosure section of Jahangirabad
-              Institute of Technology. We ensure transparency by providing
+              Institute of Technology(JIT). We ensure transparency by providing
               essential information about our institution. Below are the key
               details:
             </p>
