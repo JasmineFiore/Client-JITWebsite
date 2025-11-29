@@ -91,40 +91,52 @@ export default function App() {
         className="
     fixed left-0 top-1/2 -translate-y-1/2
     z-50
-    bg-yellow-400
-    px-6 py-4
-    font-semibold tracking-wider
-    border-[#030b1aa0] hover:border-[#0A2342] border-4
-    rounded-r-full rounded-l-none
+    px-0 py-0
     group
-    hover:scale-105 transition-all duration-300
-    flex items-center justify-center
+    hover:scale-105 transition-all duration-300 cursor-pointer
   "
       >
-        {/* Blurred background */}
-        <span
+        {/* BORDER WRAPPER (this keeps border on top of background) */}
+        <div
           className="
-      absolute inset-0 z-0
-      opacity-40 blur-sm
-      group-hover:opacity-100 group-hover:blur-0
-      rounded-l-full rounded-r-none
+      relative
+      px-1 py-6
+      rounded-r-full rounded-l-none
+      border-4 border-[#0A2342]/50
+      group-hover:border-[#0A2342]
       transition-all duration-300
-    "
-        ></span>
-
-        {/* Text - Horizontal */}
-        <span
-          className="
-      relative z-10
-      text-[#0A2342]
-      opacity-30
-      group-hover:opacity-100
-      transition-all duration-300
-      whitespace-nowrap
+      flex flex-col items-center justify-center
+      overflow-hidden
     "
         >
-          Explore
-        </span>
+          {/* BACKGROUND OVERLAY */}
+          <span
+            className="
+        absolute inset-0 z-0
+        bg-yellow-400
+        opacity-40
+        group-hover:opacity-100
+        group-hover:blur-0
+        rounded-r-full rounded-l-none
+        transition-all duration-300
+      "
+          ></span>
+
+          {/* TWO-LINE TEXT */}
+          <span
+            className="
+        relative z-10
+        text-[#0A2342]
+        text-center
+        opacity-30
+        group-hover:opacity-100
+        transition-all duration-300
+        whitespace-pre-line font-bold
+      "
+          >
+            {`Explore\nJETGI`}
+          </span>
+        </div>
       </button>
 
       <ScrollToTop />

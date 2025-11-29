@@ -38,7 +38,7 @@ export default function Mandatory() {
       <div className="mandatory-page">
         {/* HEADER */}
         <header
-          className="relative w-full h-[490px] bg-cover bg-center bg-no-repeat"
+          className="relative w-full h-[420px] bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: `linear-gradient(rgba(5,10,35,0.75), rgba(5,10,35,0.75)), url(${headerImage})`,
           }}
@@ -73,7 +73,7 @@ export default function Mandatory() {
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
-                className={`pb-2 text-lg font-medium transition-all whitespace-nowrap ${
+                className={`pb-2 text-lg font-medium cursor-pointer transition-all whitespace-nowrap ${
                   activeTab === tab.key
                     ? "text-blue-600 border-b-2 border-blue-600"
                     : "text-gray-600 hover:text-gray-900"

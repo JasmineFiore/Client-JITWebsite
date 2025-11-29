@@ -486,14 +486,15 @@ const Navbar = () => {
                           College of Engineering
                         </Link>
                       </h3>
-                      <p className="font-semibold text-base">B.Tech Degree:</p>
-                      <ul className="space-y-1 mb-3 text-xs border-b-2 border-gray-300 ">
+
+                      <p className="font-semibold text-base">Diploma:</p>
+                      <ul className="space-y-1 text-xs mb-3 border-b-2 border-gray-300">
                         {[
-                          ["btech-cse", "Computer Science (CSE)"],
-                          ["btech-aiml", "Artificial Intelligence (AIML)"],
-                          ["btech-ee", "Electrical (EE)"],
-                          ["btech-civil", "Civil (CE)"],
-                          ["btech-mechanical", "Mechanical (ME)"],
+                          ["diploma-cse", "Computer Science"],
+                          ["diploma-ee", "Electrical"],
+                          ["diploma-civil", "Civil"],
+                          ["diploma-mechanical", "Mechanical"],
+                          // ["diploma-library", "Library & Info Science"],
                         ].map(([path, name]) => (
                           <li key={path}>
                             <Link
@@ -506,15 +507,14 @@ const Navbar = () => {
                           </li>
                         ))}
                       </ul>
-
-                      <p className="font-semibold text-base">Diploma:</p>
-                      <ul className="space-y-1 text-xs">
+                      <p className="font-semibold text-base">B.Tech Degree:</p>
+                      <ul className="space-y-1 text-xs ">
                         {[
-                          ["diploma-cse", "Computer Science"],
-                          ["diploma-ee", "Electrical"],
-                          ["diploma-civil", "Civil"],
-                          ["diploma-mechanical", "Mechanical"],
-                          ["diploma-library", "Library & Info Science"],
+                          ["btech-cse", "Computer Science (CSE)"],
+                          ["btech-aiml", "Artificial Intelligence (AIML)"],
+                          ["btech-ee", "Electrical (EE)"],
+                          ["btech-civil", "Civil (CE)"],
+                          ["btech-mechanical", "Mechanical (ME)"],
                         ].map(([path, name]) => (
                           <li key={path}>
                             <Link
@@ -539,38 +539,13 @@ const Navbar = () => {
                           College of Pharmacy
                         </Link>
                       </h3>
-                      <p className="font-semibold text-base">Degree:</p>
-                      <ul className="space-y-1 mb-3 text-xs">
-                        {[
-                          // Pharm.D (Dr. of Pharmacy) these are left
-                          // M.Pharm (Pharm. Chemistry)
-                          // M.Pharm (Pharmaceutics)
-                          // M.Pharm (Pharmacology)
-                          ["b-pharma", "M.Pharm (Pharmaceutical Chemistry)"],
-                          ["b-pharma", "M.Pharm (Pharmaceutics)"],
-                          ["b-pharma", "M.Pharm (Pharmacology)"],
 
-                          ["b-pharma", "B.Pharm (Bachelor of Pharmacy)"],
-                          [
-                            "b-pharmalater",
-                            "B.Pharm (Lateral Entry from D.Pharm)",
-                          ],
-                        ].map(([path, name]) => (
-                          <li key={path}>
-                            <Link
-                              to={`/${path}`}
-                              onClick={handleLinkClick}
-                              className="block hover:text-blue-700 px-2 py-1"
-                            >
-                              {name}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                      <p className="font-semibold text-base">Diploma:</p>
-                      <ul className="space-y-1 text-xs">
+                      {/* <p className="font-semibold text-base">Diploma:</p> */}
+                      <ul className="space-y-1 text-xs mb-3 border-b-2 border-gray-300">
                         {[
                           ["diploma-pharmacy", "D.Pharm (Diploma in Pharmacy)"],
+                          ["b-pharm ", "B.Pharm"],
+                          ["pharm-d", "Pharm D"],
                         ].map(([path, name]) => (
                           <li key={path}>
                             <Link
@@ -592,6 +567,56 @@ const Navbar = () => {
                           </Link>
                         </li> */}
                       </ul>
+                      {/* M PHARM */}
+                      <p className="font-semibold text-base mb-1">M PHARM</p>
+                      <ul className="space-y-1 mb-3 text-xs ml-4">
+                        {[
+                          ["pharmacology", "PHARMACOLOGY"],
+                          ["pharmaceutics", "PHARMACEUTICS"],
+                          [
+                            "pharmaceutical-chemistry",
+                            "PHARMACEUTICAL CHEMISTRY",
+                          ],
+                        ].map(([path, name]) => (
+                          <li
+                            key={path}
+                            className="list-disc list-outside ml-4"
+                          >
+                            <Link
+                              to={`/${path}`}
+                              onClick={handleLinkClick}
+                              className="hover:text-blue-700"
+                            >
+                              {name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+
+                      {/* B PHARM */}
+                      <p className="font-semibold text-base mb-1">B PHARM</p>
+                      <ul className="space-y-1 mb-3 text-xs ml-4">
+                        {[
+                          ["b-pharma", "B.PHARM (BACHELOR OF PHARMACY)"],
+                          [
+                            "b-pharmalater",
+                            "B.PHARM (LATERAL ENTRY FROM D.PHARM)",
+                          ],
+                        ].map(([path, name]) => (
+                          <li
+                            key={path}
+                            className="list-disc list-outside ml-4"
+                          >
+                            <Link
+                              to={`/${path}`}
+                              onClick={handleLinkClick}
+                              className="hover:text-blue-700"
+                            >
+                              {name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
 
                     {/* College of Business */}
@@ -604,16 +629,20 @@ const Navbar = () => {
                           College of Business
                         </Link>
                       </h3>
+                      <p className="font-semibold text-base mb-1">MBA</p>
                       <ul className="space-y-1 text-xs">
                         {[
-                          ["mba-it", "MBA IT"],
-                          ["mba-ib", "MBA IB"],
-                          ["mba-finance", "MBA Finance"],
-                          ["mba-marketing", "MBA Marketing"],
-                          ["mba-hr", "MBA HR"],
-                          ["bcom", "B.Com"],
+                          ["mba-it", "Information Technology "],
+                          ["mba-ib", "International Business "],
+                          ["mba-marketing", "Marketing"],
+                          ["mba-finance", "Finance"],
+                          ["mba-hr", "Human Resource"],
+                          // ["bcom", "B.Com"],
                         ].map(([path, name], index) => (
-                          <li key={`${path}-${index}`}>
+                          <li
+                            key={`${path}-${index}`}
+                            className="list-disc list-outside ml-5"
+                          >
                             <Link
                               to={`/${path}`}
                               onClick={handleLinkClick}
@@ -667,18 +696,22 @@ const Navbar = () => {
                           College of Arts
                         </Link>
                       </h3>
+                      <p className="font-semibold text-base mb-1">B.A</p>
                       <ul className="space-y-1 text-xs">
                         {[
-                          ["llb", "LLB"],
+                          // ["llb", "LLB"],
                           ["political-science", "Political Science"],
-                          ["education", "Education"],
                           ["sociology", "Sociology"],
+                          ["education", "Education"],
                           ["ancient-history", "Ancient history"],
                           ["hindi", "Hindi"],
                           ["english", "English"],
                           ["urdu", "Urdu"],
                         ].map(([path, name]) => (
-                          <li key={path}>
+                          <li
+                            key={path}
+                            className="list-disc list-outside ml-5"
+                          >
                             <Link
                               to={`/${path}`}
                               onClick={handleLinkClick}
@@ -701,7 +734,7 @@ const Navbar = () => {
                           College of ITI
                         </Link>
                       </h3>
-                      <ul className="space-y-1 text-xs">
+                      {/* <ul className="space-y-1 text-xs">
                         {[
                           [
                             "iti-multimedia",
@@ -718,18 +751,18 @@ const Navbar = () => {
                             </Link>
                           </li>
                         ))}
-                      </ul>
+                      </ul> */}
                       <ul className="space-y-1 text-xs">
                         {[
                           [
                             // "iti-multimedia",
                             // "Multimedia Animation & Special Effects",
                           ],
-                          ["digital-photography", "Digital Photographer"],
-                          ["iti-electrician", "Electrician"],
-                          ["iti-welder", "Welder"],
+                          ["iti-draughtsman", "Civil Draftsman"],
                           ["iti-fitter", "Fitter"],
-                          ["iti-draughtsman", "Draughtsman"],
+                          ["iti-welder", "Welder"],
+                          ["iti-electrician", "Electrician"],
+                          ["digital-photography", "Digital Photographer"],
                         ].map(([path, name]) => (
                           <li key={path}>
                             <Link

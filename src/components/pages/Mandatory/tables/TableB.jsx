@@ -42,7 +42,7 @@ function TableB() {
         "Copy of valid fire safety certificate issued by the competent authority",
     },
     {
-     file: "/affiltation.pdf",
+      file: "/affiltation.pdf",
       title:
         "Copy of the DEO certificate submitted by the school for affiliation / upgradation / extension of affiliation or self-certification by the school",
     },
@@ -57,7 +57,7 @@ function TableB() {
       <table className="min-w-full border border-gray-300 bg-white rounded-lg shadow-md">
         <thead className="bg-blue-600 text-white">
           <tr>
-            <th className="px-4 py-3">S.No.</th>
+            <th className="px-4 py-3 border-r border-gray-300">S.No.</th>
             <th className="px-4 py-3">Documents and Information</th>
             <th className="px-4 py-3">Documents</th>
           </tr>
@@ -66,7 +66,9 @@ function TableB() {
         <tbody>
           {docs.map((doc, index) => (
             <tr key={index} className="border-b hover:bg-gray-100">
-              <td className="px-4 py-3">{index + 1}</td>
+              <td className="px-4 py-3 border-r border-gray-300">
+                {index + 1}
+              </td>
 
               <td className="px-4 py-3">{doc.title}</td>
 
