@@ -21,19 +21,37 @@ export default function MediaGallery() {
       : allImages.filter((img) => img.category === activeCategory);
 
   return (
-    <div className="min-h-screen bg-[#071947] p-6 md:p-12">
-      {/* PAGE HEADER */}
-      <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-[#FFD700] drop-shadow-lg tracking-wide">
-          Media & Gallery
-        </h1>
-        <p className="text-[#FFD700]/80 mt-3 text-lg max-w-2xl mx-auto">
-          Explore the most memorable highlights from various events at our college.
-        </p>
-      </div>
+    <div className="bg-[#071947] min-h-screen pb-16">
+      
+      {/* TOP BIG HERO IMAGE */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        className="relative w-full h-[45vh] md:h-[55vh] overflow-hidden"
+      >
+        <img
+          src="/images/events/SPORTSDAY/s1.jpg"
+          alt="Hero Banner"
+          className="w-full h-full object-cover"
+        />
+
+        {/* OVERLAY */}
+        <div className="absolute inset-0 bg-[#071947]/70"></div>
+
+        {/* TEXT OVER HERO */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+          <h1 className="text-4xl md:text-6xl font-extrabold text-[#FFD700] drop-shadow-xl">
+            Media & Gallery
+          </h1>
+          <p className="text-[#FFD700]/90 mt-4 text-lg md:text-xl max-w-2xl">
+            Explore the memorable highlights and moments from our events.
+          </p>
+        </div>
+      </motion.div>
 
       {/* FILTER BUTTONS */}
-      <div className="flex justify-center gap-4 flex-wrap mb-10">
+      <div className="flex justify-center gap-4 flex-wrap mt-10 mb-10 px-4">
         {categories.map((cat) => (
           <button
             key={cat}
@@ -52,7 +70,7 @@ export default function MediaGallery() {
       </div>
 
       {/* IMAGE GRID */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-6 md:px-12">
         <AnimatePresence>
           {imagesToShow.map((item, index) => (
             <motion.div
@@ -65,14 +83,13 @@ export default function MediaGallery() {
               onClick={() => setSelectedImage(item)}
               className="relative group cursor-pointer rounded-2xl overflow-hidden shadow-xl border border-[#FFD700]/30 hover:shadow-yellow-500/50"
             >
-              {/* IMAGE */}
               <img
                 src={item.src}
                 alt={item.title}
                 className="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110"
               />
 
-              {/* GRADIENT OVERLAY */}
+              {/* OVERLAY */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#071947]/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
               {/* TITLE */}
