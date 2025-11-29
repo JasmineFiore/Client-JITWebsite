@@ -62,14 +62,14 @@ function TableA() {
     <div className="overflow-x-auto mt-6">
       <table className="min-w-full border border-gray-400 text-sm">
         <thead>
-          <tr className="bg-gray-200 text-center text-xl">
+          {/* <tr className="bg-gray-200 text-center text-xl">
             <th
               className="border border-gray-400 px-4 py-3 font-bold"
               colSpan="4"
             >
               COLLEGE NAME AND CODE OF JIT
             </th>
-          </tr>
+          </tr> */}
           <tr className="bg-blue-600 text-white">
             <th className="border border-gray-800 px-3 py-2">
               Approval / Affiliating Agency

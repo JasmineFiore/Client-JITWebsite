@@ -26,25 +26,25 @@ export default function TableD() {
           {/* Sub Items */}
           <tr className="hover:bg-gray-100">
             <td className="px-4 py-2 border">2a.</td>
-            <td className="px-4 py-2 border">PGT</td>
+            <td className="px-4 py-2 border">Assistant Professor</td>
             <td className="px-4 py-2 border">08</td>
           </tr>
 
           <tr className="hover:bg-gray-100">
             <td className="px-4 py-2 border">2b.</td>
-            <td className="px-4 py-2 border">TGT</td>
+            <td className="px-4 py-2 border">Associate Professor</td>
             <td className="px-4 py-2 border">05</td>
           </tr>
 
           <tr className="hover:bg-gray-100">
             <td className="px-4 py-2 border">2c.</td>
-            <td className="px-4 py-2 border">PRT</td>
+            <td className="px-4 py-2 border">Professor</td>
             <td className="px-4 py-2 border">09</td>
           </tr>
 
           <tr className="hover:bg-gray-100">
             <td className="px-4 py-2 border">3</td>
-            <td className="px-4 py-2 border">Teachers Section Ratio</td>
+            <td className="px-4 py-2 border">Lecturer</td>
             <td className="px-4 py-2 border">1.5:1</td>
           </tr>
 

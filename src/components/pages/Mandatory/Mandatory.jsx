@@ -68,7 +68,7 @@ export default function Mandatory() {
         {/* MAIN CONTENT */}
         <div className="container mx-auto py-10 px-4">
           {/* Tailwind Tabs */}
-          <div className="border-b flex gap-6 overflow-x-auto pb-2">
+          <div className=" flex gap-6 overflow-x-auto pb-2">
             {tabs.map((tab) => (
               <button
                 key={tab.key}

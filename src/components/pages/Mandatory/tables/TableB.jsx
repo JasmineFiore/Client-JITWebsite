@@ -26,11 +26,11 @@ function TableB() {
       title:
         "Copy of No Objection Certificate (NOC) issued, if applicable, by the State Govt. / UT",
     },
-    {
-      file: "/affiltation.pdf",
-      title:
-        "Copies of Recognition Certificate under RTE Act, 2009, and its renewal if applicable",
-    },
+    // {
+    //   file: "/affiltation.pdf",
+    //   title:
+    //     "Copies of Recognition Certificate under RTE Act, 2009, and its renewal if applicable",
+    // },
     {
       file: "/affiltation.pdf",
       title:
@@ -41,11 +41,11 @@ function TableB() {
       title:
         "Copy of valid fire safety certificate issued by the competent authority",
     },
-    {
-      file: "/affiltation.pdf",
-      title:
-        "Copy of the DEO certificate submitted by the school for affiliation / upgradation / extension of affiliation or self-certification by the school",
-    },
+    // {
+    //   file: "/affiltation.pdf",
+    //   title:
+    //     "Copy of the DEO certificate submitted by the school for affiliation / upgradation / extension of affiliation or self-certification by the school",
+    // },
     {
       file: "/affiltation.pdf",
       title: "Copies of valid water, health, and sanitation certificates",
